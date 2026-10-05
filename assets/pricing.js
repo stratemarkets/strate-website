@@ -48,7 +48,7 @@
       segment.dataset.trailStep = step;
       segment.dataset.trailSegments = segments;
       const taper = Math.max(0, (step / (segments - 1) - 17 / 115) / (1 - 17 / 115));
-      segment.style.setProperty('--segment-width', `${5 - 4 * taper}px`);
+      segment.style.setProperty('--segment-width', `calc(var(--snake-max-width) - var(--snake-taper-range) * ${taper})`);
       segment.style.stroke = `rgb(${values.slice(0, 3).join(' ')} / ${values[3]})`;
       fragment.append(segment);
     }
