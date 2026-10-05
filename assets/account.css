@@ -66,3 +66,7 @@
   .acct-os button { flex: 1; }
 }
 @media (prefers-reduced-motion: reduce) { .acct-os button { transition: none; } }
+
+[hidden]{display:none!important}
+#account-email{overflow-wrap:anywhere}
+#account-status{padding:20px}
