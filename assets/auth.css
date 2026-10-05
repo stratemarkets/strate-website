@@ -44,3 +44,6 @@ fieldset { padding: 0; margin: 0; border: 0; min-width: 0; }
 
 /* Google Sans draws © small and raised; Arial's matches the surrounding text. */
 .copyright-sign { font-family: Arial, Helvetica, sans-serif; }
+[hidden] { display: none !important; }
+.auth-submit:disabled, fieldset:disabled .auth-submit { opacity: .55; cursor: wait; }
+.auth-intro { overflow-wrap: anywhere; }
