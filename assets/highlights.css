@@ -1,0 +1,68 @@
+.highlights {
+  --highlight-gutter: max(24px, calc((100vw - 1280px) / 2));
+  padding-block: clamp(64px, 7svh, 112px) 24px;
+}
+.highlights h2 { color: #92929a; font-size: clamp(30px, 3.5vw, 54px); margin-bottom: 38px; }
+.highlights-track {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--highlight-gutter);
+  padding-inline: var(--highlight-gutter);
+  scrollbar-width: none;
+}
+.highlights-track::-webkit-scrollbar { display: none; }
+.highlight-card {
+  flex: 0 0 min(1280px, calc(100vw - 2 * var(--highlight-gutter)));
+  min-width: 0;
+  scroll-snap-align: start;
+  border-radius: 30px;
+  background: #000;
+  overflow: hidden;
+  padding: 40px 0 0;
+  text-align: center;
+}
+.highlight-copy { margin: 0 auto 44px; padding-inline: 32px; }
+.highlight-copy h3, .highlight-copy p { font-size: clamp(20px, 2vw, 29px); line-height: 1.2; font-weight: 500; color: #f5f5f7; margin: 0; }
+.highlight-copy p { margin-top: 5px; }
+/* Reframe the original transparent 4K renders without changing the assets.
+   Their visible silhouette starts 278px below the top of the 2160px canvas. */
+.highlight-open { display: block; position: relative; width: 100%; aspect-ratio: 2.4; margin: auto; padding: 0; overflow: hidden; background: transparent; cursor: zoom-in; }
+.highlight-open img { display: block; position: absolute; left: 50%; top: 0; width: 130%; max-width: none; height: auto; transform: translate(-50%, -12.87%); pointer-events: none; }
+.highlight-enlarge { position: absolute; right: 24px; bottom: 24px; border: 1px solid #ffffff25; border-radius: 999px; background: #191919e8; color: #f5f5f7; padding: 9px 14px; font-size: 12px; }
+.highlight-open:hover .highlight-enlarge { border-color: #f5f5f7; }
+.highlight-open:focus-visible { outline-offset: -5px; }
+/* Controls in the style of Apple's galleries: a translucent pill of 8 px dots where
+   the current one stretches into a progress bar (filled in the signature colour),
+   and a round play/pause button in the same material. */
+.highlights-controls { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 36px; }
+.highlights-dots, .highlights-play { background: rgba(66, 66, 69, .72); -webkit-backdrop-filter: blur(20px) saturate(180%); backdrop-filter: blur(20px) saturate(180%); }
+.highlights-dots { display: flex; align-items: center; height: 56px; padding: 0 16px; border-radius: 999px; }
+.highlights-dots button { display: grid; place-items: center; width: 24px; height: 56px; padding: 0; background: transparent; border-radius: 999px; transition: width .5s cubic-bezier(.4, 0, .6, 1); }
+.highlights-dots button span { display: block; position: relative; overflow: hidden; width: 8px; height: 8px; border-radius: 999px; background: rgba(255, 255, 255, .42); transition: width .5s cubic-bezier(.4, 0, .6, 1), background .3s ease; }
+.highlights-dots button:hover span { background: rgba(255, 255, 255, .64); }
+.highlights-dots button span::after { content: ''; position: absolute; inset: 0; border-radius: inherit; background: #b318ff; transform: scaleX(0); transform-origin: left center; }
+.highlights-dots button[aria-pressed=true] { width: 64px; }
+.highlights-dots button[aria-pressed=true] span { width: 48px; background: rgba(255, 255, 255, .3); }
+.highlights-dots button[aria-pressed=true] span::after { transform: scaleX(var(--slide-progress, 0)); }
+.highlights-play { display: grid; place-items: center; width: 56px; height: 56px; padding: 0; border-radius: 50%; color: #f5f5f7; font-size: 17px; transition: background .2s ease; }
+.highlights-play:hover { background: rgba(88, 88, 92, .82); color: #fff; }
+.highlights-play svg { width: 20px; height: 20px; }
+.highlights-play svg { display: block; transition: transform .2s ease; }
+.highlights-play:active svg { transform: scale(.88); }
+.highlights-play[aria-pressed="true"] .icon-play, .highlights-play[aria-pressed="false"] .icon-pause { display: none; }
+@media (max-width: 600px) {
+  .highlights { --highlight-gutter: 18px; }
+  .highlights h2 { font-size: 30px; margin-bottom: 26px; }
+  .highlights-track { gap: 12px; padding-right: 30px; }
+  .highlight-card { flex-basis: calc(100vw - 48px); border-radius: 22px; padding: 28px 0 0; }
+  .highlight-copy { min-height: 100px; margin-bottom: 20px; padding-inline: 20px; }
+  .highlight-copy h3, .highlight-copy p { font-size: 20px; }
+  .highlight-open { aspect-ratio: 1.85; }
+  .highlight-open img { width: 160%; }
+  .highlight-enlarge { right: 14px; bottom: 14px; font-size: 11px; padding: 8px 13px; }
+  .highlights-controls { margin-top: 26px; }
+}
+@media (prefers-reduced-motion: reduce) { .highlights-dots button, .highlights-dots button span { transition: none; } }

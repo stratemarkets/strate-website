@@ -1,0 +1,83 @@
+/* Cookie banner along the bottom of the screen and preferences panel. The three
+   choices share one style: refusing is as visible as accepting. */
+.consent-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px 40px;
+  padding: 24px max(24px, calc((100vw - 1440px) / 2));
+  border-top: 1px solid #ffffff14;
+  background: #2b2b2b;
+  box-shadow: 0 -18px 50px #0006;
+  color: #f5f5f7;
+  font-family: "Google Sans", Arial, sans-serif;
+  animation: consent-in .35s cubic-bezier(.22, 1, .36, 1);
+}
+.consent-banner.is-leaving { animation: consent-out .26s ease forwards; }
+.consent-copy { max-width: 70ch; }
+.consent-banner h2, .consent-panel h2 { margin: 0 0 8px; color: #fff; font-size: 17px; font-weight: 500; letter-spacing: -.01em; }
+.consent-banner p { margin: 0; color: #b7b7bd; font-size: 14px; line-height: 1.6; }
+.consent-banner a, .consent-link { padding: 0; border: 0; background: none; color: #f5f5f7; font: inherit; text-decoration: underline; text-decoration-color: #ffffff66; text-underline-offset: 3px; cursor: pointer; }
+.consent-banner a:hover, .consent-link:hover { color: #fff; text-decoration-color: #fff; }
+.consent-actions { display: flex; flex-wrap: wrap; gap: 10px; flex-shrink: 0; }
+.consent-actions button {
+  min-height: 44px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 999px;
+  background: #3a3a3d;
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background .2s ease;
+}
+.consent-actions button:hover { background: #4a4a4e; }
+.consent-actions button.is-primary { background: #f5f5f7; color: #111113; }
+.consent-actions button.is-primary:hover { background: #dcdce1; }
+.consent-banner :focus-visible, .consent-panel :focus-visible { outline: 2px solid #b318ff; outline-offset: 3px; }
+
+.consent-panel { width: min(560px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 0; border: 1px solid #ffffff17; border-radius: 22px; background: #232325; color: #f5f5f7; font-family: "Google Sans", Arial, sans-serif; box-shadow: 0 24px 70px #000a; }
+.consent-panel::backdrop { background: #0000008c; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.consent-panel-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 20px 16px 26px; border-bottom: 1px solid #ffffff14; }
+.consent-panel-head h2 { margin: 0; }
+.consent-close { display: grid; place-items: center; width: 34px; height: 34px; border: 0; border-radius: 50%; background: #3a3a3d; color: #fff; cursor: pointer; }
+.consent-categories { margin: 0; padding: 8px 26px; list-style: none; }
+.consent-categories li { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; padding: 16px 0; border-bottom: 1px solid #ffffff12; }
+.consent-categories li:last-child { border-bottom: 0; }
+.consent-categories h3 { margin: 0 0 4px; font-size: 15px; font-weight: 500; }
+.consent-categories p { margin: 0; color: #9c9ca3; font-size: 13px; line-height: 1.5; }
+.consent-panel > .consent-actions { justify-content: flex-end; padding: 16px 26px 22px; border-top: 1px solid #ffffff14; }
+
+/* Switch: a real checkbox under a pill, on in the signature colour. */
+.consent-switch { position: relative; flex-shrink: 0; width: 44px; height: 26px; margin-top: 2px; cursor: pointer; }
+.consent-switch input { position: absolute; inset: 0; margin: 0; opacity: 0; cursor: inherit; }
+.consent-switch span { position: absolute; inset: 0; border-radius: 999px; background: #4a4a4e; transition: background .2s ease; pointer-events: none; }
+.consent-switch span::after { content: ""; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; transition: transform .2s ease; }
+.consent-switch input:checked + span { background: #b318ff; }
+.consent-switch input:checked + span::after { transform: translateX(18px); }
+.consent-switch input:disabled + span { opacity: .55; }
+.consent-switch input:disabled { cursor: not-allowed; }
+.consent-switch input:focus-visible + span { outline: 2px solid #b318ff; outline-offset: 3px; }
+
+@keyframes consent-in { from { transform: translateY(100%); } }
+@keyframes consent-out { to { transform: translateY(100%); opacity: 0; } }
+@media (max-width: 900px) {
+  .consent-banner { flex-direction: column; align-items: stretch; padding: 20px; }
+  .consent-actions button { flex: 1 1 auto; }
+}
+@media (max-width: 520px) {
+  .consent-actions { flex-direction: column; }
+  .consent-actions button { width: 100%; white-space: normal; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .consent-banner, .consent-banner.is-leaving { animation: none; }
+  .consent-actions button, .consent-switch span, .consent-switch span::after { transition: none; }
+}

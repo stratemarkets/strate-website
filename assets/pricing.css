@@ -1,0 +1,35 @@
+/* Google Sans Flex Semi Bold outlines, exported directly from the local font. */
+.pricing-hero { padding: clamp(88px, 8.6vw, 138px) 24px clamp(106px, 10vw, 166px); text-align: center; overflow: clip; }
+.pricing-price { --stroke-scale: 3; --outline-width: 1px; --light-width: 1.7px; width: min(100%, 760px); margin-inline: auto; }
+.pricing-outline { display: block; width: 100%; height: auto; overflow: visible; fill: none; }
+.pricing-outline use { stroke-linecap: round; stroke-linejoin: round; }
+.price-outline-base { stroke: #606060; stroke-width: calc(var(--outline-width) * var(--stroke-scale)); }
+.price-snake { opacity: 0; }
+.pricing-price.is-ready .price-snake { opacity: 1; }
+.price-snake use { stroke: #b318ff; stroke-dasharray: var(--trail) calc(var(--perimeter) - var(--trail)); animation: price-contour-travel 13s linear infinite; animation-play-state: paused; }
+.pricing-price.is-playing .price-snake use { animation-play-state: running; }
+.price-snake-tail { filter: blur(calc(4px * var(--stroke-scale))); }
+.price-snake-tail use { stroke-opacity: .4; stroke-linecap: butt; }
+.price-snake-tail use, .price-snake-body use { stroke-width: calc(var(--segment-width, 5px) * var(--stroke-scale)); }
+.price-snake-body { filter: blur(calc(.6px * var(--stroke-scale))); }
+.price-snake-body use { stroke-opacity: .85; stroke-linecap: butt; }
+.price-snake-head { stroke-width: calc(5px * var(--stroke-scale)); filter: blur(calc(1px * var(--stroke-scale))); }
+.price-snake-head use { stroke: #dca3ff; stroke-opacity: .35; }
+@keyframes price-contour-travel {
+  from { stroke-dashoffset: calc(var(--start) + var(--trail)); }
+  to { stroke-dashoffset: calc(var(--start) + var(--trail) - var(--perimeter)); }
+}
+.pricing-hero h1 { color: #fff; font-family: "Google Sans", sans-serif; font-weight: 500; font-size: clamp(27px, 2.35vw, 36px); letter-spacing: -.035em; line-height: 1.2; margin: -14px auto 18px; position: relative; top: -15px; }
+.pricing-installments { color: #d2d2d7; font-size: clamp(16px, 1.25vw, 19px); line-height: 1.45; margin: 0 auto; }
+.price-word { font-size: clamp(48px, 5vw, 76px); font-weight: 600; letter-spacing: -.045em; line-height: 1.1; }
+.pricing-price-label { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media (max-width: 600px) {
+  .pricing-hero { padding: 84px 20px 100px; }
+  .pricing-hero h1 { margin-top: -5px; }
+  .pricing-price { --outline-width: 1px; --light-width: 1.25px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .price-snake { display: none; }
+  .pricing-price .price-snake use { animation: none !important; animation-play-state: paused !important; }
+}
+.pricing-hero.pricing-hero-beta h1 { margin-top: 16px; top: 0; }

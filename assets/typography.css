@@ -1,0 +1,190 @@
+/* Shared reading scale. Keep the existing display titles; give supporting copy
+   and controls enough size on phones as well as large desktop monitors. */
+:root {
+  --reading-size: clamp(1rem, .9rem + .3vw, 1.1875rem);
+  --interface-size: clamp(.875rem, .8125rem + .15vw, 1rem);
+  --note-size: clamp(.8125rem, .75rem + .15vw, .9375rem);
+  --label-size: clamp(.75rem, .6875rem + .15vw, .875rem);
+}
+body { font-size: 1rem; }
+.hero-shell .hero-bottom p, .page-hero .hero-bottom p, .page-hero > p {
+  font-size: clamp(1rem, .9375rem + .3vw, 1.3125rem);
+  line-height: 1.65;
+}
+.section-heading > p, .feature-panel p, .replay-layout p,
+.facts-grid p, .three-columns p, .split-section > div > p,
+.system-copy p, .tool-row p, .process-grid p, .statement-bottom p,
+.source-comparison p, .os-detail p, .access-note p, .faq-list details p,
+.price-description {
+  font-size: var(--reading-size);
+  line-height: 1.5;
+}
+.section-heading > p { max-width: 440px; }
+.replay-layout p { max-width: 440px; }
+.facts-grid p { max-width: 36ch; }
+.feature-panel p br { display: none; }
+.feature-panel h3, .three-columns h3, .process-grid h3 {
+  font-size: clamp(1.25rem, 1.1rem + .4vw, 1.625rem);
+  line-height: 1.25;
+}
+.facts-grid h3, .system-copy h3, .os-detail h3 {
+  font-size: clamp(1.125rem, 1rem + .3vw, 1.375rem);
+  line-height: 1.35;
+}
+.faq-list summary { font-size: var(--reading-size); line-height: 1.5; gap: 18px; }
+.tool-row h3 { font-size: var(--reading-size); line-height: 1.45; }
+.tool-row { align-items: start; }
+.line-list li, .price-panel .line-list li { font-size: var(--reading-size); line-height: 1.6; }
+
+.eyebrow, .hero .eyebrow, .page-hero .eyebrow,
+.mono, .panel-top > .mono, .panel-label, .feature-panel .panel-label, .process-number,
+.system-grid .mono, .profile-art > .mono, .workspace-sidebar > .mono,
+.workspace-pane > .mono, .numbered .mono, .tools-table-head,
+.source-comparison .panel-top .mono, .risk-art .panel-top, .access-note > .mono,
+.time-art > .mono, .time-scale {
+  font-size: var(--label-size);
+  line-height: 1.5;
+  letter-spacing: .025em;
+}
+.small-note, .replay-layout .small-note, .numbered + .small-note,
+.tools-table + .small-note, .split-section > div > p.small-note,
+.system-copy p.small-note, .source-comparison + .small-note,
+.price-panel p.small-note, .risk-art p.small-note, .chart-dialog > .small-note {
+  font-size: var(--note-size);
+  line-height: 1.65;
+}
+.closing-action > .mono, .status-tag, .opening-status,
+.os-detail > .mono, .statement-clock span { font-size: var(--note-size); line-height: 1.5; }
+.statement-clock { font-size: clamp(32px, 3vw, 46px); }
+.opening-status { gap: 9px; }
+.opening-status .status-dot { flex-shrink: 0; }
+.price small { font-size: var(--reading-size); white-space: nowrap; }
+@media (max-width: 480px) {
+  .price { font-size: clamp(64px, 24vw, 95px); }
+  .price small { display: block; margin: 14px 0 0; }
+}
+.visual-caption, .screenshot-gallery .chart-legend,
+.terminal figcaption > span:last-child, .capture-dialog .dialog-head > .mono {
+  font-size: var(--label-size);
+  line-height: 1.6;
+}
+.visual-caption { gap: 18px; }
+.visual-caption > span { min-width: 0; }
+.screenshot-gallery figcaption { gap: 12px 24px; }
+
+.button, .text-link, .hero-actions > .text-link, .access-end .text-link,
+.tool-filters button, .os-picker button, .capture-zoom, .dialog-close,
+.highlight-enlarge, .inline-features, .workspace-sidebar > span,
+.workspace-sidebar > small { font-size: var(--interface-size); }
+.button { min-height: 48px; }
+.hero-actions { flex-wrap: wrap; }
+.text-link { line-height: 1.5; }
+.site-header .navbar-logo { font-size: var(--interface-size); }
+.desktop-nav a, .site-header .header-access, .header-actions .header-login { font-size: 18px; }
+.tool-filters { flex-wrap: wrap; }
+.tool-filters button { min-height: 44px; }
+.inline-features { line-height: 1.5; }
+.screenshot-gallery .view-tabs button { font-size: var(--interface-size); height: auto; min-height: 36px; }
+.screenshot-gallery .terminal-toolbar { height: auto; min-height: 52px; padding-block: 8px; }
+.screenshot-gallery .view-tabs { height: auto; flex-wrap: wrap; }
+.capture-zoom, .dialog-close { min-height: 40px; }
+
+.footer-intro p, .footer-column > a { font-size: var(--interface-size); line-height: 1.7; }
+.footer-column h2 { font-size: clamp(1rem, .9375rem + .15vw, 1.125rem); }
+.footer-signature, .footer-beta, .footer-meta small { font-size: var(--label-size); line-height: 1.6; }
+.footer-columns { column-gap: clamp(20px, 2.4vw, 40px); }
+.footer-meta { flex-wrap: wrap; }
+.footer-start > a { align-items: center; }
+.footer-access-link > span:first-child { flex-shrink: 0; }
+
+.spec-item > span { font-size: var(--label-size); }
+.spec-item .desktop-systems > span { font-size: var(--interface-size); }
+.spec-item .desktop-systems { gap: 10px 14px; }
+
+@media (max-width: 800px) {
+  .facts-grid { gap: 24px; }
+  .feature-panel { grid-template-columns: 1fr 1fr; }
+  .spec-item > span { min-height: 36px; display: flex; align-items: center; }
+  .spec-item { gap: 10px; }
+  .source-comparison .panel-top { align-items: flex-start; }
+  .source-comparison .panel-top .mono { max-width: none; }
+}
+@media (max-width: 600px) {
+  .hero-shell .hero-bottom p { max-width: 36ch; }
+  .hero-actions { gap: 12px 18px; }
+  .hero .eyebrow, .page-hero .eyebrow { font-size: 11px; }
+  .site-header .navbar-logo { font-size: 12px; }
+  .header-access { padding-inline: 12px; }
+  .feature-panel { display: flex; flex-direction: column; }
+  .feature-panel .mini-art { height: auto; aspect-ratio: 1.7; width: 100%; margin-top: 18px; }
+  .feature-panel .panel-top { width: 100%; }
+  .feature-panel h3 { margin-top: 22px; }
+  .feature-panel .panel-label { margin-top: 12px; }
+  .section-heading > p { max-width: none; }
+  .facts-grid { gap: 0; }
+  .facts-grid > div, .facts-grid > div:first-child, .facts-grid > div:last-child {
+    display: block; padding-block: 28px;
+  }
+  .fact-value { margin-bottom: 14px; }
+  .facts-grid p { max-width: none; }
+  .visual-caption { flex-direction: column; gap: 6px; }
+  .visual-caption > span:last-child { max-width: none; text-align: left; }
+  .screenshot-gallery .view-tabs { gap: 4px; }
+  .screenshot-gallery .view-tabs button { font-size: 12px; padding-inline: 8px; }
+  .screenshot-gallery .terminal-toolbar { align-items: flex-start; }
+  .screenshot-gallery .expand-button { align-self: center; }
+  .source-comparison .panel-top { flex-direction: column; gap: 12px; }
+  .source-comparison .panel-top .mono { text-align: left; }
+  .footer-columns { column-gap: 22px; }
+  .footer-intro p, .footer-column > a { font-size: 14px; }
+  .footer-column h2 { font-size: 16px; }
+  .footer-meta small { font-size: 12px; }
+  .spec-item .desktop-systems { flex-direction: column; align-items: flex-start; }
+  .spec-item > b { min-height: 52px; }
+  .spec-item .desktop-systems > span { font-size: 14px; gap: 7px; }
+}
+@media (max-height: 520px) and (min-width: 601px) {
+  .hero-shell .hero-bottom p { font-size: 16px; line-height: 1.45; }
+}
+
+/* Laptop windows (MacBook 13–14"): a navigation bar about 15 % smaller. */
+@media (min-width: 801px) and (max-width: 1600px) {
+  .header-inner { height: 54px; }
+  .desktop-nav { gap: 34px; }
+  .desktop-nav a, .site-header .header-access, .header-actions .header-login { font-size: 15px; }
+  .site-header .navbar-logo { height: 21px; }
+  .header-actions .header-login { padding: 8px 14px; }
+  .site-header .header-access { padding: 7px 14px; }
+}
+
+/* Mobile navigation: the Early access button about 15 % smaller. */
+@media (max-width: 800px) {
+  .site-header .header-actions .header-access { font-size: 15px; padding: 7px 10px; }
+}
+
+/* Breathing room, Apple-style: one rhythm for the space between sections and
+   between a section title and its content, scaled down on smaller screens. */
+:root {
+  --section-space: clamp(120px, 12.5vw, 184px);
+  --heading-space: clamp(48px, 5vw, 76px);
+}
+main > .section, main > .section.container { padding-top: var(--section-space); }
+.section-heading { margin-bottom: var(--heading-space); }
+.page-hero { padding-bottom: clamp(64px, 7vw, 112px); }
+.spec-strip { margin-top: clamp(72px, 8vw, 120px); }
+.replay-feature { margin-top: var(--section-space); padding-block: clamp(96px, 10vw, 150px); }
+.closing { margin-top: var(--section-space); padding-block: clamp(80px, 9vw, 130px); }
+.container.faq-centered { padding-top: var(--section-space); padding-bottom: var(--section-space); }
+.faq-centered > h2 { margin-bottom: var(--heading-space); }
+.access-end { padding-top: 48px; padding-bottom: var(--heading-space); }
+.feature-reference-section { padding-bottom: var(--section-space); }
+.help-home-bottom { margin-top: var(--section-space); margin-bottom: var(--section-space); }
+.help-section-title { margin-bottom: 32px; }
+@media (max-width: 800px) {
+  :root { --section-space: clamp(88px, 17vw, 120px); --heading-space: clamp(32px, 7vw, 48px); }
+}
+/* The same breathing room between the navigation bar and each page's title. */
+:root { --top-space: clamp(112px, 10.5vw, 152px); }
+@media (max-width: 800px) { :root { --top-space: clamp(80px, 22vw, 96px); } }
+.page-hero, .help-hero { padding-top: var(--top-space); }
+body[data-help-view="category"] .help-hero, body[data-help-view="article"] .help-hero { padding-top: calc(var(--top-space) * .6); }

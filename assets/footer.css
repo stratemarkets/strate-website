@@ -1,0 +1,141 @@
+/* Spacious editorial footer inspired by the supplied reference. */
+.site-footer.footer-showcase {
+  width: 100%;
+  margin: 0;
+  padding: clamp(72px, 8vw, 124px) 0 34px;
+  background: #090909;
+  border: 0;
+}
+
+.footer-content {
+  width: calc(100% - 96px);
+  max-width: 1440px;
+  margin-inline: auto;
+}
+
+.footer-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 48px;
+  margin-bottom: clamp(64px, 7vw, 104px);
+}
+.footer-heading .brand { display: inline-flex; flex-shrink: 0; }
+.footer-heading .footer-logo { display: block; width: 116px; height: auto; }
+.footer-heading p {
+  max-width: 320px;
+  margin: 0;
+  color: #8f8f96;
+  font-size: 14px;
+  line-height: 1.55;
+  text-align: right;
+}
+
+.footer-columns {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(28px, 4.5vw, 76px);
+}
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  min-width: 0;
+}
+.footer-column h2 {
+  margin: 0 0 8px;
+  color: #85858c;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.footer-column > a {
+  color: #ededf0;
+  font-size: 14px;
+  line-height: 1.45;
+  text-decoration: none;
+  transition: color .22s ease;
+}
+.footer-column > a:hover,
+.footer-column > a:focus-visible { color: #fff; }
+.footer-start > a { display: inline-flex; align-items: center; gap: 9px; }
+.footer-start .partner-logo.apple { width: 15px; height: 18px; }
+.footer-start .partner-logo.windows { width: 15px; height: 15px; }
+.footer-beta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 3px;
+  color: #85858c;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.footer-beta i { width: 4px; height: 4px; flex: 0 0 auto; border-radius: 50%; background: #b318ff; }
+
+.footer-meta {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: clamp(88px, 10vw, 150px);
+  padding-top: 24px;
+  border-top: 1px solid #ffffff14;
+  color: #8f8f96;
+}
+.footer-meta small { font-size: 12px; line-height: 1.5; }
+.footer-socials { display: flex; align-items: center; gap: 15px; }
+.footer-social {
+  display: grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+}
+.footer-social { color: #f5f5f7; transition: color .2s ease; }
+.footer-social:hover { color: var(--accent); }
+.footer-social svg { display: block; height: 18px; width: auto; }
+@media (prefers-reduced-motion: reduce) { .footer-social { transition: none; } }
+.footer-language { position: relative; flex-shrink: 0; margin-left: auto; }
+
+@media (max-width: 1120px) {
+  .footer-content { width: calc(100% - 64px); }
+  .footer-columns { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 54px; }
+}
+
+@media (max-width: 720px) {
+  .site-footer.footer-showcase { padding-top: 64px; }
+  .footer-content { width: calc(100% - 40px); }
+  .footer-heading { display: block; margin-bottom: 58px; }
+  .footer-heading p { margin-top: 25px; max-width: 290px; text-align: left; }
+  .footer-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 46px 28px; }
+  .footer-column > a { font-size: 14px; }
+  .footer-meta { flex-wrap: wrap; margin-top: 78px; }
+  .footer-socials { flex-basis: 100%; }
+}
+
+@media (max-width: 420px) {
+  .site-footer.footer-showcase { padding: 54px 0 26px; }
+  .footer-content { width: calc(100% - 36px); }
+  .footer-heading { margin-bottom: 50px; }
+  .footer-heading .footer-logo { width: 104px; }
+  .footer-columns { grid-template-columns: 1fr; gap: 42px; }
+  .footer-column { gap: 13px; }
+  .footer-column h2 { margin-bottom: 5px; }
+  .footer-meta { align-items: center; gap: 18px 12px; margin-top: 68px; }
+  .footer-socials { gap: 17px; }
+  .footer-meta small { order: 1; width: 100%; }
+  .footer-language { order: 2; margin-left: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-column > a { transition: none; }
+}
+
+/* Google Sans draws © small and raised; Arial's matches the surrounding text. */
+.copyright-sign { font-family: Arial, Helvetica, sans-serif; }
+
+/* Wide screens: socials on the left, copyright centred, language on the right. */
+@media (min-width: 721px) {
+  .footer-meta { display: grid; grid-template-columns: 1fr auto 1fr; }
+  .footer-meta small { text-align: center; }
+  .footer-meta .footer-language { justify-self: end; margin-left: 0; }
+}

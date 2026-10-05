@@ -1,0 +1,26 @@
+/* Real product captures. Preserve the complete image at every viewport size. */
+.screenshot-gallery .terminal-toolbar { gap: 12px; }
+.screenshot-gallery .expand-button { flex-shrink: 0; }
+.screenshot-gallery .chart-canvas { height: auto; aspect-ratio: 8 / 5; background: #191919; }
+.capture-open { display: block; width: 100%; height: 100%; padding: 0; background: transparent; cursor: zoom-in; }
+.capture-open:focus-visible { outline-offset: -4px; }
+.product-capture { display: block; width: 100%; height: auto; object-fit: contain; }
+.screenshot-gallery figcaption { align-items: center; }
+.screenshot-gallery .chart-legend { font-size: 10px; line-height: 1.6; }
+.capture-dialog .dialog-actions { display: flex; align-items: center; gap: 12px; }
+.capture-zoom { padding: 9px 15px; border: 1px solid #454952; border-radius: 999px; background: #242424; color: #f5f5f7; font-size: 12px; }
+.capture-zoom[aria-pressed=true] { border-color: #f5f5f7; background: #ffffff1a; }
+.capture-dialog .dialog-chart { max-height: 73dvh; overflow: auto; overscroll-behavior: contain; }
+.capture-dialog .dialog-chart img { display: block; width: 100%; height: auto; max-height: 73dvh; object-fit: contain; }
+.capture-dialog .dialog-chart.is-zoomed img { width: 2880px; max-width: none; max-height: none; }
+@media (max-width: 600px) {
+  .screenshot-gallery .terminal-toolbar { gap: 5px; padding-inline: 7px; }
+  .screenshot-gallery .view-tabs { gap: 2px; }
+  .screenshot-gallery .view-tabs button { padding-inline: 8px; font-size: 9px; }
+  .screenshot-gallery figcaption { align-items: flex-start; }
+  .screenshot-gallery .chart-legend { font-size: 9px; }
+  .capture-dialog .dialog-head { flex-wrap: wrap; gap: 12px; }
+  .capture-dialog .dialog-head > .mono { font-size: 9px; }
+  .capture-dialog .dialog-actions { margin-left: auto; gap: 8px; }
+  .capture-zoom { padding: 8px 12px; font-size: 11px; }
+}

@@ -1,0 +1,220 @@
+/* One visual explorer for the complete Strate environment. */
+.feature-explorer-section { padding-top: 24px; scroll-margin-top: 90px; }
+.feature-section-heading { margin-bottom: 36px; }
+.feature-section-heading h2 { font-size: clamp(32px, 3.8vw, 56px); line-height: 1.1; }
+.feature-section-heading p { font-size: clamp(16px, 1.3vw, 19px); margin-top: 18px; max-width: 650px; }
+.feature-explorer {
+  width: calc(100% - 32px); max-width: 1520px; margin-inline: auto;
+  position: relative; display: grid; grid-template-columns: 350px minmax(0, 1fr);
+  align-items: start; gap: 20px; padding: 64px 48px; min-height: 790px;
+  background: #000; border-radius: 28px; overflow: clip;
+}
+.feature-choices { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 9px; }
+.feature-choice { width: fit-content; max-width: 100%; border-radius: 26px; background: #222; scroll-margin-top: 95px; }
+.feature-choice summary { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 12px 20px 12px 15px; font-size: 16px; line-height: 1.4; font-weight: 500; cursor: pointer; list-style: none; }
+.feature-choice summary::-webkit-details-marker, .feature-reference summary::-webkit-details-marker { display: none; }
+.feature-choice summary:hover { color: #fff; }
+.feature-icon { display: block; width: 16px; height: 16px; flex-shrink: 0; pointer-events: none; }
+.feature-plus { display: grid; place-items: center; border: 1px solid #ffffff70; width: 23px; height: 23px; flex-shrink: 0; border-radius: 50%; line-height: 0; transition: transform .3s ease, color .3s, border-color .3s; }
+.feature-plus .feature-icon { width: 13px; height: 13px; }
+.feature-choice[open] { width: 100%; background: #242424; }
+.feature-choice[open] .feature-plus { transform: rotate(45deg); color: #c96bff; border-color: #b318ff; }
+.feature-choice[open] summary { color: #fff; }
+.feature-choice-copy { padding: 3px 24px 24px; }
+.feature-choice-copy h3 { font-size: 20px; line-height: 1.3; margin: 7px 0 13px; }
+.feature-choice-copy p { font-size: 16px; line-height: 1.45; color: #b3b3bb; margin-bottom: 17px; }
+.feature-choice-copy .feature-more { font-size: 14px; }
+.feature-choice summary:focus-visible, .feature-reference summary:focus-visible { outline: 2px solid #b318ff; outline-offset: 4px; border-radius: 24px; }
+.feature-reset { position: absolute; z-index: 3; right: 20px; top: 20px; width: 36px; height: 36px; padding: 0; border-radius: 50%; display: grid; place-items: center; background: #262626; line-height: 0; }
+.feature-reset .feature-icon { width: 18px; height: 18px; }
+.feature-reset:hover { background: #3a3a3d; }
+.feature-stage { position: sticky; top: 100px; align-self: start; min-width: 0; min-height: 600px; display: grid; align-items: center; }
+.feature-view { min-width: 0; width: 100%; margin: 0; }
+.feature-view img { display: block; width: 100%; height: auto; object-fit: contain; }
+.feature-zoom { display: block; position: relative; padding: 0; width: 100%; border: 0; background: transparent; cursor: zoom-in; }
+.feature-opening-frame, .feature-view-dom .feature-zoom,
+.feature-view-footprint .feature-zoom { width: 128%; margin-left: -10%; }
+.feature-opening { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; background: #000; }
+.feature-view-local .feature-zoom { width: min(100%, 560px); margin-inline: auto; }
+.feature-view-local img { border: 0; }
+.feature-view-tools img { border-radius: 12px; border: 1px solid #ffffff20; }
+.feature-view-replay img { border: 0; }
+.feature-lottie-frame { width: 100%; aspect-ratio: 8 / 5; margin-inline: auto; border-radius: 20px; overflow: hidden; }
+.feature-lottie { width: 100%; height: 100%; display: grid; place-items: center; container-type: size; }
+/* Override the player's inline 100% dimensions to round the actual image,
+   including the mobile stage's extra vertical space. */
+.feature-lottie svg { display: block; width: min(100cqw, 100cqh * 1.6) !important; height: auto !important; aspect-ratio: 8 / 5; border-radius: 20px; overflow: hidden; }
+.feature-view-profile img { border-radius: 20px; }
+.feature-view figcaption { font-size: 13px; line-height: 1.6; text-align: center; color: #99999f; margin: 30px 20px 0; }
+.feature-risk { border: 1px solid #ffffff16; border-radius: 22px; padding: 28px; background: #111417; }
+.feature-risk > .mono { color: #a5abb2; }
+.feature-risk [data-art] svg { display: block; width: 100%; height: auto; }
+.feature-risk .risk-legend { font-size: 13px; }
+.feature-reference-section { padding-bottom: 0; }
+.feature-references { border-top: 1px solid #ffffff20; }
+.feature-reference { border-bottom: 1px solid #ffffff20; scroll-margin-top: 95px; }
+.feature-reference > summary { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 26px 0; font-size: clamp(18px, 1.6vw, 24px); font-weight: 500; cursor: pointer; }
+.feature-reference > summary > span:last-child { display: grid; place-items: center; width: 24px; height: 24px; flex-shrink: 0; color: var(--accent); transition: transform .25s; }
+.feature-reference > summary .feature-icon { width: 20px; height: 20px; }
+.feature-reference[open] > summary > span:last-child { transform: rotate(45deg); }
+.feature-reference-copy { padding: 0 0 30px; }
+.feature-bullets { margin: 0 0 25px; padding-left: 20px; columns: 2; column-gap: 64px; }
+.feature-bullets li { break-inside: avoid; padding-left: 5px; margin: 0 0 16px; font-size: clamp(16px, 1.2vw, 18px); color: #b1b1ba; line-height: 1.7; }
+.feature-bullets li::marker { color: #c96bff; }
+.feature-reference-copy .small-note { max-width: 95ch; }
+.feature-catalog { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; list-style: none; padding: 0; margin: 35px 0; }
+.feature-catalog li { padding: 17px 0; border-top: 1px solid #ffffff12; display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+.feature-catalog strong { font-size: 16px; font-weight: 500; }
+.feature-catalog span { font-size: 15px; color: #a5a5af; line-height: 1.45; }
+.feature-mobile-panel { display: none; }
+.feature-video-frame { width: 100%; overflow: hidden; border: 1px solid #ffffff20; border-radius: 14px; background: #191919; }
+.feature-demo { display: block; width: 100%; height: auto; aspect-ratio: 8 / 5; object-fit: contain; background: #191919; }
+.feature-video-error { margin: 12px 20px 0; text-align: center; }
+
+/* On desktop the explorer keeps one height whatever is selected: the tallest
+   view (the MacBook, 128% of the stage width in 16:9, plus its caption) or the
+   longest open description, whichever is larger. Every other view is centred
+   in that space, so nothing moves when a feature is chosen. */
+@media (min-width: 801px) {
+  .feature-explorer-section { container-type: inline-size; }
+  .feature-explorer {
+    --explorer-width: min(100cqw - 32px, 1520px);
+    --stage-width: calc(var(--explorer-width) - 466px);
+    --explorer-pad: 128px; --choices-floor: 690px;
+    height: max(var(--choices-floor) + var(--explorer-pad), var(--stage-width) * .72 + 52px + var(--explorer-pad));
+    min-height: 0; grid-template-rows: minmax(0, 1fr);
+  }
+  .feature-stage { position: relative; top: auto; align-self: stretch; height: 100%; min-height: 0; container-type: size; }
+  /* Each visual keeps its own format but is sized to fit the stage in both
+     directions, so a shorter stage (short screens) never crops it. */
+  .feature-view { --media-height: calc(100cqh - 52px); }
+  .feature-opening-frame { --opening-width: min(128cqw, var(--media-height) * 16 / 9); width: var(--opening-width); margin-left: calc(54cqw - var(--opening-width) / 2); }
+  .feature-video-frame { width: min(100%, var(--media-height) * 1.6 + 2px); margin-inline: auto; }
+  .feature-view-replay .feature-zoom { width: min(100%, var(--media-height) * 1214 / 769); margin-inline: auto; }
+  .feature-lottie-frame { width: min(100%, var(--media-height) * 1.6); }
+  .feature-view-local .feature-zoom { width: min(100%, 560px, var(--media-height) * 700 / 405); }
+}
+@media (max-width: 1100px) {
+  .feature-explorer { grid-template-columns: 300px minmax(0, 1fr); padding: 58px 28px 40px; gap: 14px; }
+}
+@media (min-width: 801px) and (max-width: 1100px) {
+  .feature-explorer { --stage-width: calc(var(--explorer-width) - 370px); --explorer-pad: 98px; --choices-floor: 760px; }
+}
+@media (max-width: 800px) {
+  .feature-explorer { width: calc(100% - 24px); padding: 54px 22px 30px; grid-template-columns: 1fr; min-height: 0; gap: 35px; border-radius: 24px; }
+  .feature-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .feature-choice { width: 100%; align-self: start; }
+  .feature-choice[open] { grid-column: 1 / -1; }
+  .feature-choice summary { font-size: 15px; gap: 10px; padding-inline: 13px; }
+  .feature-choice-copy h3 { font-size: 22px; }
+  .feature-choice-copy p { max-width: 52ch; }
+  .feature-stage { position: relative; top: auto; min-height: 0; }
+  .feature-choice > .feature-stage { background: #000; border-radius: 0 0 24px 24px; padding: 14px 12px 24px; overflow: hidden; }
+  .feature-opening-frame, .feature-view-dom .feature-zoom, .feature-view-footprint .feature-zoom { width: 140%; margin-left: -20%; }
+  .feature-view figcaption { margin-top: 15px; font-size: 12px; }
+  .feature-section-heading { margin-bottom: 28px; }
+  .feature-section-heading p { font-size: 16px; }
+  .feature-bullets { columns: 1; }
+  .feature-catalog { gap: 0 24px; }
+}
+@media (max-width: 480px) {
+  .feature-explorer { padding-inline: 16px; }
+  .feature-choice summary { font-size: 14px; padding: 11px; gap: 7px; }
+  .feature-plus { width: 20px; height: 20px; }
+  .feature-choice-copy { padding: 0 18px 22px; }
+  .feature-choice-copy h3 { font-size: 20px; }
+  .feature-reset { right: 15px; top: 12px; width: 30px; height: 30px; }
+  .feature-catalog { grid-template-columns: 1fr; }
+  .feature-risk { padding: 16px; }
+  .feature-risk .risk-legend { font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .feature-plus, .feature-reference > summary > span:last-child { transition: none; }
+}
+
+/* The enhanced mobile view keeps the product on a stable visual stage.
+   Native disclosures above remain the no-JavaScript fallback. */
+@media (max-width: 800px) {
+  .feature-explorer.is-enhanced {
+    width: 100%; max-width: none; height: clamp(600px, calc(100svh - 100px), 820px);
+    min-height: 0; padding: 48px 0 20px; border-radius: 0; gap: 18px;
+    grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto;
+    scroll-margin-top: 0; overflow-anchor: none;
+  }
+  .is-enhanced .feature-stage {
+    grid-column: 1; grid-row: 1; position: relative; top: auto;
+    align-self: stretch; min-height: 0; height: 100%; width: 100%; overflow: hidden;
+    display: grid; grid-template-rows: minmax(0, 1fr);
+  }
+  .is-enhanced .feature-view {
+    height: 100%; min-height: 0; max-height: 100%; display: flex;
+    flex-direction: column; align-items: center; justify-content: center;
+  }
+  .is-enhanced .feature-view .feature-zoom { flex: 1 1 auto; height: 0; min-height: 0; display: flex; align-items: center; justify-content: center; }
+  .is-enhanced .feature-lottie-frame { width: calc(100% - 36px); flex: 1 1 auto; height: 0; min-height: 0; aspect-ratio: auto; }
+  .is-enhanced .feature-opening-frame { flex: 1 1 auto; height: 0; min-height: 0; display: flex; align-items: center; justify-content: center; }
+  .is-enhanced .feature-opening { width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+  .is-enhanced .feature-view img { width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+  .is-enhanced .feature-view > img { flex: 1 1 auto; height: 0; }
+  .is-enhanced .feature-video-frame { width: calc(100% - 24px); flex: 1 1 auto; min-height: 0; display: flex; align-items: center; border: 0; border-radius: 0; background: #000; }
+  .is-enhanced .feature-demo { width: 100%; height: 100%; min-height: 0; object-fit: contain; background: #000; }
+  .is-enhanced .feature-view figcaption { flex: 0 0 auto; font-size: 12px; margin: 12px 28px 0; }
+  .is-enhanced .feature-opening-frame,
+  .is-enhanced .feature-view-dom .feature-zoom,
+  .is-enhanced .feature-view-footprint .feature-zoom { width: 140%; margin-left: 0; }
+  .is-enhanced .feature-view-local .feature-zoom { width: min(calc(100% - 48px), 560px); margin-inline: auto; }
+  .is-enhanced .feature-view-tools .feature-zoom,
+  .is-enhanced .feature-view-replay .feature-zoom { width: calc(100% - 36px); }
+  .is-enhanced .feature-view-tools img, .is-enhanced .feature-view-replay img { border: 0; }
+  .is-enhanced .feature-risk { width: calc(100% - 36px); padding: 16px; }
+  .is-enhanced .feature-risk [data-art] { max-height: 250px; }
+  .is-enhanced .feature-risk [data-art] svg { max-height: 250px; }
+  .is-enhanced .feature-choices {
+    grid-column: 1; grid-row: 2; position: relative; width: 100%; min-width: 0;
+    display: flex; flex-direction: row; flex-wrap: nowrap; align-items: center;
+    gap: 12px; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain;
+    padding: 8px 28px; scrollbar-width: none; scroll-snap-type: x proximity; scroll-padding-inline: 28px;
+  }
+  .is-enhanced .feature-choices::-webkit-scrollbar { display: none; }
+  .is-enhanced .feature-choice, .is-enhanced .feature-choice[open] {
+    flex: 0 0 auto; width: auto; max-width: none; align-self: center;
+    border-radius: 999px; scroll-snap-align: start;
+  }
+  .is-enhanced .feature-choice summary { min-height: 52px; padding: 13px 22px 13px 16px; gap: 12px; font-size: 15px; white-space: nowrap; }
+  .is-enhanced .feature-plus { width: 23px; height: 23px; }
+  .is-enhanced.is-selected .feature-choices { position: absolute; bottom: 20px; visibility: hidden; pointer-events: none; }
+  .is-enhanced .feature-reset { top: 18px; right: 18px; width: 36px; height: 36px; }
+  .is-enhanced .feature-mobile-panel { display: block; position: relative; grid-column: 1; grid-row: 2; width: 100%; min-width: 0; padding-inline: 36px; }
+  .feature-mobile-copy { border-radius: 26px; padding: 23px; background: #242424; max-height: min(42svh, 360px); overflow-y: auto; overscroll-behavior-y: contain; scrollbar-width: thin; }
+  .feature-mobile-copy:focus { outline: none; }
+  .feature-mobile-copy:focus-visible { outline: 2px solid #b318ff; outline-offset: 3px; }
+  .feature-mobile-copy .feature-choice-copy { padding: 0; }
+  .feature-mobile-copy .feature-choice-copy h3 { display: inline; font-size: 16px; line-height: 1.45; margin: 0; }
+  .feature-mobile-copy .feature-choice-copy h3::after { content: ' '; }
+  .feature-mobile-copy .feature-choice-copy p { display: inline; font-size: 16px; line-height: 1.45; color: #d2d2d7; margin: 0; }
+  .feature-mobile-copy .feature-more { display: flex; margin-top: 14px; font-size: 14px; }
+  .feature-previous, .feature-next { position: absolute; bottom: 22px; display: grid; place-items: center; width: 36px; height: 44px; padding: 0; border-radius: 24px; background: #242424; color: #fff; }
+  .feature-previous { left: -4px; }
+  .feature-next { right: -4px; }
+  .feature-previous .feature-icon, .feature-next .feature-icon { width: 22px; height: 22px; }
+  .feature-previous:hover, .feature-next:hover { background: #3a3a3d; }
+}
+@media (max-width: 380px) {
+  .feature-mobile-copy { padding: 19px; }
+  .is-enhanced .feature-mobile-panel { padding-inline: 32px; }
+}
+
+/* Keep the panel fully viewable on short screens, without cropping the product.
+   On desktop this applies to every view, so the height never changes. */
+.feature-explorer.opening-fit { height: var(--opening-fit-height); min-height: 0; }
+.opening-fit .feature-stage { position: relative; top: auto; height: 100%; min-height: 0; align-self: stretch; }
+@media (max-width: 800px) {
+  .opening-fit .feature-view-classic { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+  .opening-fit .feature-opening-frame { flex: 1 1 auto; height: 0; min-height: 0; display: flex; align-items: center; justify-content: center; }
+  .opening-fit .feature-opening, .opening-fit .feature-opening-poster { width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+  .opening-fit .feature-view-classic figcaption { flex: 0 0 auto; }
+}
+@media (min-width: 801px) {
+  .feature-explorer.opening-fit { grid-template-rows: minmax(0, 1fr); padding-block: min(48px, 6svh); }
+  .opening-fit .feature-choices { min-height: 0; max-height: 100%; overflow-y: auto; scrollbar-width: thin; }
+}

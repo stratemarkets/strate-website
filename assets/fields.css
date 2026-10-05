@@ -1,0 +1,113 @@
+/* Form fields in the Apple style: the label sits inside the empty field, then moves
+   up and shrinks once the field has focus or a value. The outline takes the
+   signature colour; the label keeps its grey. Markup: .float-field > control + label. */
+.float-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  border: 1px solid #4b4b50;
+  border-radius: 12px;
+  background: #1d1d1f;
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+.float-field:hover { border-color: #6a6a70; }
+.float-field:focus-within { border-color: #b318ff; box-shadow: 0 0 0 1px #b318ff; }
+.float-field > input, .float-field > textarea, .float-field > select {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  min-height: 56px;
+  margin: 0;
+  padding: 24px 16px 7px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: #fff;
+  color-scheme: dark;
+  font: inherit;
+  font-size: 16px;
+  line-height: 1.4;
+  outline: none;
+}
+.float-field > input::placeholder, .float-field > textarea::placeholder { color: transparent; }
+.float-field > textarea { min-height: 124px; padding-top: 30px; resize: vertical; line-height: 1.5; }
+.float-field > select { appearance: none; padding-right: 42px; cursor: pointer; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m4 6 4 4 4-4' fill='none' stroke='%23a7a7ad' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 16px center / 14px; }
+.float-field > select option { background: #232325; color: #fff; }
+.float-field > select:invalid { color: #8e8e95; }
+.float-field > label {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  overflow: hidden;
+  color: #8e8e95;
+  font-size: 16px;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  transition: top .18s ease, transform .18s ease, font-size .18s ease;
+}
+.float-field > textarea + label { top: 18px; transform: none; }
+/* Raised label: focused, filled, autofilled, or a select that always shows a value. */
+.float-field > :focus + label,
+.float-field > :not(:placeholder-shown) + label,
+.float-field > :-webkit-autofill + label,
+.float-field.is-select > label { top: 9px; transform: none; font-size: 12px; }
+.float-field > label span { color: #6f6f76; }
+/* Keep autofilled fields on the dark surface. */
+.float-field > input:-webkit-autofill { -webkit-text-fill-color: #fff; caret-color: #fff; box-shadow: 0 0 0 100px #1d1d1f inset; }
+@media (prefers-reduced-motion: reduce) {
+  .float-field, .float-field > label { transition: none; }
+}
+
+/* Custom dropdown (select.js): the native select stays underneath for the form. */
+.float-field.is-custom > select { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
+.select-trigger {
+  flex: 1;
+  width: 100%;
+  min-height: 56px;
+  padding: 24px 42px 7px 16px;
+  border: 0;
+  border-radius: 12px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m4 6 4 4 4-4' fill='none' stroke='%23a7a7ad' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 16px center / 14px;
+  color: #fff;
+  font: inherit;
+  font-size: 16px;
+  line-height: 1.4;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+.select-trigger.is-placeholder { color: #8e8e95; }
+.float-field.is-open { border-color: #b318ff; box-shadow: 0 0 0 1px #b318ff; }
+.float-field.is-open .select-trigger { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m4 10 4-4 4 4' fill='none' stroke='%23a7a7ad' stroke-width='1.5'/%3E%3C/svg%3E"); }
+.select-list {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 30;
+  max-height: 360px;
+  margin: 0;
+  padding: 6px;
+  overflow-y: auto;
+  list-style: none;
+  border: 1px solid #ffffff17;
+  border-radius: 14px;
+  background: #232325;
+  box-shadow: 0 18px 50px #000000a6;
+  outline: none;
+  scrollbar-width: thin;
+  scrollbar-color: #ffffff30 transparent;
+  animation: select-open .16s ease;
+}
+.select-list [role=option] { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; border-radius: 9px; color: #e5e5ea; font-size: 15px; cursor: pointer; }
+.select-list [role=option].is-active { background: #ffffff12; color: #fff; }
+.select-list [role=option] svg { flex-shrink: 0; color: #b318ff; visibility: hidden; }
+.select-list [role=option][aria-selected=true] { color: #fff; }
+.select-list [role=option][aria-selected=true] svg { visibility: visible; }
+@keyframes select-open { from { opacity: 0; transform: translateY(-4px); } }
+@media (prefers-reduced-motion: reduce) { .select-list { animation: none; } }

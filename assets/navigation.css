@@ -1,0 +1,154 @@
+/* A compact, animated menu shared by both languages and all collapsed layouts. */
+.site-header .brand { flex-shrink: 0; }
+/* Use 65% of the access button's height, preserving the logo's proportions. */
+.site-header .navbar-logo { display: block; width: auto; height: calc(.65lh + 13px); line-height: normal; }
+.site-header {
+  background: rgb(25 25 25 / 94%);
+  border-bottom-color: transparent;
+  backdrop-filter: blur(20px);
+}
+.site-header .header-inner {
+  max-width: 1600px;
+  width: calc(100% - 64px);
+  gap: clamp(24px, 4vw, 64px);
+}
+.site-header .desktop-nav {
+  position: static;
+  transform: none;
+  margin-right: auto;
+  gap: 4px;
+  align-items: center;
+}
+.site-header .desktop-nav a {
+  position: relative;
+  isolation: isolate;
+  padding: 10px 14px;
+  border-radius: 999px;
+  color: #c5c5c9;
+  white-space: nowrap;
+  transition: color .28s ease;
+}
+.site-header .desktop-nav a::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background: #ffffff0d;
+  opacity: 0;
+  transform: scale(.82, .72);
+  transition: opacity .28s ease, transform .38s cubic-bezier(.22, 1, .36, 1);
+}
+.site-header .desktop-nav a:hover,
+.site-header .desktop-nav a:focus-visible {
+  color: #fff;
+}
+.site-header .desktop-nav a:hover::before,
+.site-header .desktop-nav a:focus-visible::before {
+  opacity: 1;
+  transform: scale(1);
+}
+.site-header .desktop-nav a[aria-current] { color: #fff; }
+.site-header .header-access { flex-shrink: 0; }
+.header-actions { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+.header-actions .header-login { padding: 10px 16px; border-radius: 999px; background: #2b2b2b; color: #e5e5e7; font-size: 14px; white-space: nowrap; transition: background .2s; }
+.header-actions .header-login:hover { background: #353535; }
+.site-header .header-actions .header-access { margin: 0; }
+@media (max-width: 1000px) {
+  .header-actions .header-login { display: none; }
+  .header-actions { margin-right: 12px; }
+}
+@media (min-width: 1001px) and (max-width: 1100px) {
+  .site-header .header-inner { width: calc(100% - 40px); gap: 20px; }
+  .site-header .desktop-nav a { padding-inline: 10px; }
+}
+@media (max-width: 1000px) {
+  .site-header .header-inner { width: calc(100% - 40px); gap: 0; }
+}
+.work-hero { min-height: 65svh; display: flex; flex-direction: column; justify-content: center; }
+.mobile-nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding: 18px 0 30px;
+  max-height: calc(100dvh - 65px);
+  overflow: auto;
+  overscroll-behavior: contain;
+  background: #191919;
+  border-top: 0;
+  border-bottom: 0;
+  border-radius: 0 0 24px 24px;
+  box-shadow: 0 24px 40px #0003;
+}
+.mobile-nav a {
+  margin-inline: max(24px, calc((100% - 720px) / 2));
+  padding: 16px 18px;
+  font-size: clamp(24px, 4vw, 30px);
+  font-weight: 500;
+  letter-spacing: -.025em;
+  border-bottom: 0;
+  border-radius: 16px;
+  opacity: 0;
+  transform: translateY(-9px);
+  transition: opacity .2s ease, transform .3s cubic-bezier(.22, 1, .36, 1), color .2s;
+  /* On closing, the links leave in reverse order, last one first. */
+  transition-delay: calc((4 - var(--menu-order, 0)) * 25ms), calc((4 - var(--menu-order, 0)) * 25ms), 0s;
+}
+.mobile-nav a:first-child { padding-top: 16px; }
+.mobile-nav a:last-child { padding-bottom: 16px; }
+.mobile-nav.is-open a { opacity: 1; transform: translateY(0); transition-delay: calc(var(--menu-order, 0) * 35ms); }
+.mobile-nav a:nth-child(2) { --menu-order: 1; }
+.mobile-nav a:nth-child(3) { --menu-order: 2; }
+.mobile-nav a:nth-child(4) { --menu-order: 3; }
+.mobile-nav a:nth-child(5) { --menu-order: 4; }
+.mobile-nav a:hover, .mobile-nav a:focus-visible { background: #ffffff08; color: #fff; }
+.mobile-nav a[aria-current] { color: #c96bff; }
+.mobile-nav a:focus-visible { outline-offset: 3px; border-radius: 4px; }
+
+@media (min-width: 1001px) and (max-width: 1100px) {
+  .desktop-nav { gap: 20px; }
+}
+
+@media (max-width: 1000px) {
+  .desktop-nav { display: none; }
+  .header-access { margin-left: auto; margin-right: 16px; }
+  .menu-toggle { display: flex; position: relative; flex-shrink: 0; flex-direction: column; align-items: center; justify-content: center; gap: 6px; width: 36px; height: 44px; padding: 8px 7px; background: transparent; }
+  .menu-toggle span { width: 22px; height: 1px; background: #d5d5db; transition: transform .35s cubic-bezier(.22, 1, .36, 1); }
+  .menu-toggle[aria-expanded=true] span:first-child { transform: translateY(3.5px) rotate(45deg); }
+  .menu-toggle[aria-expanded=true] span:last-child { transform: translateY(-3.5px) rotate(-45deg); }
+}
+@media (max-width: 600px) {
+  .mobile-nav { max-height: calc(100dvh - 63px); }
+  .header-access { margin-right: 9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mobile-nav a, .menu-toggle span, .site-header .desktop-nav a,
+  .site-header .desktop-nav a::before { transition: none; }
+}
+
+/* Keep each label with its logo, with consistent visual space for every partner. */
+.spec-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+  padding-block: 28px 32px;
+}
+.spec-item { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 17px; min-width: 0; text-align: center; }
+.spec-item > span { font-size: 9px; line-height: 1.5; letter-spacing: .025em; color: #99999f; }
+.spec-item > b { display: flex; align-items: center; justify-content: center; min-height: 34px; max-width: 100%; margin-top: auto; }
+.spec-strip .partner-logo.cme { width: 83px; height: 25px; }
+.spec-strip .partner-logo.rithmic { width: 120px; height: 30px; }
+.spec-strip .partner-logo.databento { width: 112px; height: 21px; }
+.spec-item .desktop-systems { flex-wrap: wrap; gap: 10px 12px; }
+.spec-item .desktop-systems > span { font-size: 12px; gap: 6px; }
+@media (max-width: 800px) {
+  .spec-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; padding-block: 28px; }
+  .spec-item { gap: 12px; }
+}
+@media (max-width: 380px) {
+  .spec-strip { column-gap: 16px; }
+  .spec-item > span { font-size: 8px; }
+  .spec-item .desktop-systems { gap: 8px; }
+  .spec-item .desktop-systems > span { font-size: 10px; gap: 4px; }
+}

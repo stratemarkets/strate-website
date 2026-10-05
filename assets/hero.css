@@ -1,0 +1,87 @@
+﻿/* One viewport, including navigation. The photograph fills the space below the copy. */
+.hero-scroll { --header-height: 65px; background: #000; }
+.hero-scroll.has-scroll-camera { height: calc(185svh - var(--header-height)); }
+.hero-scroll.has-scroll-camera .hero-shell { position: sticky; top: var(--header-height); }
+.hero-shell {
+  --header-height: 65px;
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  height: calc(100svh - var(--header-height));
+  overflow: hidden;
+  background: #000;
+}
+.hero-shell .hero {
+  grid-row: 1;
+  position: relative;
+  top: clamp(20px, 3svh, 44px);
+  z-index: 1;
+  padding-top: clamp(16px, 4svh, 58px);
+  transition: opacity 1s ease, transform 1s cubic-bezier(.22, 1, .36, 1);
+}
+html.hero-intro .hero-shell:not(.is-revealed) .hero {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(14px);
+}
+.hero-shell .hero h1 {
+  margin-top: clamp(12px, 2.4svh, 24px);
+  font-size: clamp(40px, min(5.8vw, 7.2svh), 84px);
+  color: #fff;
+}
+.hero-shell .hero h1 .muted { color: #fff; }
+.hero-shell .hero-bottom {
+  margin-top: clamp(14px, 2.6svh, 26px);
+  gap: clamp(16px, 2.9svh, 29px);
+}
+.hero-shell .hero-bottom p { font-size: clamp(14px, 1.8svh, 18px); }
+.hero-backdrop {
+  grid-row: 2;
+  position: relative;
+  align-self: end;
+  height: 100%;
+  min-height: 0;
+  pointer-events: none;
+}
+.hero-backdrop img, .hero-backdrop video {
+  display: block;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  max-width: none;
+  height: 100%;
+}
+.hero-backdrop video { visibility: hidden; }
+html.hero-intro .hero-shell:not(.is-static) .hero-backdrop img { visibility: hidden; }
+html.hero-intro .hero-shell:not(.is-static) .hero-backdrop .hero-video { visibility: visible; }
+html.hero-intro .hero-shell .hero-backdrop .hero-camera { visibility: hidden; }
+html.hero-intro .hero-shell.is-scroll-ready:not(.is-static) .hero-backdrop .hero-camera { visibility: visible; }
+html.hero-intro .hero-shell.is-scroll-ready .hero-backdrop .hero-video { visibility: hidden; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-shell .hero { transition: none; }
+}
+.hero-shell + .hero-visual { margin-top: 0; }
+@media (max-width: 600px) {
+  .hero-shell .hero { top: 16px; }
+  .hero-scroll { --header-height: 63px; }
+  .hero-shell { --header-height: 63px; }
+  .hero-shell .hero h1 { font-size: clamp(26px, min(8.1vw, 5.6svh), 48px); }
+  .hero-shell .hero-bottom p { font-size: clamp(12px, 1.7svh, 14px); }
+}
+@media (max-height: 520px) and (min-width: 601px) {
+  .hero-shell .hero { padding-top: 12px; top: 8px; }
+  .hero-shell .hero h1 { font-size: 32px; margin-top: 10px; }
+  .hero-shell .hero h1 br { display: none; }
+  .hero-shell .hero h1 .muted { margin-left: .2em; }
+  .hero-shell .hero-bottom { margin-top: 10px; gap: 12px; }
+  .hero-shell .hero-bottom p { font-size: 12px; line-height: 1.4; }
+}
+/* Laptop windows: the shorter bar gives the scene more room, and the scene grows
+   by 30 %. It stays anchored at the top, so only the dark floor below the chair
+   leaves the frame and the screen and trader stay clear of the buttons. */
+@media (min-width: 801px) and (max-width: 1600px) {
+  .hero-scroll, .hero-shell { --header-height: 55px; }
+  .hero-backdrop img, .hero-backdrop video { top: 0; height: 145%; }
+}
