@@ -59,3 +59,15 @@
 .time-scale .accent { transition: color .3s ease, text-shadow .3s ease; }
 .time-scale .accent.is-now { color: #fff; text-shadow: 0 0 14px #b318ff; }
 @keyframes replay-peak { 50% { opacity: .55; } }
+/* Homepage font trial: retain the full variable weight axis. */
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("fonts/manrope-variable.woff2") format("woff2");
+}
+body[data-page="index"] {
+  --sans: "Manrope", Arial, sans-serif;
+  --mono: "Manrope", Arial, sans-serif;
+}
