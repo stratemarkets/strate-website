@@ -8,7 +8,7 @@
   client.auth.onAuthStateChange(event => { if (event === 'SIGNED_OUT') login(); });
   client.auth.getUser().then(({data:{user},error}) => {
     if (error || !user) { login(); return; }
-    document.querySelector('#account-email').textContent = user.email;
+    document.querySelectorAll('#account-email, [data-account-email]').forEach(el => { el.textContent = user.email; });
     const rawName = user.user_metadata?.full_name;
     const name = typeof rawName === 'string' ? rawName.trim() : '';
     if (name) document.querySelector('#account-greeting').textContent = t('Bonjour, ', 'Hello, ') + name;

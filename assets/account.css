@@ -70,3 +70,5 @@
 [hidden]{display:none!important}
 #account-email{overflow-wrap:anywhere}
 #account-status{padding:20px}
+#account-content button:disabled { opacity: .45; cursor: not-allowed; }
+#account-signout { justify-self: start; margin: 12px 0 24px; }
