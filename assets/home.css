@@ -82,3 +82,18 @@ html[lang="fr"] .home-quote-translated { display: none; }
 @media (max-width: 800px) {
   .home-quotes[data-count] { grid-template-columns: 1fr; }
 }
+/* Eleven family cards: rows of four, then the last three widen to fill the row
+   (three per row, then two, on narrower screens; the last card spans two columns). */
+@media (min-width: 1201px) {
+  .home-families { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .home-families > * { grid-column: span 3; }
+  .home-families > :nth-last-child(-n+3):nth-child(n+9) { grid-column: span 4; }
+}
+@media (min-width: 1001px) and (max-width: 1200px) {
+  .home-families { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .home-families > * { grid-column: span 2; }
+  .home-families > :nth-last-child(-n+2):nth-child(n+10) { grid-column: span 3; }
+}
+@media (min-width: 381px) and (max-width: 1000px) {
+  .home-families > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+}

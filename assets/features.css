@@ -80,7 +80,7 @@
   .feature-explorer {
     --explorer-width: min(100cqw - 32px, 1520px);
     --stage-width: calc(var(--explorer-width) - 466px);
-    --explorer-pad: 128px; --choices-floor: 690px;
+    --explorer-pad: 128px; --choices-floor: 810px;
     height: max(var(--choices-floor) + var(--explorer-pad), var(--stage-width) * .72 + 52px + var(--explorer-pad));
     min-height: 0; grid-template-rows: minmax(0, 1fr);
   }
@@ -98,7 +98,7 @@
   .feature-explorer { grid-template-columns: 300px minmax(0, 1fr); padding: 58px 28px 40px; gap: 14px; }
 }
 @media (min-width: 801px) and (max-width: 1100px) {
-  .feature-explorer { --stage-width: calc(var(--explorer-width) - 370px); --explorer-pad: 98px; --choices-floor: 760px; }
+  .feature-explorer { --stage-width: calc(var(--explorer-width) - 370px); --explorer-pad: 98px; --choices-floor: 860px; }
 }
 @media (max-width: 800px) {
   .feature-explorer { width: calc(100% - 24px); padding: 54px 22px 30px; grid-template-columns: 1fr; min-height: 0; gap: 35px; border-radius: 24px; }
@@ -216,5 +216,6 @@
 }
 @media (min-width: 801px) {
   .feature-explorer.opening-fit { grid-template-rows: minmax(0, 1fr); padding-block: min(48px, 6svh); }
-  .opening-fit .feature-choices { min-height: 0; max-height: 100%; overflow-y: auto; scrollbar-width: thin; }
+  .opening-fit .feature-choices { min-height: 0; max-height: 100%; overflow-y: auto; scrollbar-width: thin; gap: 6px; }
+  .opening-fit .feature-choice summary { min-height: 42px; padding-block: 9px; }
 }
