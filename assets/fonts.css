@@ -28,3 +28,8 @@
   src: url("fonts/strate-sans/strate-digits.woff2") format("woff2");
   unicode-range: U+0030-0039;
 }
+
+/* Geist set a touch tighter on every page; elements with their own
+   letter-spacing (titles, labels) keep it. Form controls do not inherit it by default. */
+body { letter-spacing: -0.01em; }
+button, input, select, textarea { letter-spacing: inherit; }
