@@ -3,10 +3,10 @@
   --bg: #191919;
   --accent: #b318ff;
   --accent-on: #ffffff;
-  --accent-text: #c96bff;
+  --accent-text: #b318ff;
   --surface: #202020;
-  --sans: "Google Sans", Arial, sans-serif;
-  --mono: "Google Sans", Arial, sans-serif;
+  --sans: "Geist", Arial, sans-serif;
+  --mono: "Geist", Arial, sans-serif;
 }
 
 body { font-weight: 400; }

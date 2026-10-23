@@ -30,7 +30,7 @@
 .help-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .help-card { display: grid; align-content: start; gap: 10px; padding: 26px 26px 22px; border: 1px solid #353535; border-radius: 22px; background: #202020; transition: border-color .2s ease, background .2s ease, transform .2s ease; }
 .help-card:hover { border-color: #4a4a4e; background: #242426; transform: translateY(-2px); }
-.help-card .help-icon { box-sizing: content-box; width: 24px; height: 24px; margin-bottom: 8px; padding: 12px; border-radius: 14px; background: #ffffff0d; color: #c96bff; }
+.help-card .help-icon { box-sizing: content-box; width: 24px; height: 24px; margin-bottom: 8px; padding: 12px; border-radius: 14px; background: #ffffff0d; color: var(--accent); }
 .help-card h3 { font-size: 19px; font-weight: 500; }
 .help-card p { margin: 0; font-size: var(--note-size, 14px); line-height: 1.5; }
 .help-count { color: #8e8e95; font-size: 13px; }
@@ -42,7 +42,7 @@
 .help-popular a::before { content: counter(popular, decimal-leading-zero); grid-row: span 2; color: #6f6f76; font-family: var(--mono); font-size: 13px; line-height: 1.6; }
 .help-popular span { color: #f5f5f7; font-size: var(--reading-size, 17px); }
 .help-popular small { color: #8e8e95; font-size: 13px; }
-.help-popular a:hover span { color: #c96bff; }
+.help-popular a:hover span { color: #b318ff; }
 .help-contact { align-self: start; padding: 30px; border: 1px solid #353535; border-radius: 22px; background: #202020; }
 .help-contact h2 { font-size: 24px; }
 .help-contact p { margin: 14px 0 22px; font-size: var(--note-size, 14px); line-height: 1.55; }
@@ -85,7 +85,7 @@ body[data-help-view="category"] .help-search, body[data-help-view="article"] .he
 .help-js .help-category.is-list .help-side h2 { font-size: clamp(30px, 3.4vw, 44px); }
 .help-js .help-category.is-list .help-side-head .help-icon { width: 30px; height: 30px; }
 .help-js .help-category.is-list .help-links a { padding: 16px 0; border-bottom: 1px solid var(--line); border-radius: 0; color: #f5f5f7; font-size: var(--reading-size, 17px); }
-.help-js .help-category.is-list .help-links a:hover { background: none; color: #c96bff; }
+.help-js .help-category.is-list .help-links a:hover { background: none; color: #b318ff; }
 .help-js .help-category.is-reading { grid-template-columns: minmax(220px, 280px) 1fr; }
 .help-js .help-category.is-reading .help-side { position: sticky; top: 96px; align-self: start; }
 .help-js .help-article + .help-article { margin-top: 0; padding-top: 0; border-top: 0; }

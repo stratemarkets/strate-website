@@ -47,16 +47,9 @@
 .home-offer-panel .price-word { font-size: clamp(48px, 5vw, 76px); font-weight: 600; letter-spacing: -.045em; line-height: 1.1; }
 
 /* Replay illustration animated by assets/replay-art.js. */
-@font-face {
-  font-family: "Google Sans Flex";
-  src: url("fonts/google-sans-flex-email-600.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-}
 .time-art .time-digits,
 .time-art .time-scale > span:not(.accent) {
-  font-family: "Google Sans Flex", "Google Sans", Arial, sans-serif;
+  font-family: "Geist", Arial, sans-serif;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
 }

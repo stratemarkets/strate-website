@@ -131,7 +131,7 @@
   .footer-column > a { transition: none; }
 }
 
-/* Google Sans draws © small and raised; Arial's matches the surrounding text. */
+/* The text font draws © small and raised; Arial's matches the surrounding text. */
 .copyright-sign { font-family: Arial, Helvetica, sans-serif; }
 
 /* Wide screens: socials on the left, copyright centred, language on the right. */

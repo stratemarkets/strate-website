@@ -18,7 +18,7 @@
 .feature-plus { display: grid; place-items: center; border: 1px solid #ffffff70; width: 23px; height: 23px; flex-shrink: 0; border-radius: 50%; line-height: 0; transition: transform .3s ease, color .3s, border-color .3s; }
 .feature-plus .feature-icon { width: 13px; height: 13px; }
 .feature-choice[open] { width: 100%; background: #242424; }
-.feature-choice[open] .feature-plus { transform: rotate(45deg); color: #c96bff; border-color: #b318ff; }
+.feature-choice[open] .feature-plus { transform: rotate(45deg); color: #b318ff; border-color: #b318ff; }
 .feature-choice[open] summary { color: #fff; }
 .feature-choice-copy { padding: 3px 24px 24px; }
 .feature-choice-copy h3 { font-size: 20px; line-height: 1.3; margin: 7px 0 13px; }
@@ -60,7 +60,7 @@
 .feature-reference-copy { padding: 0 0 30px; }
 .feature-bullets { margin: 0 0 25px; padding-left: 20px; columns: 2; column-gap: 64px; }
 .feature-bullets li { break-inside: avoid; padding-left: 5px; margin: 0 0 16px; font-size: clamp(16px, 1.2vw, 18px); color: #b1b1ba; line-height: 1.7; }
-.feature-bullets li::marker { color: #c96bff; }
+.feature-bullets li::marker { color: #b318ff; }
 .feature-reference-copy .small-note { max-width: 95ch; }
 .feature-catalog { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; list-style: none; padding: 0; margin: 35px 0; }
 .feature-catalog li { padding: 17px 0; border-top: 1px solid #ffffff12; display: flex; flex-direction: column; gap: 7px; min-width: 0; }

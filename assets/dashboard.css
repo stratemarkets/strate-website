@@ -10,12 +10,12 @@
   --secondary: #b7b7bd;
   --muted: #8e8e95;
   --accent: #b318ff;
-  --accent-text: #c96bff;
+  --accent-text: #b318ff;
   --good: #79b5a1;
 }
 * { box-sizing: border-box; }
 html { color-scheme: dark; }
-body { margin: 0; background: var(--bg); color: var(--text); font-family: "Google Sans", Arial, sans-serif; font-size: 16px; -webkit-font-smoothing: antialiased; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: "Geist", Arial, sans-serif; font-size: 16px; -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; cursor: pointer; }
 h1, h2 { margin: 0; font-weight: 500; }
@@ -148,5 +148,5 @@ th:last-child, td:last-child { padding-right: 0; }
 @media (prefers-reduced-motion: reduce) { .dash-copy, .dash-bar-fill { transition: none; } }
 @media (forced-colors: active) { .dash-bar-fill, .dash-key i { background: CanvasText; } }
 
-/* Google Sans draws © small and raised; Arial's matches the surrounding text. */
+/* The text font draws © small and raised; Arial's matches the surrounding text. */
 .copyright-sign { font-family: Arial, Helvetica, sans-serif; }

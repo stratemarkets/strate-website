@@ -29,7 +29,7 @@
 .simulator-results > div { padding: 18px 18px 20px; border-radius: 16px; background: #2a2a2c; }
 .simulator-results dt { color: #a9a9b0; font-size: var(--note-size, 13px); line-height: 1.4; }
 .simulator-results dd { margin: 10px 0 0; color: #fff; font-size: clamp(20px, 2vw, 28px); font-weight: 600; letter-spacing: -.03em; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.simulator-results > div:nth-child(2) dd { color: #c96bff; }
+.simulator-results > div:nth-child(2) dd { color: #b318ff; }
 .commission-simulator > .small-note { margin: 0; }
 
 .creators-split { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }

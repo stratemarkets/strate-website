@@ -15,7 +15,7 @@
   background: #2b2b2b;
   box-shadow: 0 -18px 50px #0006;
   color: #f5f5f7;
-  font-family: "Google Sans", Arial, sans-serif;
+  font-family: "Geist", Arial, sans-serif;
   animation: consent-in .35s cubic-bezier(.22, 1, .36, 1);
 }
 .consent-banner.is-leaving { animation: consent-out .26s ease forwards; }
@@ -44,7 +44,7 @@
 .consent-actions button.is-primary:hover { background: #dcdce1; }
 .consent-banner :focus-visible, .consent-panel :focus-visible { outline: 2px solid #b318ff; outline-offset: 3px; }
 
-.consent-panel { width: min(560px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 0; border: 1px solid #ffffff17; border-radius: 22px; background: #232325; color: #f5f5f7; font-family: "Google Sans", Arial, sans-serif; box-shadow: 0 24px 70px #000a; }
+.consent-panel { width: min(560px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 0; border: 1px solid #ffffff17; border-radius: 22px; background: #232325; color: #f5f5f7; font-family: "Geist", Arial, sans-serif; box-shadow: 0 24px 70px #000a; }
 .consent-panel::backdrop { background: #0000008c; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
 .consent-panel-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 20px 16px 26px; border-bottom: 1px solid #ffffff14; }
 .consent-panel-head h2 { margin: 0; }
