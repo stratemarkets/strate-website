@@ -58,7 +58,7 @@
   const svg = (content, w = 1200, h = 400) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" fill="none" aria-hidden="true">${content}</svg>`;
   const rect = (x, y, w, h, fill, opacity = 1) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${fill}" opacity="${opacity}"/>`;
   const line = (x1, y1, x2, y2, color, opacity = 1, dash = '') => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${color}" opacity="${opacity}" ${dash ? `stroke-dasharray="${dash}"` : ''}/>`;
-  const text = (x, y, value, color = C.muted, size = 9, anchor = 'start') => `<text x="${x}" y="${y}" fill="${color}" font-family="Geist, Arial, sans-serif" font-size="${size}" text-anchor="${anchor}">${value}</text>`;
+  const text = (x, y, value, color = C.muted, size = 9, anchor = 'start') => `<text x="${x}" y="${y}" fill="${color}" font-family="Alliance No1, Arial, sans-serif" font-size="${size}" text-anchor="${anchor}">${value}</text>`;
   const circle = (x, y, r, color, opacity = 1) => `<circle cx="${x}" cy="${y}" r="${r}" fill="${color}" fill-opacity="${opacity}" stroke="${color}" stroke-opacity=".8" stroke-width=".6"/>`;
   function renderChart(terminal, mode) {
     const selected = $(`[data-capture="${mode}"]`, terminal);

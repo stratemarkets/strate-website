@@ -49,7 +49,7 @@
 /* Replay illustration animated by assets/replay-art.js. */
 .time-art .time-digits,
 .time-art .time-scale > span:not(.accent) {
-  font-family: "Geist", Arial, sans-serif;
+  font-family: "Alliance No1", Arial, sans-serif;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
 }

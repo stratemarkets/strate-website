@@ -19,7 +19,7 @@
   from { stroke-dashoffset: calc(var(--start) + var(--trail)); }
   to { stroke-dashoffset: calc(var(--start) + var(--trail) - var(--perimeter)); }
 }
-.pricing-hero h1 { color: #fff; font-family: "Geist", sans-serif; font-weight: 500; font-size: clamp(27px, 2.35vw, 36px); letter-spacing: -.035em; line-height: 1.2; margin: -14px auto 18px; position: relative; top: -15px; }
+.pricing-hero h1 { color: #fff; font-family: "Alliance No1", sans-serif; font-weight: 500; font-size: clamp(27px, 2.35vw, 36px); letter-spacing: -.035em; line-height: 1.2; margin: -14px auto 18px; position: relative; top: -15px; }
 .pricing-installments { color: #d2d2d7; font-size: clamp(16px, 1.25vw, 19px); line-height: 1.45; margin: 0 auto; }
 .price-word { font-size: clamp(48px, 5vw, 76px); font-weight: 600; letter-spacing: -.045em; line-height: 1.1; }
 .pricing-price-label { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
