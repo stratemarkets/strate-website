@@ -139,3 +139,6 @@
   .footer-meta small { text-align: center; }
   .footer-meta .footer-language { justify-self: end; margin-left: 0; }
 }
+
+/* Footer links in Medium, like the navigation links. */
+.footer-column a { font-weight: 500; }

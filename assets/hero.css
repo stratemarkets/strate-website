@@ -56,5 +56,5 @@
   .hero-shell .hero-bottom p { font-size: 12px; line-height: 1.4; }
 }
 @media (min-width: 801px) and (max-width: 1600px) {
-  .hero-shell { --header-height: 55px; }
+  .hero-shell { --header-height: 60px; }
 }

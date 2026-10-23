@@ -147,14 +147,15 @@ body { font-size: 1rem; }
   .hero-shell .hero-bottom p { font-size: 16px; line-height: 1.45; }
 }
 
-/* Laptop windows (MacBook 13–14"): a navigation bar about 15 % smaller. */
+/* Laptop windows (MacBook 13–14"): a 60 px bar (59 px plus its 1 px border),
+   every element scaled from the 65 px large-screen bar (about 0.92). */
 @media (min-width: 801px) and (max-width: 1600px) {
-  .header-inner { height: 54px; }
-  .desktop-nav { gap: 34px; }
-  .desktop-nav a, .site-header .header-access, .header-actions .header-login { font-size: 15px; }
-  .site-header .navbar-logo { height: 21px; }
-  .header-actions .header-login { padding: 8px 14px; }
-  .site-header .header-access { padding: 7px 14px; }
+  .header-inner { height: 59px; }
+  .desktop-nav { gap: 37px; }
+  .desktop-nav a, .site-header .header-access, .header-actions .header-login { font-size: 16.5px; }
+  .site-header .navbar-logo { height: 23px; }
+  .header-actions .header-login { padding: 9px 15px; }
+  .site-header .header-access { padding: 8px 15px; }
 }
 
 /* Mobile navigation: the Early access button about 15 % smaller. */
@@ -188,3 +189,6 @@ main > .section, main > .section.container { padding-top: var(--section-space); 
 @media (max-width: 800px) { :root { --top-space: clamp(80px, 22vw, 96px); } }
 .page-hero, .help-hero { padding-top: var(--top-space); }
 body[data-help-view="category"] .help-hero, body[data-help-view="article"] .help-hero { padding-top: calc(var(--top-space) * .6); }
+
+/* Navigation links in Medium; the Connexion and Beta Testing buttons stay Regular. */
+.desktop-nav a { font-weight: 500; }

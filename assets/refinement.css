@@ -410,3 +410,6 @@ html.motion .page-hero h1, html.motion .help-hero h1 { visibility: hidden; anima
 /* Regular price once the early adopter offer ends. */
 .price-panel .price-after { margin: -6px 0 18px; color: #8e8e95; font-size: var(--note-size, 14px); line-height: 1.5; }
 .price-panel .price-after .price-after-amount { color: #d9d9df; font-weight: 500; }
+
+/* Lenis drives the smooth scroll: the native smooth behaviour would fight it. */
+html.lenis { scroll-behavior: auto !important; }
