@@ -153,7 +153,7 @@ body { font-size: 1rem; }
   .header-inner { height: 59px; }
   .desktop-nav { gap: 37px; }
   .desktop-nav a, .site-header .header-access, .header-actions .header-login { font-size: 16.5px; }
-  .site-header .navbar-logo { height: 23px; }
+  .site-header .navbar-logo { height: 15.5px; }
   .header-actions .header-login { padding: 9px 15px; }
   .site-header .header-access { padding: 8px 15px; }
 }
@@ -192,3 +192,8 @@ body[data-help-view="category"] .help-hero, body[data-help-view="article"] .help
 
 /* Navigation links in Medium; the Connexion and Beta Testing buttons stay Regular. */
 .desktop-nav a { font-weight: 500; }
+
+/* Phones and small tablets: the logo matches the 63-65 px bar. */
+@media (max-width: 800px) {
+  .site-header .navbar-logo { height: 15.5px; }
+}

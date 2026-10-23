@@ -26,7 +26,8 @@ p { margin: 0; }
 :where(a, button, summary):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 .dash-header { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 28px; padding: 14px max(24px, calc((100vw - 1240px) / 2)); border-bottom: 1px solid #ffffff12; background: #191919e6; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
-.dash-brand img { display: block; width: 104px; height: auto; }
+.dash-brand picture { display: block; }
+.dash-brand img { display: block; width: auto; height: 15.5px; }
 .dash-nav { display: flex; gap: 22px; margin-left: auto; color: var(--secondary); font-size: 15px; }
 .dash-nav a:hover { color: #fff; }
 .dash-avatar { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: #f5f5f7; color: #111113; font-weight: 600; font-size: 15px; }

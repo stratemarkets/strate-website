@@ -21,6 +21,7 @@
   margin-bottom: clamp(64px, 7vw, 104px);
 }
 .footer-heading .brand { display: inline-flex; flex-shrink: 0; }
+.footer-heading picture { display: block; }
 .footer-heading .footer-logo { display: block; width: 116px; height: auto; }
 .footer-heading p {
   max-width: 320px;

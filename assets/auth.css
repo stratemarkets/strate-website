@@ -7,7 +7,8 @@ button { cursor: pointer; }
 :focus-visible { outline: 2px solid #b318ff; outline-offset: 4px; }
 [hidden] { display: none !important; }
 .auth-header { display: flex; align-items: center; justify-content: space-between; min-height: 72px; padding: 18px 32px; gap: 20px; }
-.auth-header img { display: block; width: 88px; height: auto; }
+.auth-header picture { display: block; }
+.auth-header img { display: block; width: auto; height: 15.5px; }
 .auth-header > a:last-child { font-size: 14px; color: #b4b4ba; }
 main { flex: 1; display: grid; place-items: center; padding: 36px 24px 56px; }
 .auth-card { width: 100%; max-width: 480px; padding: 40px 44px 30px; text-align: center; border: 1px solid #ffffff0c; border-radius: 30px; background: #202020; box-shadow: 0 24px 80px #0002; animation: auth-arrive .65s cubic-bezier(.22,1,.36,1) backwards; }

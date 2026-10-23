@@ -1,7 +1,9 @@
 /* A compact, animated menu shared by both languages and all collapsed layouts. */
 .site-header .brand { flex-shrink: 0; }
 /* Use 65% of the access button's height, preserving the logo's proportions. */
-.site-header .navbar-logo { display: block; width: auto; height: calc(.65lh + 13px); line-height: normal; }
+.site-header .brand picture { display: block; }
+/* Animated logo (static when motion is reduced): the "Strate" wordmark sits at the size of the navigation text. */
+.site-header .navbar-logo { display: block; width: auto; height: 17px; }
 .site-header {
   background: rgb(25 25 25 / 94%);
   border-bottom-color: transparent;
