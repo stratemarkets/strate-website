@@ -58,3 +58,12 @@
 @media (min-width: 801px) and (max-width: 1600px) {
   .hero-shell { --header-height: 60px; }
 }
+
+/* The transparent bar sits over the top of the home page, so the film's #151515
+   reaches the top of the screen instead of a band of the page colour. The space
+   the bar took is given back as padding, so nothing moves. --nav-h = bar height. */
+body[data-page="index"] { --nav-h: 64px; }
+@media (min-width: 801px) and (max-width: 1600px) { body[data-page="index"] { --nav-h: 59px; } }
+@media (max-width: 600px) { body[data-page="index"] { --nav-h: 62px; } }
+body[data-page="index"] .site-header { margin-bottom: calc(-1 * var(--nav-h)); }
+body[data-page="index"] .hero-shell { padding-top: var(--nav-h); }

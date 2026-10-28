@@ -154,3 +154,29 @@
   .spec-item .desktop-systems { gap: 8px; }
   .spec-item .desktop-systems > span { font-size: 10px; gap: 4px; }
 }
+
+/* Transparent bar over a progressive blur: five stacked backdrop blurs (1 to 16 px),
+   each kept to a band by a vertical mask, strongest at the top of the screen and
+   fading out a little below the bar, plus a faint dark veil that keeps the links
+   legible over bright videos and screenshots. */
+.site-header { background: transparent; border-bottom: 0; -webkit-backdrop-filter: none; backdrop-filter: none; isolation: isolate; }
+.site-header .header-blur, .site-header::before { content: ""; position: absolute; inset: 0 0 auto; height: calc(100% + 28px); z-index: -1; pointer-events: none; }
+.site-header::before { z-index: 0; background: linear-gradient(to bottom, rgba(18, 18, 19, .62), rgba(18, 18, 19, .34) 55%, rgba(18, 18, 19, 0)); }
+.site-header .header-inner { position: relative; z-index: 1; }
+.site-header .header-blur i { position: absolute; inset: 0; }
+.site-header .header-blur i:nth-child(1) { -webkit-backdrop-filter: blur(1px); backdrop-filter: blur(1px); -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 70%, transparent 100%); mask-image: linear-gradient(to bottom, #000 0%, #000 70%, transparent 100%); }
+.site-header .header-blur i:nth-child(2) { -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 85%); mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 85%); }
+.site-header .header-blur i:nth-child(3) { -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 40%, transparent 70%); mask-image: linear-gradient(to bottom, #000 0%, #000 40%, transparent 70%); }
+.site-header .header-blur i:nth-child(4) { -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 25%, transparent 55%); mask-image: linear-gradient(to bottom, #000 0%, #000 25%, transparent 55%); }
+.site-header .header-blur i:nth-child(5) { -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 10%, transparent 40%); mask-image: linear-gradient(to bottom, #000 0%, #000 10%, transparent 40%); }
+
+/* Mobile menu open: the bar takes the menu's colour so bar and menu read as one
+   panel; the blur and veil step aside. Back to transparent when it closes. */
+.site-header { transition: background-color .25s ease; }
+.site-header::before, .site-header .header-blur { transition: opacity .25s ease; }
+.site-header:has(.menu-toggle[aria-expanded="true"]) { background-color: #191919; }
+.site-header:has(.menu-toggle[aria-expanded="true"])::before,
+.site-header:has(.menu-toggle[aria-expanded="true"]) .header-blur { opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .site-header, .site-header::before, .site-header .header-blur { transition: none; }
+}
