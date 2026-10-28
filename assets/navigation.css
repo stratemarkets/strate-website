@@ -161,7 +161,10 @@
    legible over bright videos and screenshots. */
 .site-header { background: transparent; border-bottom: 0; -webkit-backdrop-filter: none; backdrop-filter: none; isolation: isolate; }
 .site-header .header-blur, .site-header::before { content: ""; position: absolute; inset: 0 0 auto; height: calc(100% + 28px); z-index: -1; pointer-events: none; }
-.site-header::before { z-index: 0; background: linear-gradient(to bottom, rgba(18, 18, 19, .62), rgba(18, 18, 19, .34) 55%, rgba(18, 18, 19, 0)); }
+/* The veil is the page's own background colour (#191919; #151515 over the home hero). */
+.site-header { --veil: 25 25 25; }
+body[data-page="index"] .site-header { --veil: 21 21 21; }
+.site-header::before { z-index: 0; background: linear-gradient(to bottom, rgb(var(--veil) / .62), rgb(var(--veil) / .34) 55%, rgb(var(--veil) / 0)); }
 .site-header .header-inner { position: relative; z-index: 1; }
 .site-header .header-blur i { position: absolute; inset: 0; }
 .site-header .header-blur i:nth-child(1) { -webkit-backdrop-filter: blur(1px); backdrop-filter: blur(1px); -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 70%, transparent 100%); mask-image: linear-gradient(to bottom, #000 0%, #000 70%, transparent 100%); }
