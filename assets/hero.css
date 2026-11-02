@@ -67,3 +67,6 @@ body[data-page="index"] { --nav-h: 64px; }
 @media (max-width: 600px) { body[data-page="index"] { --nav-h: 62px; } }
 body[data-page="index"] .site-header { margin-bottom: calc(-1 * var(--nav-h)); }
 body[data-page="index"] .hero-shell { padding-top: var(--nav-h); }
+
+/* Candles drawn by the mouse (assets/hero-candles.js): behind the title and the film. */
+.hero-candles { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; pointer-events: none; }
