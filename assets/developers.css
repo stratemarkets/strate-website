@@ -225,3 +225,6 @@ tr:target td { background: #b318ff1f; }
 .dev-sidebar::-webkit-scrollbar-thumb, .dev-toc::-webkit-scrollbar-thumb, .dev-code pre::-webkit-scrollbar-thumb,
 .dev-table::-webkit-scrollbar-thumb, .dev-results::-webkit-scrollbar-thumb { border-radius: 999px; background: #ffffff1f; }
 .dev-sidebar:hover::-webkit-scrollbar-thumb, .dev-toc:hover::-webkit-scrollbar-thumb { background: #ffffff38; }
+
+/* "Developer" sits on the same baseline as the "Strate" wordmark (measured 1 px high on computers). */
+@media (min-width: 801px) { .site-header .dev-brand-label { position: relative; top: 1px; } }
