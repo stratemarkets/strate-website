@@ -29,7 +29,7 @@
     });
   });
 
-  const TITLES = '.hero h1, .page-hero h1, .help-hero h1, .pricing-hero h1';
+  const TITLES = '.hero h1, .page-hero h1, .help-hero h1, .pricing-hero h1, .dev-hero h1';
   // Titles are split once the web font is ready, so the lines match what is displayed.
   document.fonts.ready.then(() => {
     // Big titles build word by word: each word grows in from nothing while the
