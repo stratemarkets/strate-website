@@ -3,7 +3,6 @@
 .hero-shell { --header-height: 65px; position: relative; isolation: isolate; background: #151515; }
 .hero-shell .hero {
   position: relative;
-  z-index: 1;
   padding-top: clamp(36px, 7svh, 100px);
 }
 .hero-shell .hero h1 {
@@ -68,5 +67,8 @@ body[data-page="index"] { --nav-h: 64px; }
 body[data-page="index"] .site-header { margin-bottom: calc(-1 * var(--nav-h)); }
 body[data-page="index"] .hero-shell { padding-top: var(--nav-h); }
 
-/* Candles drawn by the mouse (assets/hero-candles.js): behind the title and the film. */
-.hero-candles { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; pointer-events: none; }
+/* Candles drawn by the mouse (assets/hero-candles.js). Three planes: the title and
+   the copy below the candles, the film and the buttons above them. The hero itself
+   makes no stacking context, so its children share the shell's. */
+.hero-candles { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; pointer-events: none; }
+.hero-shell .hero-film, .hero-shell .hero-actions { position: relative; z-index: 2; }
