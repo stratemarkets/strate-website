@@ -8,7 +8,9 @@
   const NAME = 'strate_consent';
   const MAX_AGE = 60 * 60 * 24 * 182;
   const en = document.documentElement.lang.startsWith('en');
-  const policy = en ? 'privacy.html#cookies' : 'confidentialite.html#cookies';
+  // Same target as the footer link, so it works from any folder (en/, en-gb/, developers/).
+  const footerPolicy = document.querySelector('footer a[href$="privacy.html"], footer a[href$="confidentialite.html"]')?.getAttribute('href');
+  const policy = (footerPolicy || (en ? 'privacy.html' : 'confidentialite.html')) + '#cookies';
   const text = en ? {
     title: 'This site uses cookies.',
     body: `We use cookies that the site needs to work and, with your consent, cookies to understand how it is used and to measure our marketing. Choose <button type="button" class="consent-link" data-consent="manage">Manage cookies</button> to set your preferences at any time. See our <a href="${policy}">privacy policy</a> for more information.`,

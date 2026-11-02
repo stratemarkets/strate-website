@@ -1,0 +1,227 @@
+/* StrateScript developer docs: sidebar, reading column, on-page table of contents. */
+.dev-layout { display: grid; grid-template-columns: 250px minmax(0, 760px) 200px; justify-content: center; gap: clamp(32px, 4vw, 64px); padding-block: 48px 120px; }
+.dev-sidebar, .dev-toc { position: sticky; top: 92px; align-self: start; max-height: calc(100vh - 110px); overflow-y: auto; scrollbar-width: thin; }
+
+.dev-search { position: relative; margin-bottom: 22px; }
+.dev-search input { width: 100%; height: 40px; padding: 0 14px; border: 1px solid #ffffff1f; border-radius: 12px; background: #202022; color: #f5f5f7; font: inherit; font-size: 14px; }
+.dev-search input:focus { outline: 2px solid #b318ff; outline-offset: 2px; }
+.dev-results { position: absolute; z-index: 5; top: 46px; left: 0; right: 0; margin: 0; padding: 6px; list-style: none; border: 1px solid #ffffff1f; border-radius: 12px; background: #232325; box-shadow: 0 20px 50px #0008; }
+.dev-results a { display: block; padding: 8px 10px; border-radius: 8px; color: #f5f5f7; font-size: 14px; }
+.dev-results a small { display: block; color: #8e8e95; font-size: 12px; }
+.dev-results a:hover, .dev-results a:focus-visible { background: #ffffff0d; }
+.dev-results .is-empty { padding: 8px 10px; color: #8e8e95; font-size: 13px; }
+
+.dev-home { display: block; margin-bottom: 18px; color: #fff; font-weight: 500; }
+.dev-nav-group { margin-bottom: 18px; }
+.dev-nav-group p { margin: 0 0 6px; color: #8e8e95; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+.dev-nav-group ul, .dev-toc ul { margin: 0; padding: 0; list-style: none; }
+.dev-nav-group a { display: block; padding: 6px 10px; margin-left: -10px; border-radius: 8px; color: #b7b7bd; font-size: 14px; line-height: 1.4; }
+.dev-nav-group a:hover { color: #fff; background: #ffffff08; }
+.dev-nav-group a[aria-current] { color: #fff; background: #ffffff0f; box-shadow: inset 2px 0 #b318ff; }
+
+.dev-article { min-width: 0; }
+.dev-eyebrow { margin: 0 0 10px; color: #b318ff; font-size: 13px; font-weight: 500; letter-spacing: .04em; }
+.dev-article h1 { margin: 0 0 14px; font-size: clamp(34px, 3.4vw, 48px); line-height: 1.1; letter-spacing: -.035em; }
+.dev-lead { margin: 0 0 32px; color: #b7b7bd; font-size: 19px; line-height: 1.55; }
+.dev-article h2 { margin: 48px 0 14px; font-size: 26px; letter-spacing: -.02em; scroll-margin-top: 96px; }
+.dev-article h3 { margin: 32px 0 10px; font-size: 19px; scroll-margin-top: 96px; }
+.dev-anchor { margin-left: 8px; color: #5c5c63; opacity: 0; font-weight: 400; }
+.dev-article h2:hover .dev-anchor, .dev-article h3:hover .dev-anchor { opacity: 1; }
+.dev-article p, .dev-article li { color: #d0d0d6; font-size: 16px; line-height: 1.7; }
+.dev-article p { margin: 0 0 16px; }
+.dev-article ul, .dev-article ol { margin: 0 0 18px; padding-left: 22px; }
+.dev-article li { margin-bottom: 6px; }
+.dev-article li::marker { color: #b318ff; }
+.dev-article a { color: #fff; text-decoration: underline; text-decoration-color: #b318ff; text-underline-offset: 3px; }
+.dev-article :not(pre) > code { padding: 2px 6px; border-radius: 6px; background: #ffffff10; color: #f5f5f7; font: 14px "Cascadia Code", Consolas, monospace; }
+
+.dev-code { margin: 0 0 22px; overflow: hidden; border: 1px solid #ffffff14; border-radius: 14px; background: #121213; }
+.dev-code-bar { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px 8px 16px; border-bottom: 1px solid #ffffff10; color: #8e8e95; font-size: 12px; }
+.dev-copy { padding: 4px 10px; border: 0; border-radius: 8px; background: #ffffff10; color: #d0d0d6; font: inherit; cursor: pointer; }
+.dev-copy:hover { background: #ffffff1a; color: #fff; }
+.dev-code pre { margin: 0; padding: 16px 18px; overflow-x: auto; }
+.dev-code code { color: #e6e6eb; font: 14px/1.65 "Cascadia Code", Consolas, monospace; letter-spacing: 0; }
+.tok-keyword { color: #c88bff; }
+.tok-type { color: #79c0ff; }
+.tok-call { color: #5fc651; }
+.tok-string { color: #f2b33d; }
+.tok-number, .tok-colour { color: #ff9a76; }
+.tok-comment { color: #6f6f76; font-style: italic; }
+
+.dev-callout { margin: 0 0 22px; padding: 14px 18px; border-left: 3px solid #8e8e95; border-radius: 0 12px 12px 0; background: #ffffff08; }
+.dev-callout strong { display: block; margin-bottom: 4px; color: #fff; font-size: 14px; }
+.dev-callout p { margin: 0; font-size: 15px; }
+.dev-callout.is-tip { border-color: #35ce00; }
+.dev-callout.is-attention { border-color: #f2b33d; }
+.dev-callout.is-draft { border-color: #b318ff; background: #b318ff12; }
+
+.dev-table { margin: 0 0 24px; overflow-x: auto; border: 1px solid #ffffff14; border-radius: 12px; }
+.dev-table table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.dev-table th, .dev-table td { padding: 12px 14px; border-bottom: 1px solid #ffffff10; text-align: left; vertical-align: top; color: #d0d0d6; }
+.dev-table th { color: #fff; font-weight: 500; background: #ffffff06; }
+.dev-table tr:last-child td { border-bottom: 0; }
+
+.dev-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 28px; }
+.dev-card { display: grid; gap: 6px; padding: 20px; border: 1px solid #333336; border-radius: 18px; background: #202020; text-decoration: none !important; transition: border-color .2s, background .2s; }
+.dev-card:hover { border-color: #4a4a4e; background: #242426; }
+.dev-card small { color: #b318ff; font-size: 12px; }
+.dev-card strong { color: #fff; font-size: 17px; font-weight: 500; }
+.dev-card span { color: #9c9ca3; font-size: 14px; line-height: 1.5; }
+
+.dev-pager { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 56px; }
+.dev-pager a { display: grid; gap: 4px; padding: 16px 18px; border: 1px solid #333336; border-radius: 14px; color: #fff; text-decoration: none; }
+.dev-pager a:hover { border-color: #4a4a4e; }
+.dev-pager small { color: #8e8e95; font-size: 12px; }
+.dev-pager .is-next { text-align: right; grid-column: 2; }
+
+.dev-toc p { margin: 0 0 8px; color: #8e8e95; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+.dev-toc a { display: block; padding: 5px 0 5px 12px; border-left: 1px solid #ffffff14; color: #9c9ca3; font-size: 13px; line-height: 1.4; }
+.dev-toc a:hover, .dev-toc a.is-active { color: #fff; border-color: #b318ff; }
+
+@media (max-width: 1180px) {
+  .dev-layout { grid-template-columns: 230px minmax(0, 1fr); }
+  .dev-toc { display: none; }
+}
+@media (max-width: 800px) {
+  .dev-layout { grid-template-columns: minmax(0, 1fr); padding-top: 28px; }
+  .dev-sidebar { position: static; max-height: none; padding-bottom: 8px; border-bottom: 1px solid #ffffff14; }
+  .dev-sidebar .dev-nav-group, .dev-home { display: none; }
+  .dev-cards, .dev-pager { grid-template-columns: 1fr; }
+  .dev-pager .is-next { grid-column: auto; }
+}
+
+/* The sidebar scrolls on its own, so it clips anything that overflows its box:
+   inner padding keeps the search focus ring and the selected item's pill (with
+   its violet bar) fully inside. */
+.dev-sidebar { padding: 4px 6px 8px 12px; }
+.dev-search { margin-left: -8px; }
+.dev-search input:focus { outline-offset: 0; border-color: transparent; }
+
+/* Menu: a plain list on wide screens, folded behind "Documentation menu" on phones. */
+.dev-menu > summary { display: none; }
+@media (max-width: 800px) {
+  .dev-menu > summary { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border: 1px solid #ffffff1f; border-radius: 12px; color: #f5f5f7; font-size: 14px; cursor: pointer; list-style: none; }
+  .dev-menu > summary::-webkit-details-marker { display: none; }
+  .dev-menu > summary::after { content: "+"; color: #8e8e95; font-size: 18px; }
+  .dev-menu[open] > summary::after { content: "−"; }
+  .dev-menu[open] { padding-bottom: 6px; }
+  .dev-menu[open] .dev-nav-group, .dev-menu[open] .dev-home { display: block; }
+  .dev-menu[open] .dev-home { margin-top: 16px; }
+}
+
+/* Nested lists, the AI agent skill box and its download button. */
+.dev-article li > ul, .dev-article li > ol { margin: 6px 0 4px; }
+.dev-skill { margin: 48px 0 0; padding: 24px 26px; border: 1px solid #b318ff55; border-radius: 18px; background: linear-gradient(180deg, #b318ff14, #ffffff05); }
+.dev-skill h2 { margin-top: 0; }
+.dev-download { display: inline-flex; align-items: center; margin-top: 6px; padding: 10px 18px; border-radius: 999px; background: #f5f5f7; color: #111113 !important; font-weight: 500; text-decoration: none !important; }
+.dev-download:hover { background: #dcdce1; }
+.dev-table td code, .dev-table th code { white-space: nowrap; }
+tr:target td { background: #b318ff1f; }
+
+@media (max-width: 800px) { .dev-menu { margin-left: -8px; } }
+
+/* ---- Strate Developer: dedicated header, home page and footer ---- */
+.dev-brand { display: inline-flex; align-items: center; gap: 10px; color: #f5f5f7; }
+.dev-brand-label { padding-left: 10px; border-left: 1px solid #ffffff2e; color: #b7b7bd; font-size: 15px; font-weight: 500; line-height: 1; letter-spacing: -.01em; }
+.dev-header .header-actions { display: flex; align-items: center; gap: 10px; }
+.dev-search-header { position: relative; width: 220px; margin: 0; }
+.dev-search-header input { height: 36px; padding-right: 30px; border-radius: 999px; background: #232325; font-size: 14px; }
+.dev-search-header kbd { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); padding: 1px 6px; border: 1px solid #ffffff26; border-radius: 6px; color: #8e8e95; font: 11px "Cascadia Code", Consolas, monospace; pointer-events: none; }
+.dev-search-header input:focus + kbd { opacity: 0; }
+.dev-search-header .dev-results { top: 44px; left: auto; right: 0; width: 360px; }
+.dev-back { white-space: nowrap; }
+/* One search box at a time: the header box on wide screens, the sidebar box below. */
+@media (min-width: 1001px) { .dev-search-side { display: none; } }
+@media (max-width: 1000px) { .dev-search-header { display: none; } }
+
+/* Home page of the space. */
+.dev-hero { padding: clamp(64px, 9vw, 120px) 0 clamp(40px, 5vw, 64px); text-align: center; }
+.dev-hero h1 { margin: 0 0 18px; font-size: clamp(48px, 7vw, 96px); line-height: 1.02; letter-spacing: -.05em; }
+.dev-hero-lead { max-width: 760px; margin: 0 auto; color: #b7b7bd; font-size: clamp(17px, 1.5vw, 20px); line-height: 1.6; }
+.dev-hero-actions { display: flex; justify-content: center; align-items: center; gap: 24px; margin-top: 32px; }
+.dev-parts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.dev-part { display: grid; align-content: start; gap: 10px; padding: 28px; border: 1px solid #333336; border-radius: 22px; background: #202020; transition: border-color .2s, background .2s, transform .2s; }
+.dev-part:hover { border-color: #4a4a4e; background: #242426; transform: translateY(-2px); }
+.dev-part h2 { margin: 0; font-size: 24px; letter-spacing: -.02em; }
+.dev-part p { margin: 0; color: #9c9ca3; font-size: 15px; line-height: 1.6; }
+.dev-part p a, .dev-guide span a, .dev-example span a { pointer-events: none; color: inherit; text-decoration: none; }
+.dev-part-more { margin-top: 6px; color: #b318ff; font-size: 14px; font-weight: 500; }
+.dev-home-section { padding-top: clamp(64px, 7vw, 96px); }
+.dev-home-section > h2 { margin: 0 0 10px; font-size: clamp(28px, 3vw, 40px); letter-spacing: -.035em; }
+.dev-section-lead { max-width: 70ch; margin: 0 0 24px; color: #9c9ca3; }
+.dev-guides { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 32px; margin-top: 20px; border-top: 1px solid #ffffff14; }
+.dev-guide { display: grid; gap: 6px; padding: 18px 0; border-bottom: 1px solid #ffffff14; }
+.dev-guide strong { color: #fff; font-weight: 500; }
+.dev-guide span { color: #9c9ca3; font-size: 14px; line-height: 1.55; }
+.dev-guide:hover strong { color: #b318ff; }
+.dev-examples { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.dev-example { display: grid; align-content: start; gap: 6px; padding: 18px; border: 1px solid #333336; border-radius: 16px; background: #1d1d1e; transition: border-color .2s; }
+.dev-example:hover { border-color: #4a4a4e; }
+.dev-example small { color: #b318ff; font: 12px "Cascadia Code", Consolas, monospace; }
+.dev-example strong { color: #fff; font-size: 15px; font-weight: 500; line-height: 1.35; }
+.dev-example span { color: #8e8e95; font-size: 13px; line-height: 1.5; }
+.dev-example code, .dev-part code, .dev-guide code { padding: 1px 5px; border-radius: 5px; background: #ffffff10; font: 12px "Cascadia Code", Consolas, monospace; }
+.dev-home-page .dev-skill { margin: 0; }
+.dev-home-page main { padding-bottom: clamp(80px, 9vw, 130px); }
+
+/* Footer of the space. */
+.dev-footer { padding: 56px 0 36px; border-top: 1px solid #ffffff14; background: #141415; }
+.dev-footer-top .dev-brand img { width: auto; height: 17px; }
+.dev-footer-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; margin: 36px 0 40px; }
+.dev-footer-col { display: grid; align-content: start; gap: 10px; }
+.dev-footer-col h2 { margin: 0 0 4px; color: #8e8e95; font-size: 13px; font-weight: 500; letter-spacing: .02em; }
+.dev-footer-col a { color: #d0d0d6; font-size: 14px; font-weight: 500; }
+.dev-footer-col a:hover { color: #fff; }
+.dev-footer-legal { margin: 0; padding-top: 22px; border-top: 1px solid #ffffff10; color: #8e8e95; font-size: 13px; }
+
+@media (max-width: 1000px) {
+  .dev-parts, .dev-guides { grid-template-columns: 1fr; }
+  .dev-examples { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dev-footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .dev-examples, .dev-footer-grid { grid-template-columns: 1fr; }
+  .dev-hero-actions { flex-direction: column; gap: 16px; }
+  .dev-brand-label { font-size: 14px; }
+}
+
+/* Fixes: bar label size, back link styled like the site's pills, skill title, data levels. */
+.site-header .dev-brand-label { font-size: 15px; font-weight: 500; }
+.dev-back { padding: 9px 15px; border-radius: 999px; background: #2b2b2b; color: #e5e5e7; font-size: 15px; white-space: nowrap; transition: background .2s; }
+.dev-back:hover { background: #353535; color: #fff; }
+.mobile-nav .dev-back { background: none; border-radius: 16px; margin-inline: max(24px, calc((100% - 720px) / 2)); padding: 16px 18px; font-size: clamp(24px, 4vw, 30px); font-weight: 500; }
+.dev-skill h2 { font-size: clamp(24px, 2.4vw, 30px); letter-spacing: -.025em; margin: 0 0 10px; }
+.dev-skill p, .dev-skill li { color: #c6c6cc; font-size: 15px; line-height: 1.65; }
+.dev-skill ul { margin: 12px 0 18px; padding-left: 20px; }
+.dev-skill li::marker { color: #b318ff; }
+.dev-skill code { padding: 1px 5px; border-radius: 5px; background: #ffffff10; font: 13px "Cascadia Code", Consolas, monospace; }
+.dev-hero-levels { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 820px; margin: 20px auto 0; padding: 0; list-style: none; }
+.dev-hero-levels li { padding: 7px 14px; border: 1px solid #ffffff1a; border-radius: 999px; color: #d0d0d6; font-size: 14px; }
+
+/* "Developer" next to the logo: larger, no separator. */
+.dev-brand { gap: 7px; }
+.dev-brand-label, .site-header .dev-brand-label { padding-left: 0; border-left: 0; font-size: 19px; font-weight: 500; letter-spacing: -.02em; color: #b7b7bd; }
+@media (min-width: 801px) and (max-width: 1600px) { .site-header .dev-brand-label { font-size: 17.5px; } }
+@media (max-width: 800px) { .site-header .dev-brand-label { font-size: 17.5px; } }
+
+/* Small screens: the back link lives in the menu, not in the bar. */
+@media (max-width: 1000px) { .dev-header .header-actions .dev-back { display: none; } }
+
+/* Scrollbars in the site's style: thin, dark and rounded, almost invisible at rest
+   and lighter on hover (sidebar, table of contents, code blocks, tables). */
+.dev-sidebar, .dev-toc, .dev-code pre, .dev-table, .dev-results {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  transition: scrollbar-color .2s;
+}
+.dev-sidebar:hover, .dev-toc:hover, .dev-code pre:hover, .dev-table:hover, .dev-results:hover,
+.dev-sidebar:focus-within { scrollbar-color: #ffffff2e transparent; }
+.dev-code pre, .dev-table { scrollbar-color: #ffffff1f transparent; }
+/* Safari and older Chromium. */
+.dev-sidebar::-webkit-scrollbar, .dev-toc::-webkit-scrollbar, .dev-code pre::-webkit-scrollbar,
+.dev-table::-webkit-scrollbar, .dev-results::-webkit-scrollbar { width: 6px; height: 6px; }
+.dev-sidebar::-webkit-scrollbar-track, .dev-toc::-webkit-scrollbar-track, .dev-code pre::-webkit-scrollbar-track,
+.dev-table::-webkit-scrollbar-track, .dev-results::-webkit-scrollbar-track { background: transparent; }
+.dev-sidebar::-webkit-scrollbar-thumb, .dev-toc::-webkit-scrollbar-thumb, .dev-code pre::-webkit-scrollbar-thumb,
+.dev-table::-webkit-scrollbar-thumb, .dev-results::-webkit-scrollbar-thumb { border-radius: 999px; background: #ffffff1f; }
+.dev-sidebar:hover::-webkit-scrollbar-thumb, .dev-toc:hover::-webkit-scrollbar-thumb { background: #ffffff38; }
