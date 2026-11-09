@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Strate · démo</title>
+<meta name="description" content="Démo interactive de Strate : ouverture de l'ES du 19/12/2024, rejouée en temps réel.">
+<link rel="icon" href="assets/favicon.27194d63fc.svg" type="image/svg+xml">
+<link rel="preload" href="assets/donnees.1006e82c58.bin" as="fetch" crossorigin>
+<link rel="preload" href="assets/profondeur.9845f79a86.bin" as="fetch" crossorigin>
+<link rel="preload" href="assets/geist-tab-400.9610cb3a80.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/geist-tab-500.e40f82dc5b.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/geist-tab-600.fed44d87c3.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/demo.8b3f7937e5.css">
+</head>
+<body>
+<div id="app">
+<canvas id="c" aria-label="Graphique ES du 19/12/2024 rejoué en temps réel"></canvas>
+<div id="chargement">Chargement…</div>
+<div id="fin" class="voile" hidden>
+<div class="carte" role="dialog" aria-labelledby="fin-titre">
+<h2 id="fin-titre">Fin de la démo · 9:33:00</h2>
+<p>Trois minutes de l'ouverture du 19/12/2024, rejouées comme elles se sont passées. Le graphique reste ouvert : vous pouvez encore le parcourir.</p>
+<div class="boutons">
+<a class="btn primaire" href="#telecharger" data-lien="telecharger">Télécharger l'application</a>
+<button class="btn" id="rejouer" type="button">Rejouer la démo</button>
+<button class="btn" id="fin-fermer" type="button">Parcourir le graphique</button>
+</div>
+</div>
+</div>
+<div id="invite" class="voile" hidden>
+<div class="carte" role="dialog" aria-labelledby="invite-titre">
+<h2 id="invite-titre">Disponible dans l'application</h2>
+<p>Les unités de temps, les réglages et les outils sont dans Strate. Ici, ils sont montrés tels qu'ils sont, sans pouvoir les changer.</p>
+<div class="boutons">
+<a class="btn primaire" href="#telecharger" data-lien="telecharger">Télécharger l'application</a>
+<button class="btn" id="invite-fermer" type="button">Continuer la démo</button>
+</div>
+</div>
+</div>
+</div>
+<div id="pied">
+<span class="g"><span class="long">Données historiques </span>ES · 19/12/2024<span class="long"> · ouverture de New York</span></span>
+<span class="d"><span id="pied-fin" hidden><button class="lien" id="pied-rejouer" type="button">Rejouer</button><span>·</span><a class="lien primaire" href="#telecharger" data-lien="telecharger">Télécharger</a><span class="long">·</span></span><span class="point"></span><b id="horloge">09:30:00</b><span>New York</span><span class="long">·</span><span class="long" id="etat">lecture en temps réel</span></span>
+</div>
+<script type="application/json" id="demo-textes">{"langue": "fr", "textes": {"lang": "fr", "titre": "Strate · démo", "description": "Démo interactive de Strate : ouverture de l'ES du 19/12/2024, rejouée en temps réel.", "aria_canvas": "Graphique ES du 19/12/2024 rejoué en temps réel", "chargement": "Chargement…", "fin_titre": "Fin de la démo · 9:33:00", "fin_texte": "Trois minutes de l'ouverture du 19/12/2024, rejouées comme elles se sont passées. Le graphique reste ouvert : vous pouvez encore le parcourir.", "telecharger_app": "Télécharger l'application", "rejouer_demo": "Rejouer la démo", "parcourir": "Parcourir le graphique", "invite_titre": "Disponible dans l'application", "invite_texte": "Les unités de temps, les réglages et les outils sont dans Strate. Ici, ils sont montrés tels qu'ils sont, sans pouvoir les changer.", "continuer": "Continuer la démo", "pied_g": "\u003cspan class=\"long\"\u003eDonnées historiques \u003c/span\u003eES · 19/12/2024\u003cspan class=\"long\"\u003e · ouverture de New York\u003c/span\u003e", "rejouer": "Rejouer", "telecharger": "Télécharger", "new_york": "New York", "etat_lecture": "lecture en temps réel", "etat_pause": "en pause", "etat_historique": "historique", "etat_fin": "fin de la démo", "graphique": "Graphique", "legende_g": ["Strate GEX · niveaux estimés", "Profil GEX · par strike", "Profil d'open interest · calls / puts", "Volume par barre", "Big trades (bulles)", "Delta cumulé (CVD)"], "legende_s": ["StrateDOM (carnet + billes)"], "a_jour": "à jour", "age_s": "il y a {n} s", "age_min": "il y a {n} min", "niv_haut_ecran": "niveaux au-dessus de l’écran ↑ · recadrez l’échelle de prix", "niv_bas_ecran": "niveaux au-dessous de l’écran ↓ · recadrez l’échelle de prix", "niv_hors_ecran": "niveaux hors de l’écran · recadrez l’échelle de prix", "niv_haut_zone": "niveaux au-dessus de la zone des bougies ↑ · recadrez l’échelle de prix", "niv_bas_zone": "niveaux au-dessous de la zone des bougies ↓ · recadrez l’échelle de prix", "niv_hors_zone": "niveaux hors de la zone des bougies · recadrez l’échelle de prix", "mention_oi": "éq. indice", "source": "Source : import, temps réel", "heure_donnees": "Heure des données : 9:30:00 NY", "echeances": "Échéances suivies : ≤ 7 j", "detail": "Détail : ", "hvl": "HVL estimé", "pic_calls": "Pic gamma calls", "pic_puts": "Pic gamma puts", "distance": "à {d} pts", "echelle_auto": "échelle auto", "ord": "ord.", "achat": "Achat", "vente": "Vente", "tete_file": "tête de file", "ordres_1": "{n} ordre", "ordres_n": "{n} ordres", "gros_1": "{n} gros ordre (≥ {g})", "gros_n": "{n} gros ordres (≥ {g})", "devant_1": "{n} lot devant", "devant_n": "{n} lots devant", "suite_1": "… et {n} autre ordre derrière", "suite_n": "… et {n} autres ordres derrière", "niveau_1": "1er niveau", "niveau_n": "{n}e niveau", "carte_chargement": "Chargement du carnet…", "carte_pourcent": "{p} %", "carte_erreur": "Carnet momentanément indisponible", "chargement_erreur": "La démo n’a pas pu se charger. Vérifiez la connexion, puis réessayez.", "recharger": "Réessayer"}}</script>
+<script src="config.js" defer></script>
+<script src="assets/demo.eb5170e195.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Strate · demo</title>
+<meta name="description" content="Interactive Strate demo: the ES open of Dec 19, 2024, replayed in real time.">
+<link rel="icon" href="assets/favicon.27194d63fc.svg" type="image/svg+xml">
+<link rel="preload" href="assets/donnees.1006e82c58.bin" as="fetch" crossorigin>
+<link rel="preload" href="assets/profondeur.9845f79a86.bin" as="fetch" crossorigin>
+<link rel="preload" href="assets/geist-tab-400.9610cb3a80.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/geist-tab-500.e40f82dc5b.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/geist-tab-600.fed44d87c3.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/demo.8b3f7937e5.css">
+</head>
+<body>
+<div id="app">
+<canvas id="c" aria-label="ES chart of Dec 19, 2024, replayed in real time"></canvas>
+<div id="chargement">Loading…</div>
+<div id="fin" class="voile" hidden>
+<div class="carte" role="dialog" aria-labelledby="fin-titre">
+<h2 id="fin-titre">End of demo · 9:33:00</h2>
+<p>Three minutes of the Dec 19, 2024 open, replayed exactly as they happened. The chart stays open: keep exploring it.</p>
+<div class="boutons">
+<a class="btn primaire" href="#telecharger" data-lien="telecharger">Download Strate</a>
+<button class="btn" id="rejouer" type="button">Restart demo</button>
+<button class="btn" id="fin-fermer" type="button">Explore the chart</button>
+</div>
+</div>
+</div>
+<div id="invite" class="voile" hidden>
+<div class="carte" role="dialog" aria-labelledby="invite-titre">
+<h2 id="invite-titre">Available in the app</h2>
+<p>Timeframes, settings and tools are available in the Strate app. Here they're shown as they are and can't be changed.</p>
+<div class="boutons">
+<a class="btn primaire" href="#telecharger" data-lien="telecharger">Download Strate</a>
+<button class="btn" id="invite-fermer" type="button">Continue demo</button>
+</div>
+</div>
+</div>
+</div>
+<div id="pied">
+<span class="g">ES<span class="long"> historical data</span> · Dec 19, 2024<span class="long"> · New York open</span></span>
+<span class="d"><span id="pied-fin" hidden><button class="lien" id="pied-rejouer" type="button">Restart</button><span>·</span><a class="lien primaire" href="#telecharger" data-lien="telecharger">Download</a><span class="long">·</span></span><span class="point"></span><b id="horloge">09:30:00</b><span>New York</span><span class="long">·</span><span class="long" id="etat">real-time playback</span></span>
+</div>
+<script type="application/json" id="demo-textes">{"langue": "en", "textes": {"lang": "en", "titre": "Strate · demo", "description": "Interactive Strate demo: the ES open of Dec 19, 2024, replayed in real time.", "aria_canvas": "ES chart of Dec 19, 2024, replayed in real time", "chargement": "Loading…", "fin_titre": "End of demo · 9:33:00", "fin_texte": "Three minutes of the Dec 19, 2024 open, replayed exactly as they happened. The chart stays open: keep exploring it.", "telecharger_app": "Download Strate", "rejouer_demo": "Restart demo", "parcourir": "Explore the chart", "invite_titre": "Available in the app", "invite_texte": "Timeframes, settings and tools are available in the Strate app. Here they're shown as they are and can't be changed.", "continuer": "Continue demo", "pied_g": "ES\u003cspan class=\"long\"\u003e historical data\u003c/span\u003e · Dec 19, 2024\u003cspan class=\"long\"\u003e · New York open\u003c/span\u003e", "rejouer": "Restart", "telecharger": "Download", "new_york": "New York", "etat_lecture": "real-time playback", "etat_pause": "paused", "etat_historique": "pre-open", "etat_fin": "end of demo", "graphique": "Chart", "legende_g": ["Strate GEX · estimated levels", "GEX profile · by strike", "Open interest profile · calls / puts", "Volume per bar", "Big trades (bubbles)", "Cumulative delta (CVD)"], "legende_s": ["StrateDOM (order book + bubbles)"], "a_jour": "up to date", "age_s": "{n} s ago", "age_min": "{n} min ago", "niv_haut_ecran": "levels above the screen ↑ · rescale the price axis", "niv_bas_ecran": "levels below the screen ↓ · rescale the price axis", "niv_hors_ecran": "levels off screen · rescale the price axis", "niv_haut_zone": "levels above the candles ↑ · rescale the price axis", "niv_bas_zone": "levels below the candles ↓ · rescale the price axis", "niv_hors_zone": "levels outside the candles · rescale the price axis", "mention_oi": "index eq.", "source": "Source: import, real time", "heure_donnees": "Data time: 9:30:00 NY", "echeances": "Expirations tracked: ≤ 7 d", "detail": "Details: ", "hvl": "Estimated HVL", "pic_calls": "Call gamma peak", "pic_puts": "Put gamma peak", "distance": "{d} pts away", "echelle_auto": "auto scale", "ord": "ord.", "achat": "Buy", "vente": "Sell", "tete_file": "head of queue", "ordres_1": "{n} order", "ordres_n": "{n} orders", "gros_1": "{n} large order (≥ {g})", "gros_n": "{n} large orders (≥ {g})", "devant_1": "{n} lot ahead", "devant_n": "{n} lots ahead", "suite_1": "… and {n} more order behind", "suite_n": "… and {n} more orders behind", "niveau_1": "1st level", "niveau_n": "{n}{suf} level", "carte_chargement": "Loading order book…", "carte_pourcent": "{p}%", "carte_erreur": "Order book temporarily unavailable", "chargement_erreur": "The demo couldn't load. Check your connection, then try again.", "recharger": "Try again"}}</script>
+<script src="config.js" defer></script>
+<script src="assets/demo.eb5170e195.js" defer></script>
+</body>
+</html>

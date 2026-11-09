@@ -1,0 +1,1 @@
+(function(){var c=window.STRATE_DEMO_CONFIG||{},l=String(c.langue||'en').toLowerCase();if(l==='auto')l=/^fr\b/i.test(navigator.language||'')?'fr':'en';if(l!=='fr')l='en';location.replace(l+'.html'+location.search+location.hash)})();

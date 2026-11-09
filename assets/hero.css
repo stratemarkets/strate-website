@@ -72,3 +72,76 @@ body[data-page="index"] .hero-shell { padding-top: var(--nav-h); }
    makes no stacking context, so its children share the shell's. */
 .hero-candles { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; pointer-events: none; }
 .hero-shell .hero-film, .hero-shell .hero-actions { position: relative; z-index: 2; }
+
+/* Above phone width, the interactive demo (assets/hero-demo.js) takes the film's
+   place in a rounded window; phones keep the film. The demo's own proportions are
+   1440 × 780, at least 520 px high, and it never fills the whole screen so the
+   page can still be scrolled around it. */
+.hero-demo { display: none; }
+@media (min-width: 601px) {
+  /* .has-demo is set by the script once the demo can run (served over http). */
+  .hero-shell.has-demo .hero-film { display: none; }
+  .hero-shell.has-demo .hero-demo { display: block; }
+  .hero-demo { position: relative; z-index: 2; padding-block: clamp(28px, 4.5svh, 56px); }
+  /* The window spans the navigation bar's content, from the logo to the right
+     edge of the last button: same width as .site-header .header-inner, measured
+     on the shell (full page width, scrollbar excluded) rather than on the hero. */
+  .hero-shell.has-demo { container-type: inline-size; }
+  .hero-demo-frame {
+    --demo-w: min(1600px, 100cqw - 64px);
+    position: relative;
+    width: var(--demo-w);
+    aspect-ratio: 1440 / 780;
+    min-height: 520px;
+    max-height: 82svh;
+    margin-inline: calc((100% - var(--demo-w)) / 2);
+    overflow: hidden;
+    border: 1px solid #2a2a2c;
+    border-radius: 20px;
+    background: #141414;
+  }
+  .hero-demo-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+  .hero-shell .hero-demo + .hero-bottom { margin-top: 0; }
+}
+@media (min-width: 601px) and (max-width: 1100px) {
+  .hero-demo-frame { --demo-w: calc(100cqw - 40px); }
+}
+@media (min-width: 601px) and (max-height: 560px) {
+  .hero-demo-frame { aspect-ratio: auto; height: 85svh; min-height: 0; max-height: none; }
+}
+
+/* Dot grid behind the first section, strongest at the top and fading out
+   towards the bottom, on the hero's own #151515. z-index -1 keeps it above the
+   shell's background (the shell isolates) and below all of its content. */
+.hero-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, .085) 1px, transparent 1.3px);
+  background-size: 22px 22px;
+  background-position: center top;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, .55) 35%, transparent 75%);
+  mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, .55) 35%, transparent 75%);
+}
+@media (max-width: 600px) {
+  .hero-shell::before { background-size: 18px 18px; }
+}
+
+/* Lit dots around the mouse (assets/hero-glow.js): the same grid, brighter,
+   shown only in a soft circle centred on the pointer. */
+.hero-shell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: var(--glow, 0);
+  transition: opacity .35s ease;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, .32) 1px, transparent 1.4px);
+  background-size: 22px 22px;
+  background-position: center top;
+  -webkit-mask-image: radial-gradient(circle 160px at var(--glow-x, -999px) var(--glow-y, -999px), #000 0%, rgba(0, 0, 0, .3) 45%, transparent 100%);
+  mask-image: radial-gradient(circle 160px at var(--glow-x, -999px) var(--glow-y, -999px), #000 0%, rgba(0, 0, 0, .3) 45%, transparent 100%);
+}
