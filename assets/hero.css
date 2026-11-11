@@ -79,14 +79,15 @@ body[data-page="index"] .hero-shell { padding-top: var(--nav-h); }
    page can still be scrolled around it. */
 .hero-demo { display: none; }
 @media (min-width: 601px) {
-  /* .has-demo is set by the script once the demo can run (served over http). */
-  .hero-shell.has-demo .hero-film { display: none; }
-  .hero-shell.has-demo .hero-demo { display: block; }
+  /* html.has-demo is set by a small script in the page's head, before the first
+     paint, when the demo can run (served over http): the film never flashes. */
+  .has-demo .hero-film { display: none; }
+  .has-demo .hero-demo { display: block; }
   .hero-demo { position: relative; z-index: 2; padding-block: clamp(28px, 4.5svh, 56px); }
   /* The window spans the navigation bar's content, from the logo to the right
      edge of the last button: same width as .site-header .header-inner, measured
      on the shell (full page width, scrollbar excluded) rather than on the hero. */
-  .hero-shell.has-demo { container-type: inline-size; }
+  .has-demo .hero-shell { container-type: inline-size; }
   .hero-demo-frame {
     --demo-w: min(1600px, 100cqw - 64px);
     position: relative;

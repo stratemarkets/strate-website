@@ -1,7 +1,8 @@
 /* Home hero, above phone width: the interactive Strate demo (strate-demo/) in a
    rounded window, in place of the film. The demo is only requested on those
    screens; phones keep the film. Opened from a file (file://), the demo cannot
-   read its data, so the film stays. */
+   read its data, so the film stays: the head script then leaves out html.has-demo,
+   which swaps the film for the demo in hero.css. */
 (() => {
   const frame = document.querySelector('.hero-demo iframe');
   const shell = document.querySelector('.hero-shell');
@@ -26,7 +27,6 @@
     if (!wide.matches || frame.src) return;
     frame.title = frame.getAttribute('aria-label');
     frame.src = frame.dataset.src;
-    shell.classList.add('has-demo');
   };
   load();
   wide.addEventListener('change', load);
