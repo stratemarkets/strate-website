@@ -1,4 +1,4 @@
-/* Download page: current version, installers, temporary key and release notes. */
+/* Download page: current version, installers, beta key request form and release notes. */
 .download-hero { padding: 92px 0 48px; text-align: center; }
 .download-hero h1 { font-size: clamp(48px, 6.4vw, 92px); }
 .download-hero > p:last-child { max-width: 560px; margin: 22px auto 0; font-size: 18px; line-height: 1.55; color: #a1a1a8; }
@@ -23,15 +23,26 @@
 .release-button.is-pending { background: #2b2b2e; color: #a1a1a8; cursor: default; }
 .release-button.is-pending:hover { transform: none; }
 
-.release-key { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 28px; margin-top: 28px; padding-top: 26px; border-top: 1px solid #2c2c2f; }
+.release-key { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 16px 28px; margin-top: 28px; padding-top: 26px; border-top: 1px solid #2c2c2f; }
 .release-key h3 { font-size: 18px; }
 .release-key p { margin: 4px 0 0; font-size: 14px; line-height: 1.5; }
-.key-box { display: flex; align-items: center; gap: 6px; padding: 6px 6px 6px 16px; border: 1px solid #3a3a3e; border-radius: 12px; background: #151515; }
-.key-value { font-family: var(--mono); font-size: 15px; letter-spacing: .06em; color: var(--text); user-select: all; }
-.key-copy { min-height: 34px; padding: 0 14px; border-radius: 8px; background: #2b2b2e; font-size: 13px; transition: background .2s; }
-.key-copy:hover { background: #38383c; }
-.key-pending { color: #a1a1a8; }
-.release-key .key-pending { margin: 0; padding: 10px 16px; border: 1px dashed #3a3a3e; border-radius: 12px; font-size: 13px; }
+.release-key > div:first-child { flex: 1 1 260px; }
+.key-form { flex: 1 1 360px; display: grid; gap: 12px; }
+.key-row { display: flex; gap: 8px; padding: 6px; border: 1px solid #3a3a3e; border-radius: 999px; background: #151515; transition: border-color .2s; }
+.key-row:focus-within { border-color: #6b6b72; }
+.key-row input { flex: 1; min-width: 0; padding: 0 14px; border: 0; background: transparent; color: var(--text); font-size: 15px; outline: none; }
+.key-row input::placeholder { color: #6b6b72; }
+.key-submit { flex-shrink: 0; min-height: 42px; padding: 0 18px; border-radius: 999px; background: #f5f5f7; color: #111113; font-size: 14px; font-weight: 500; white-space: nowrap; transition: background .2s; }
+.key-submit:hover { background: #fff; }
+.key-submit:disabled { opacity: .6; }
+.key-submit:focus-visible, .key-news input:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.key-trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.key-news { display: flex; align-items: center; gap: 10px; color: #a1a1a8; font-size: 13px; cursor: pointer; }
+.key-news input { width: 16px; height: 16px; margin: 0; accent-color: var(--accent); }
+.release-key .key-legal { margin: 0; color: #7c7c84; font-size: 12px; line-height: 1.5; }
+.key-legal a { color: #a1a1a8; text-decoration: underline; text-underline-offset: 2px; }
+.release-key .key-message { margin: 0; color: #a1a1a8; font-size: 13px; }
+.key-form.is-sent .key-message { color: #f5f5f7; }
 
 .download-notes { padding: 96px 0 110px; }
 .download-notes > h2 { margin-bottom: 30px; font-size: clamp(30px, 3.4vw, 44px); }
@@ -46,6 +57,15 @@
   .download-release { padding: 22px 18px; border-radius: 20px; }
   .release-file { grid-template-columns: 32px 1fr; padding: 16px; }
   .release-button { grid-column: 1 / -1; justify-content: center; }
-  .key-box { width: 100%; justify-content: space-between; }
+  .key-submit { padding: 0 14px; }
   .download-notes { padding: 70px 0 80px; }
 }
+
+/* Key by Instagram direct message (KEY_BY = 'instagram' in releases.py). */
+.key-dm { flex: 1 1 340px; display: grid; justify-items: start; gap: 14px; }
+.release-key .key-steps { margin: 0; color: #d6d6db; font-size: 15px; line-height: 1.55; }
+.key-instagram { display: inline-flex; align-items: center; gap: 10px; min-height: 46px; padding: 0 20px; border-radius: 999px; background: #f5f5f7; color: #111113; font-size: 15px; font-weight: 500; white-space: nowrap; transition: background .2s, transform .2s; }
+.key-instagram:hover { background: #fff; transform: translateY(-1px); }
+.key-instagram:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.key-instagram.is-pending { background: #2b2b2e; color: #a1a1a8; cursor: default; }
+.key-instagram.is-pending:hover { transform: none; }
