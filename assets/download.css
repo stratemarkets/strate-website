@@ -69,3 +69,9 @@
 .key-instagram:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .key-instagram.is-pending { background: #2b2b2e; color: #a1a1a8; cursor: default; }
 .key-instagram.is-pending:hover { transform: none; }
+.key-list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; counter-reset: key-step; }
+.key-list li { display: flex; gap: 10px; color: #d6d6db; font-size: 15px; line-height: 1.5; counter-increment: key-step; }
+.key-list li::before { content: counter(key-step); flex-shrink: 0; display: grid; place-items: center; width: 22px; height: 22px; margin-top: 1px; border-radius: 50%; background: rgba(179, 24, 255, .18); color: #d79bff; font-size: 12px; font-weight: 600; }
+.key-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.key-instagram.is-secondary { border: 1px solid #3a3a3e; background: transparent; color: #f5f5f7; }
+.key-instagram.is-secondary:hover { background: #2b2b2e; }
