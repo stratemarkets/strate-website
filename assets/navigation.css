@@ -132,7 +132,7 @@
 /* Keep each label with its logo, with consistent visual space for every partner. */
 .spec-strip {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 28px;
   padding-block: 28px 32px;
 }
@@ -142,10 +142,12 @@
 .spec-strip .partner-logo.cme { width: 83px; height: 25px; }
 .spec-strip .partner-logo.rithmic { width: 120px; height: 30px; }
 .spec-strip .partner-logo.databento { width: 112px; height: 21px; }
+.spec-strip .partner-logo.tastytrade { width: 120px; height: 22px; }
 .spec-item .desktop-systems { flex-wrap: wrap; gap: 10px 12px; }
 .spec-item .desktop-systems > span { font-size: 12px; gap: 6px; }
 @media (max-width: 800px) {
   .spec-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; padding-block: 28px; }
+  .spec-item:last-child { grid-column: 1 / -1; }
   .spec-item { gap: 12px; }
 }
 @media (max-width: 380px) {
