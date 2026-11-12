@@ -1,0 +1,1018 @@
+<!doctype html>
+<html lang="en-US"><head><title>Options data in StrateScript — Strate</title><meta name="description" content="Use options data alone, or together with bars, trades and order-by-order (MBO) data in the same script."><meta property="og:title" content="Options data in StrateScript"><meta property="og:description" content="Use options data alone, or together with bars, trades and order-by-order (MBO) data in the same script."><meta property="og:type" content="website"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#191919"><link rel="icon" href="../assets/favicon/favicon-32.png" sizes="32x32" type="image/png"><link rel="icon" id="favicon" href="../assets/favicon/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon-180.png"><script src="../assets/favicon/favicon.js" defer></script><link rel="preload" href="../assets/fonts/alliance/AllianceNo1-Regular.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="../assets/fonts.css"><link rel="stylesheet" href="../assets/styles.css"><link rel="stylesheet" href="../assets/refinement.css"><link rel="stylesheet" href="../assets/navigation.css"><link rel="stylesheet" href="../assets/footer.css"><link rel="stylesheet" href="../assets/captures.css"><script src="../assets/motion-init.js"></script><script src="../assets/app.js" defer></script><script src="../assets/vendor/gsap/gsap.min.js" defer></script><script src="../assets/vendor/gsap/ScrollTrigger.min.js" defer></script><script src="../assets/vendor/gsap/SplitText.min.js" defer></script><script src="../assets/motion.js" defer></script><link rel="stylesheet" href="../assets/vendor/lenis/lenis.css"><script src="../assets/vendor/lenis/lenis.min.js" defer></script><script src="../assets/smooth-scroll.js" defer></script><link rel="stylesheet" href="../assets/typography.css"><link rel="stylesheet" href="../assets/language.css"><script src="../assets/language.js" defer></script><link rel="stylesheet" href="../assets/consent.css"><script src="../assets/consent.js" defer></script><link rel="alternate" hreflang="fr" href="../work-with-us.html"><link rel="alternate" hreflang="en-US" href="../en/work-with-us.html"><link rel="alternate" hreflang="en-GB" href="../en-gb/work-with-us.html"><link rel="alternate" hreflang="x-default" href="../en/work-with-us.html"><link rel="stylesheet" href="../assets/developers.css"><script src="../assets/developers.js" defer></script><script src="search.js" defer></script></head>
+<body data-page="developers" data-docs-root=""><header class="site-header dev-header"><div class="header-blur" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><div class="header-inner container">
+<a class="brand dev-brand" href="index.html" aria-label="Strate Developer, home"><picture><source media="(prefers-reduced-motion: reduce)" srcset="../assets/logo/strate-logo.svg"><img class="navbar-logo" src="../assets/logo/strate-logo-vivant.svg" alt="" width="396" height="74"></picture><span class="dev-brand-label">Developer</span></a>
+<nav class="desktop-nav" aria-label="Developer navigation"><a href="overview.html">Guides</a><a href="options.html" aria-current="page">Options</a><a href="reference/functions.html">Reference</a><a href="examples/index.html">Examples</a><a href="index.html#ai-skill">AI agent skill</a></nav>
+<div class="header-actions"><div class="dev-search dev-search-header"><input type="search" placeholder="Search" aria-label="Search the docs"><kbd aria-hidden="true">/</kbd><ul class="dev-results" hidden></ul></div><a class="dev-back" href="../en/index.html">strate.markets <span aria-hidden="true">↗</span></a></div>
+<button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button></div>
+<nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden><a href="overview.html">Guides</a><a href="options.html" aria-current="page">Options</a><a href="reference/functions.html">Reference</a><a href="examples/index.html">Examples</a><a href="index.html#ai-skill">AI agent skill</a><a class="dev-back" href="../en/index.html">strate.markets ↗</a></nav></header>
+<main id="main" class="dev-layout container">
+<aside class="dev-sidebar"><div class="dev-search dev-search-side"><input type="search" placeholder="Search the docs" aria-label="Search the docs"><ul class="dev-results" hidden></ul></div><details class="dev-menu"><summary>Documentation menu</summary><a class="dev-home" href="index.html">Strate Developer</a><div class="dev-nav-group"><p>Guides</p><ul><li><a href="overview.html">Overview</a></li><li><a href="getting-started.html">Getting started</a></li><li><a href="language.html">The language</a></li><li><a href="data.html">Market data</a></li><li><a href="order-flow.html">Order flow</a></li><li><a href="patterns.html">Patterns, clocks and signals</a></li><li><a href="normalization.html">Normalization</a></li><li><a href="plotting.html">Plotting</a></li><li><a href="settings.html">Settings</a></li><li><a href="alerts.html">Alerts</a></li><li><a href="strategies.html">Strategies</a></li><li><a href="research.html">Research</a></li></ul></div><div class="dev-nav-group"><p>Options</p><ul><li><a href="options.html" aria-current="page">Options data</a></li></ul></div><div class="dev-nav-group"><p>Reference</p><ul><li><a href="reference/functions.html">Functions</a></li><li><a href="reference/errors.html">Errors</a></li><li><a href="reference/limits.html">Limits</a></li></ul></div><div class="dev-nav-group"><p>Examples</p><ul><li><a href="examples/index.html">All examples</a></li><li><a href="examples/01-moving-average-ribbon.html">Moving-average ribbon</a></li><li><a href="examples/02-session-vwap.html">Session VWAP with deviation bands</a></li><li><a href="examples/03-cumulative-delta-candles.html">Cumulative delta as candles</a></li><li><a href="examples/04-session-volume-profile.html">Session volume profile</a></li><li><a href="examples/05-stacked-imbalances.html">Stacked footprint imbalances</a></li><li><a href="examples/06-opening-range.html">Opening range</a></li><li><a href="examples/07-unusual-prints.html">Unusual prints</a></li><li><a href="examples/08-sweeps.html">Sweeps</a></li><li><a href="examples/09-absorption-pattern.html">Absorption pattern with explanations</a></li><li><a href="examples/10-same-order-refills.html">Same-order refills, order by order</a></li><li><a href="examples/11-pulled-before-touch.html">Large orders pulled before price reaches them</a></li><li><a href="examples/12-book-pressure.html">Book pressure and microprice</a></li><li><a href="examples/13-imbalance-bars.html">Volume imbalance bars</a></li><li><a href="examples/14-strategy-delta-reversal.html">Strategy: fade a delta divergence</a></li><li><a href="examples/15-strategy-queue-join.html">Strategy: join a defended level, with queue fills</a></li><li><a href="examples/16-research-sweeps.html">Research: what follows a sweep?</a></li></ul></div></details></aside>
+<article class="dev-article"><p class="dev-eyebrow">Options</p><h1>Options data in StrateScript</h1><div class="dev-options"><p class="dev-lead">Read options chains and option trades from your scripts, turn them into levels and flows on your futures chart,
+alert on them, and use them as context in simulated strategies. The same script runs live, in Replay and in long
+backtests.</p>
+<ul class="faits">
+<li><span class="barres"></span><b>SPX · NDX · SPY · QQQ</b></li>
+<li><span class="barres v"></span>Live · Replay · long backtest</li>
+<li><span class="barres"></span>Strategies simulated on ES, MES, NQ, MNQ</li>
+</ul>
+
+<h2 id="overview">What options data lets you build<a class="dev-anchor" href="#overview" aria-label="Link to this section">#</a></h2>
+<p>StrateScript reads two kinds of options data, for the indexes <b>SPX</b> and <b>NDX</b> and the ETFs <b>SPY</b> and
+<b>QQQ</b>:</p>
+<ul>
+<li><b>Chain snapshots</b>, with <code>options.chain()</code>: the whole chain of one underlying at one moment. For each
+option: strike, expiry, call or put, settlement, open interest, gamma and implied volatility. On top of that, Strate
+computes gamma exposure, dealer vanna and charm, the zero-gamma level, and the conversion of every strike into a price on
+your futures chart.</li>
+<li><b>Option trades</b>, with <code>on option_trade</code>, <code>on option_block</code> and <code>on option_feed</code>:
+every print one by one, with its side, greeks and amounts, plus the orders, bursts and multi-leg structures (verticals,
+straddles, condors, calendars…) that Strate builds from them.</li>
+</ul>
+<p>Use options data alone, or together with bars, trades and order-by-order (MBO) data in the same script.</p>
+<div class="dev-table" tabindex="0" role="region" aria-label="Capabilities">
+<table>
+<thead><tr><th scope="col">What you can build</th><th scope="col">Main tools</th><th scope="col">See</th></tr></thead>
+<tbody>
+<tr><td>Levels on the futures chart: call and put walls, zero gamma, gamma exposure by strike</td><td><code>options.chain()</code>, <code>s.strikes()</code>, <code>s.zero_gamma()</code>, <code>s.gex_at()</code></td><td><a href="#ex-levels">Zero gamma and walls</a></td></tr>
+<tr><td>Greeks, implied volatility, skew, dealer vanna and charm</td><td><code>s.options()</code>, <code>o.iv</code>, <code>o.delta</code>, <code>o.vanna</code>, <code>o.charm</code></td><td><a href="#ex-skew">25 Delta Skew</a></td></tr>
+<tr><td>React to each new snapshot</td><td><code>on options(s)</code></td><td><a href="#on-options">on options</a></td></tr>
+<tr><td>Black-Scholes prices, greeks and implied volatility</td><td><code>bs.price</code>, <code>bs.delta</code>… <code>bs.iv</code></td><td><a href="#black-scholes">Black-Scholes</a></td></tr>
+<tr><td>Prints one by one, with side, greeks and amounts</td><td><code>on option_trade(t)</code></td><td><a href="#ex-pcr">Put/Call Ratio</a>, <a href="#ex-volume">Volume by Strike</a></td></tr>
+<tr><td>Orders, bursts and spreads, counted once</td><td><code>on option_block(b)</code></td><td><a href="#ex-npf">Net Premium Flow</a>, <a href="#ex-big">Big Trades</a></td></tr>
+<tr><td>Flows: net premium, customer delta, dealer gamma (under a stated convention)</td><td><code>notional</code>, <code>delta_dollars</code>, <code>gamma_dollars</code>, <code>future_equivalent</code></td><td><a href="#ex-gamma">Dealer Gamma Flow</a>, <a href="#ex-delta">Customer Delta Flow</a></td></tr>
+<tr><td>Data health: gaps and coverage of the recording</td><td><code>on option_feed(e)</code>, <code>option_trades.status()</code>, <code>option_trades.coverage()</code></td><td><a href="#status-coverage">Status and coverage</a></td></tr>
+<tr><td>Alerts</td><td><code>alert(…)</code> on values read from the chain</td><td><a href="#ex-alert">Near an options wall</a></td></tr>
+<tr><td>Simulated strategies on futures, with options as context</td><td>a <code>strategy</code> script that reads <code>options.chain()</code></td><td><a href="#ex-strategy">Absorption with zero gamma</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="dev-callout is-tip">
+<strong>Options are read, never traded.</strong>
+<p>Strategies trade only the futures (ES, MES, NQ, MNQ), and only in simulation. Your options data connection is read
+only: Strate never sends an order through it.</p>
+</div>
+<p><b>Chart families.</b> On ES and MES the chart's options family is SPX (and its ETF, SPY). On NQ and MNQ it is NDX
+(and QQQ). <code>options.chain()</code> with no argument reads the family's index, so the same script works on ES and on
+NQ. Strikes of the chart's family are converted into prices on your futures chart (another family needs
+<code>basis:</code> or <code>ratio:</code>).</p>
+
+<h2 id="data">Where the data comes from<a class="dev-anchor" href="#data" aria-label="Link to this section">#</a></h2>
+<h3 id="connection">Your own options data connection</h3>
+<p>Each user connects <b>their own</b> options data account, in Strate's connections. It gives real-time chain snapshots:
+Strate assembles one every 10 seconds by default (10, 20, 30 or 60 seconds, one setting for charts and scripts). Option
+trades arrive print by print.</p>
+<p>The Connections window shows the options data account Strate supports, and the app's options displays tell you
+when it is missing or needs checking.</p>
+<h3 id="delayed">A delayed public source</h3>
+<p>When your connection gives nothing usable (no connection, a connection that is down, still loading or stale), a
+public source delayed by 15 minutes takes over for the chain. It is the snapshot the app already shows on its charts;
+scripts receive it only while the app shows it. A script can tell which source it reads (<code>s.source</code> is
+<code>"live"</code> or <code>"delayed"</code>) and can refuse delayed data with <code>source: "live"</code>.</p>
+<h3 id="recordings">Recordings on your computer</h3>
+<p>While Strate follows an underlying (a chart shows its options levels, or a script reads it) and your connection is
+connected, the snapshots and the option trades are <b>recorded on your computer</b>. Replay and long backtests read these
+recordings.</p>
+<ul>
+<li>To record an underlying every trading day, even when no chart shows its options, tick <b>Record the chain even when
+the indicator is hidden</b> in the Recordings window, Options tab (SPX is ticked by default; NDX, SPY and QQQ can be
+added). Strate then records it from 9:15 a.m. to the options close, New York time, while it is running and connected.</li>
+<li>Recordings are kept for the number of sessions set in the <b>Option GEX Heatmap</b> settings (<b>Sessions kept per
+underlying</b>, 20 by default); older days answer <code>not_kept</code>. Chain recordings are read only while your
+options data connection is set up and connected, and changing the connection's keys erases them.</li>
+<li>Recording started with the versions of <b>October 31, 2026</b> (chain snapshots) and <b>November 6, 2026</b>
+(option trades). Earlier days, and days the app did not follow, have no options data: scripts get
+<code>available = false</code> with a reason, never an error.</li>
+<li>Option trades cover a <b>followed subset</b> of the chain, not the whole of it: today the 0DTE options of SPX and NDX
+in a band around the price, recentred as the price moves, and SPY and QQQ when a script or a display reads them.</li>
+</ul>
+<h3 id="no-lookahead">No look-ahead, by construction</h3>
+<p>One rule applies in live, Replay, long backtests and the built-in check: <b>a snapshot is visible at instant τ when
+its publication time, plus one second, is at or before τ.</b> The script reads the latest visible one.</p>
+<ul>
+<li>τ is the event's time in a handler, the close of a closed bar in the body, and the earlier of the close and "now" on
+the bar still forming (the clock live, the cursor in Replay).</li>
+<li>The extra second covers the difference between your computer's clock and the exchange's timestamps. If your clock
+is measurably behind, the margin grows and warning <code>W955</code> says so.</li>
+<li>Option prints become visible one second after they are handed over; a multi-leg structure about 2.5 seconds after
+its first leg, once it is closed.</li>
+<li>At equal times, order-by-order events, futures trades and book snapshots run first, then chain snapshots, then
+option events.</li>
+</ul>
+<p>So a bar recalculated later, or replayed, sees the same snapshots at the same times as it did live, within the small
+quantization of the recording. Exceptions: partial snapshots, provisional open interest, delayed snapshots and exact
+publication times are recorded only while a script reads options live; other periods replay with complete snapshots
+only, published at their assembly time. Days older than the sessions kept answer <code>not_kept</code>.</p>
+<h3 id="never">What a script never gets</h3>
+<ul>
+<li>A script run from another computer, or while Strate is open to the network, receives no options data
+(<code>account</code> is <code>"none"</code>).</li>
+<li>A script never sees the settings of the app's options displays (expiry filters, manual offsets). Everything it uses
+is written in the script, so it gives the same result on every computer.</li>
+</ul>
+
+<h2 id="first-script">A first script<a class="dev-anchor" href="#first-script" aria-label="Link to this section">#</a></h2>
+<p>Open the <b>Indicators</b> window of a chart, add <b>StrateScript (preview)</b> from the <b>Custom</b> category, and
+choose <b>Empty script</b>. In the <b>Code</b> mode, paste this and press <b>Run</b> (or <b>⌘↵</b>):</p>
+<div class="dev-code"><div class="dev-code-bar"><span>StrateScript</span><button type="button" class="dev-copy">Copy</button></div><pre><code><span class="tok-keyword">indicator</span> <span class="tok-string">"Options status"</span> { overlay: <span class="tok-keyword">false</span> }
+s = options.<span class="tok-call">chain</span>()
+<span class="tok-call">print</span>(s.available, s.reason, s.source, s.underlying)   <span class="tok-comment">// → true check synthetic SPX</span>
+<span class="tok-call">plot</span>(s.available ? s.age / 1s : <span class="tok-keyword">na</span>, title: <span class="tok-string">"Greeks age (s)"</span>)</code></pre></div>
+<p><code>options.chain()</code> with no argument reads the index of the chart's family. The built-in check runs your
+script on a synthetic chain, which is why it prints <code>true check synthetic SPX</code>; on a live chart the same line
+prints <code>true ok live SPX</code>.</p>
+<p>The first script on option trades adds up call and put contracts as they print (a running total, since
+<code>state</code> keeps its value from bar to bar), leaving spread legs to <code>option_block</code>:</p>
+<div class="dev-code"><div class="dev-code-bar"><span>StrateScript</span><button type="button" class="dev-copy">Copy</button></div><pre><code><span class="tok-keyword">indicator</span> <span class="tok-string">"Option prints per bar"</span> {
+  overlay: <span class="tok-keyword">false</span>,
+  option_trades: { underlyings: [<span class="tok-string">"SPX"</span>] }
+}
+<span class="tok-keyword">state</span> calls = <span class="tok-number">0</span>
+<span class="tok-keyword">state</span> puts = <span class="tok-number">0</span>
+<span class="tok-keyword">on</span> <span class="tok-call">option_trade</span>(t) {
+  <span class="tok-keyword">if</span> t.spread_leg { <span class="tok-keyword">return</span> }                  <span class="tok-comment">// legs of spreads are counted in option_block</span>
+  <span class="tok-keyword">if</span> t.is_call { calls += t.sign * t.size } <span class="tok-keyword">else</span> { puts += t.sign * t.size }
+}
+st = option_trades.<span class="tok-call">status</span>()
+<span class="tok-call">plot</span>(st.available ? calls : <span class="tok-keyword">na</span>, <span class="tok-colour">#26a69a</span>, title: <span class="tok-string">"Call contracts"</span>)
+<span class="tok-call">plot</span>(st.available ? puts : <span class="tok-keyword">na</span>, <span class="tok-colour">#ef5350</span>, title: <span class="tok-string">"Put contracts"</span>)
+<span class="tok-call">bg_color</span>(st.<span class="tok-keyword">state</span> == <span class="tok-string">"gap"</span> ? <span class="tok-colour">#80808033</span> : <span class="tok-keyword">na</span>)</code></pre></div>
+<p><code>t.sign</code> is +1 for a new print and −1 for a cancellation, so <code>total += t.sign * f(t)</code> stays exact
+for any <code>f</code>. Keep a script in <b>My indicators</b> to add it to any chart, or start from one of the
+<a href="#gallery">built-in Options templates</a>.</p>
+
+<h2 id="chain">The chain: <code>options.chain()</code><a class="dev-anchor" href="#chain" aria-label="Link to this section">#</a></h2>
+<h3 id="chain-arguments">Arguments</h3>
+<div class="dev-code"><div class="dev-code-bar"><span>Signature</span><button type="button" class="dev-copy">Copy</button></div><pre><code>options.chain(underlying, source: "any", partial: false, basis:, ratio:)</code></pre></div>
+<div class="dev-table" tabindex="0" role="region" aria-label="options.chain arguments">
+<table>
+<thead><tr><th scope="col">Argument</th><th scope="col">Values</th><th scope="col">Default</th></tr></thead>
+<tbody>
+<tr><td><code>underlying</code></td><td><code>"SPX"</code>, <code>"NDX"</code>, <code>"SPY"</code>, <code>"QQQ"</code>, written as a literal text</td><td>The index of the chart's family</td></tr>
+<tr><td><code>source:</code></td><td><code>"any"</code>, <code>"live"</code> (your connection only), <code>"delayed"</code> (the delayed source only)</td><td><code>"any"</code></td></tr>
+<tr><td><code>partial:</code></td><td><code>true</code> also shows a snapshot that is still loading</td><td><code>false</code>: the latest complete snapshot</td></tr>
+<tr><td><code>basis:</code></td><td>futures price minus index price, imposed</td><td>measured</td></tr>
+<tr><td><code>ratio:</code></td><td>futures price divided by ETF price, imposed</td><td>measured</td></tr>
+</tbody>
+</table>
+</div>
+<p><code>options.chain()</code> always returns a chain object, never <code>na</code>. The underlying must be a literal text
+(<code>options.chain("SPY")</code>), because Strate reads the script's text to decide which chains to load.
+<code>options.underlyings</code> lists the family's underlyings, index first.</p>
+<h3 id="reasons">Always test <code>available</code></h3>
+<p>When no snapshot can be read, <code>available</code> is false and <code>reason</code> says why. Missing data is never
+an error. The codes are stable; <code>reason_text</code> gives the same reason as an English sentence.</p>
+<div class="dev-table" tabindex="0" role="region" aria-label="Reason codes">
+<table>
+<thead><tr><th scope="col"><code>reason</code></th><th scope="col">When</th></tr></thead>
+<tbody>
+<tr><td><code>ok</code></td><td>A snapshot is visible.</td></tr>
+<tr><td><code>check</code></td><td>The built-in check's synthetic chain is visible.</td></tr>
+<tr><td><code>no_options_for_instrument</code></td><td>The chart is not ES, MES, NQ or MNQ, and no underlying was written.</td></tr>
+<tr><td><code>no_account</code></td><td>Live: no options data connection, and no delayed snapshot received.</td></tr>
+<tr><td><code>connection_down</code></td><td>Live: the connection is set up but not delivering, and no delayed snapshot received.</td></tr>
+<tr><td><code>loading</code></td><td>Live: the first complete snapshot, or the expiries the script reads, are still loading.</td></tr>
+<tr><td><code>source_filtered</code></td><td>Only the other source is available (see <code>source:</code>).</td></tr>
+<tr><td><code>not_recorded</code></td><td>No snapshot is recorded for this day or this time.</td></tr>
+<tr><td><code>expiries_not_recorded</code></td><td>Replay or long backtest: that time was recorded for other expiries only.</td></tr>
+<tr><td><code>before_first_snapshot</code></td><td>This day has snapshots, but none is published yet at this instant.</td></tr>
+<tr><td><code>not_kept</code></td><td>The day is older than the sessions you keep.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="dev-code"><div class="dev-code-bar"><span>StrateScript</span><button type="button" class="dev-copy">Copy</button></div><pre><code><span class="tok-keyword">indicator</span> <span class="tok-string">"Why not"</span> { overlay: <span class="tok-keyword">false</span> }
+s = options.<span class="tok-call">chain</span>(<span class="tok-string">"NDX"</span>)
+<span class="tok-call">print</span>(s.available, s.reason, s.conversion)   <span class="tok-comment">// → false not_recorded none</span>
+d = options.<span class="tok-call">chain</span>(source: <span class="tok-string">"delayed"</span>)
+<span class="tok-call">print</span>(d.available, d.reason)   <span class="tok-comment">// → false source_filtered</span>
+<span class="tok-call">plot</span>(s.available ? <span class="tok-number">1</span> : <span class="tok-number">0</span>, title: <span class="tok-string">"NDX available"</span>)</code></pre></div>
+<p>On the check's ES chart there is no NDX chain, and no delayed one: hence the two printed reasons.</p>
+<h3 id="chain-fields">Chain fields</h3>
+<div class="dev-table" tabindex="0" role="region" aria-label="Chain fields">
+<table>
+<thead><tr><th scope="col">Field</th><th scope="col">Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>available</code>, <code>reason</code>, <code>reason_text</code>, <code>underlying</code></td><td>Whether a snapshot is visible, why not, and which underlying.</td></tr>
+<tr><td><code>source</code>, <code>delay</code></td><td><code>"live"</code>, <code>"delayed"</code>, <code>"synthetic"</code> (the check) or <code>"none"</code>; <code>0s</code> or <code>15m</code>.</td></tr>
+<tr><td><code>time</code>, <code>greeks_time</code>, <code>price_time</code></td><td>Publication time in Strate (visibility is decided by it only); time of the latest greeks; time of the underlying's price.</td></tr>
+<tr><td><code>age</code>, <code>stale</code></td><td>The script's instant minus <code>greeks_time</code>; true beyond 5 minutes (live) or 60 minutes (delayed). Information only.</td></tr>
+<tr><td><code>spot</code>, <code>chart_spot</code></td><td>The underlying's price, and the same price on the chart.</td></tr>
+<tr><td><code>conversion</code>, <code>basis</code>, <code>ratio</code>, <code>conversion_time</code></td><td>How index prices become chart prices (<code>"basis"</code>, <code>"ratio"</code>, <code>"manual"</code>, <code>"none"</code>).</td></tr>
+<tr><td><code>partial</code>, <code>coverage</code></td><td>A partial snapshot (with <code>partial: true</code>) and the share of gamma exposure it covers, 0 to 1.</td></tr>
+<tr><td><code>oi_provisional</code>, <code>oi_day</code>, <code>oi_previous_day</code></td><td>Whether the open interest is confirmed for the session, and which day it belongs to.</td></tr>
+<tr><td><code>closing</code>, <code>account</code></td><td>A session close from the delayed source; <code>"connected"</code> or <code>"none"</code> live, <code>"unknown"</code> elsewhere.</td></tr>
+<tr><td><code>count</code>, <code>band_low</code>, <code>band_high</code></td><td>Options in the snapshot; lowest and highest strike followed (index prices).</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="filters">Filters</h3>
+<p>These named arguments select options in <code>count</code>, <code>options</code>, <code>strikes</code>,
+<code>expiries</code>, <code>zero_gamma</code> and <code>gex_at</code>. They combine with "and".</p>
+<div class="dev-table" tabindex="0" role="region" aria-label="Filters">
+<table>
+<thead><tr><th scope="col">Filter</th><th scope="col">Values</th></tr></thead>
+<tbody>
+<tr><td><code>type:</code></td><td><code>"call"</code>, <code>"put"</code>, <code>"both"</code> (default)</td></tr>
+<tr><td><code>expiry:</code></td><td><code>"all"</code> (default), <code>"0dte"</code>, <code>"no0dte"</code>, <code>"monthly"</code></td></tr>
+<tr><td><code>dte_min:</code>, <code>dte_max:</code></td><td>days to expiry, fractions allowed</td></tr>
+<tr><td><code>expiry_day:</code></td><td>a day or a list of days (days since 1970-01-01, like <code>session.day</code>)</td></tr>
+<tr><td><code>settlement:</code></td><td><code>"am"</code>, <code>"pm"</code>, <code>"both"</code> (default)</td></tr>
+<tr><td><code>strike_min:</code>, <code>strike_max:</code></td><td>index (or ETF) prices</td></tr>
+<tr><td><code>price_min:</code>, <code>price_max:</code></td><td>chart prices</td></tr>
+<tr><td><code>min_oi:</code></td><td>minimum open interest</td></tr>
+</tbody>
+</table>
+</div>
+<p><code>"0dte"</code> means the expiries of the reference day: after the 4 p.m. close and over the weekend it is the
+next session's expiry, never an empty list. <code>"monthly"</code> is the third Friday of the month (the Thursday before when that Friday is a market holiday).</p>
+<div class="dev-code"><div class="dev-code-bar"><span>StrateScript</span><button type="button" class="dev-copy">Copy</button></div><pre><code><span class="tok-keyword">indicator</span> <span class="tok-string">"Chain counts"</span> { overlay: <span class="tok-keyword">false</span> }
+s = options.<span class="tok-call">chain</span>()
+<span class="tok-call">print</span>(s.<span class="tok-call">count</span>(), s.<span class="tok-call">count</span>(expiry: <span class="tok-string">"0dte"</span>), s.<span class="tok-call">count</span>(<span class="tok-keyword">type</span>: <span class="tok-string">"call"</span>), s.<span class="tok-call">count</span>(expiry: <span class="tok-string">"monthly"</span>))   <span class="tok-comment">// → 136 34 68 34</span>
+<span class="tok-call">plot</span>(s.<span class="tok-call">count</span>(expiry: <span class="tok-string">"0dte"</span>, min_oi: <span class="tok-number">1000</span>), title: <span class="tok-string">"0DTE options with OI ≥ 1000"</span>)</code></pre></div>
+<h3 id="methods">Chain methods</h3>
+<div class="dev-table" tabindex="0" role="region" aria-label="Chain methods">
+<table>
+<thead><tr><th scope="col">Method</th><th scope="col">Returns</th></tr></thead>
+<tbody>
+<tr><td><code>s.options(filters…, max: 2000)</code></td><td>A list of options (<code>max</code> from 1 to 20,000).</td></tr>
+<tr><td><code>s.count(filters…)</code></td><td>The number of options kept (cheap).</td></tr>
+<tr><td><code>s.strikes(filters…, step:)</code></td><td>Strike rows sorted by strike; <code>step:</code> groups strikes by a chart distance.</td></tr>
+<tr><td><code>s.option(strike, expiry_day, type, settlement:)</code></td><td>One option, or <code>na</code>.</td></tr>
+<tr><td><code>s.expiries(filters…)</code></td><td>Expiries: <code>.day</code>, <code>.time</code>, <code>.settlement</code>, <code>.dte</code>, <code>.count</code>.</td></tr>
+<tr><td><code>s.zero_gamma(filters…, range: 20, index: false)</code></td><td>The zero-gamma level as a chart price (or an index price), or <code>na</code>.</td></tr>
+<tr><td><code>s.gex_at(index_price, filters…)</code></td><td>Total dealer gamma exposure if the underlying were at that price.</td></tr>
+<tr><td><code>s.to_chart(index_price)</code>, <code>s.to_index(chart_price)</code></td><td>Conversion between index and chart prices.</td></tr>
+</tbody>
+</table>
+</div>
+<p><code>zero_gamma</code> recomputes the gamma of every kept option with Black-Scholes along a range of prices, weighted
+by open interest (calls +, puts −), and returns the crossing nearest to the current price, searching within
+<code>range</code> percent and within the strikes followed. It is computed once per snapshot and set of filters, then
+cached.</p>
+<h3 id="option-fields">Option and strike fields</h3>
+<div class="dev-table" tabindex="0" role="region" aria-label="Option fields">
+<table>
+<thead><tr><th scope="col">Option field</th><th scope="col">Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>strike</code>, <code>price</code></td><td>Strike as an index price; the same strike as a chart price.</td></tr>
+<tr><td><code>is_call</code></td><td>True for a call, false for a put (there is no <code>type</code> field).</td></tr>
+<tr><td><code>settlement</code>, <code>expiry</code>, <code>expiry_day</code>, <code>dte</code></td><td><code>"am"</code> or <code>"pm"</code>; expiry instant; expiry day; days to expiry.</td></tr>
+<tr><td><code>oi</code>, <code>gamma</code>, <code>iv</code></td><td>Open interest; gamma published by the source; implied volatility as a fraction.</td></tr>
+<tr><td><code>gex</code>, <code>dealer_gex</code></td><td><code>gex</code>: gamma exposure in dollars per 1 % move, always positive. <code>dealer_gex</code>: <code>+gex</code> for a call, <code>−gex</code> for a put (dealers assumed long calls, short puts, as on the app's charts).</td></tr>
+<tr><td><code>delta</code>, <code>feed_delta</code></td><td>Black-Scholes delta recomputed by Strate (r = 0); delta published by the source. Choose your convention.</td></tr>
+<tr><td><code>prev_volume</code>, <code>prev_close</code></td><td>Previous session's volume and closing price of the option.</td></tr>
+<tr><td><code>vanna</code>, <code>charm</code></td><td>Dealer vanna and charm, the same method as the app's displays. Estimates from open interest, not dealers' actual positions.</td></tr>
+</tbody>
+</table>
+</div>
+<p>A <b>strike row</b> from <code>s.strikes()</code> has <code>strike</code>, <code>price</code>, <code>call_oi</code>,
+<code>put_oi</code>, <code>call_gex</code>, <code>put_gex</code>, <code>net_gex</code>, <code>vanna</code>,
+<code>charm</code>, <code>options</code>, <code>call_prev_volume</code> and <code>put_prev_volume</code>. The walls below
+use the app's definition (largest call and put gamma exposure); they are a recipe, so change it as you like.</p>
+<div class="dev-code"><div class="dev-code-bar"><span>StrateScript</span><button type="button" class="dev-copy">Copy</button></div><pre><code><span class="tok-keyword">indicator</span> <span class="tok-string">"Option walls"</span> { overlay: <span class="tok-keyword">true</span> }
+exp = input.<span class="tok-call">choice</span>(<span class="tok-string">"Expiries"</span>, [<span class="tok-string">"all"</span>, <span class="tok-string">"0dte"</span>, <span class="tok-string">"no0dte"</span>, <span class="tok-string">"monthly"</span>], <span class="tok-string">"all"</span>)
+s = options.<span class="tok-call">chain</span>()
+cw = <span class="tok-keyword">na</span>
+pw = <span class="tok-keyword">na</span>
+bestC = <span class="tok-number">0</span>
+bestP = <span class="tok-number">0</span>
+<span class="tok-keyword">if</span> s.available {
+  <span class="tok-keyword">for</span> k <span class="tok-keyword">in</span> s.<span class="tok-call">strikes</span>(expiry: exp) {
+    <span class="tok-keyword">if</span> k.call_gex &gt; bestC { bestC = k.call_gex; cw = k.price }
+    <span class="tok-keyword">if</span> k.put_gex &gt; bestP { bestP = k.put_gex; pw = k.price }
+  }
+}
+<span class="tok-call">plot</span>(cw, <span class="tok-colour">#26a69a</span>, title: <span class="tok-string">"Call wall"</span>, style: <span class="tok-string">"step"</span>)
+<span class="tok-call">plot</span>(pw, <span class="tok-colour">#ef5350</span>, title: <span class="tok-string">"Put wall"</span>, style: <span class="tok-string">"step"</span>)
+<span class="tok-call">plot</span>(s.available ? s.<span class="tok-call">zero_gamma</span>(expiry: exp) : <span class="tok-keyword">na</span>, <span class="tok-colour">#e8c15a</span>, title: <span class="tok-string">"Zero gamma"</span>, style: <span class="tok-string">"dashed"</span>)</code></pre></div>
+<h3 id="chart-prices">Chart prices and index prices</h3>
+<p>An index and its futures contract do not trade at the same price, and an ETF trades at a fraction of its index.
+Every price of the options world (<code>strike</code>, <code>spot</code>, <code>strike_min</code>…) is an index or ETF
+price; every field named <code>price</code> (and <code>chart_spot</code>, <code>to_chart</code>,
+<code>zero_gamma</code>) is a chart price.</p>
+<ul>
+<li><b>Index</b> (SPX on ES or MES, NDX on NQ or MNQ): chart price = index price + basis.</li>
+<li><b>ETF</b> (SPY, QQQ): chart price = ETF price × ratio.</li>
+</ul>
+<p>The engine measures the conversion on the chart's own trades: the last trade at or before the snapshot's price time,
+at most 60 seconds earlier, never a later one. Without such a trade, chart prices are <code>na</code> and warning
+<code>W954</code> appears. <code>basis:</code> or <code>ratio:</code> impose the conversion.</p>
+<div class="dev-code"><div class="dev-code-bar"><span>StrateScript</span><button type="button" class="dev-copy">Copy</button></div><pre><code><span class="tok-keyword">indicator</span> <span class="tok-string">"Conversion"</span> { overlay: <span class="tok-keyword">true</span> }
+s = options.<span class="tok-call">chain</span>()
+<span class="tok-call">print</span>(s.conversion, s.<span class="tok-call">to_chart</span>(s.spot) == s.chart_spot)   <span class="tok-comment">// → basis true</span>
+m = options.<span class="tok-call">chain</span>(basis: <span class="tok-number">20</span>)
+<span class="tok-call">print</span>(m.conversion, m.basis)   <span class="tok-comment">// → manual 20</span>
+<span class="tok-call">plot</span>(s.chart_spot, <span class="tok-colour">#e8c15a</span>, title: <span class="tok-string">"Index on the chart"</span>, style: <span class="tok-string">"step"</span>)</code></pre></div>
+<h3 id="expiries-loaded">Which expiries are loaded</h3>
+<p>Strate reads your script's text to decide which expiries to load. The script loads only the expiries it uses when
+<b>every</b> call that depends on expiries has a literal filter: <code>expiry: "0dte"</code>, <code>"no0dte"</code> or
+<code>"monthly"</code>, <code>dte_max: N</code>, or <code>expiry_day: J</code>. Anything else (a variable, a calculation,
+<code>expiry: "all"</code>, no filter) loads every expiry, which takes longer.</p>
+<div class="dev-code"><div class="dev-code-bar"><span>StrateScript</span><button type="button" class="dev-copy">Copy</button></div><pre><code><span class="tok-keyword">indicator</span> <span class="tok-string">"0DTE gamma"</span> { overlay: <span class="tok-keyword">false</span> }
+s = options.<span class="tok-call">chain</span>()
+<span class="tok-call">plot</span>(s.available ? s.<span class="tok-call">count</span>(expiry: <span class="tok-string">"0dte"</span>) : <span class="tok-keyword">na</span>, title: <span class="tok-string">"0DTE options"</span>)
+<span class="tok-call">plot</span>(s.available ? s.<span class="tok-call">zero_gamma</span>(expiry: <span class="tok-string">"0dte"</span>) : <span class="tok-keyword">na</span>, title: <span class="tok-string">"0DTE zero gamma"</span>)</code></pre></div>
+<h3 id="on-options">New snapshots: <code>on options</code></h3>
+<div class="dev-code"><div class="dev-code-bar"><span>Signature</span><button type="button" class="dev-copy">Copy</button></div><pre><code>on options(s) { … }</code></pre></div>
+<p>The handler runs once for each snapshot published, for each underlying the script reads; <code>s.underlying</code>
+tells which one. Declare it at the top level. Partial snapshots run it only when the script contains
+<code>partial: true</code> somewhere.</p>
+<div class="dev-code"><div class="dev-code-bar"><span>StrateScript</span><button type="button" class="dev-copy">Copy</button></div><pre><code><span class="tok-keyword">indicator</span> <span class="tok-string">"Call wall moves"</span> { overlay: <span class="tok-keyword">true</span> }
+<span class="tok-keyword">state</span> last = <span class="tok-keyword">na</span>
+<span class="tok-keyword">on</span> <span class="tok-call">options</span>(s) {
+  <span class="tok-keyword">if</span> s.available <span class="tok-keyword">and</span> s.underlying == <span class="tok-string">"SPX"</span> {
+    best = <span class="tok-number">0</span>
+    w = <span class="tok-keyword">na</span>
+    <span class="tok-keyword">for</span> k <span class="tok-keyword">in</span> s.<span class="tok-call">strikes</span>(<span class="tok-keyword">type</span>: <span class="tok-string">"call"</span>) {
+      <span class="tok-keyword">if</span> k.call_gex &gt; best { best = k.call_gex; w = k.price }
+    }
+    <span class="tok-keyword">if</span> <span class="tok-keyword">not</span> <span class="tok-keyword">na</span>(last) <span class="tok-keyword">and</span> <span class="tok-keyword">not</span> <span class="tok-keyword">na</span>(w) <span class="tok-keyword">and</span> w != last { label.<span class="tok-call">new</span>(s.time, w, <span class="tok-string">"call wall "</span> + <span class="tok-call">str</span>(last) + <span class="tok-string">" → "</span> + <span class="tok-call">str</span>(w)) }
+    last = w
+  }
+}
+<span class="tok-call">plot</span>(close, title: <span class="tok-string">"Close"</span>)</code></pre></div>
+<p>A handler that only stores what it needs in <code>state</code> variables, and lets the body draw, is usually cheaper.</p>
+<h3 id="quality">Data quality</h3>
+<p>Every snapshot says what it is; nothing is filtered behind your back.</p>
+<ul>
+<li><b>Source.</b> With the default <code>source: "any"</code>, the chain follows what the app delivers and never flips
+back and forth between real-time and delayed. When it switches to delayed, <code>greeks_time</code> can move back by
+about 15 minutes.</li>
+<li><b>Three times.</b> <code>time</code> is when the snapshot became visible; <code>greeks_time</code> and
+<code>price_time</code> say how old its contents are. Greeks are refreshed in blocks, so <code>age</code> is often above a
+minute even in real time.</li>
+<li><b>Partial snapshots</b> appear in the first minutes after Strate starts following an underlying. They are ignored
+unless you pass <code>partial: true</code>.</li>
+<li><b>Open interest</b> is published once a day, early in the morning, New York time. Before that, the snapshot carries
+the previous figures: <code>oi_provisional</code> and <code>oi_previous_day</code> say so.</li>
+</ul>
+<div class="dev-code"><div class="dev-code-bar"><span>StrateScript</span><button type="button" class="dev-copy">Copy</button></div><pre><code><span class="tok-keyword">indicator</span> <span class="tok-string">"Options quality"</span> { overlay: <span class="tok-keyword">false</span> }
+s = options.<span class="tok-call">chain</span>(partial: <span class="tok-keyword">true</span>)
+<span class="tok-call">print</span>(s.source, s.partial, s.coverage, s.oi_provisional, s.oi_previous_day, s.closing, s.account)   <span class="tok-comment">// → synthetic false 1 false false false unknown</span>
+<span class="tok-call">plot</span>(s.available <span class="tok-keyword">and</span> <span class="tok-keyword">not</span> s.stale ? <span class="tok-number">1</span> : <span class="tok-number">0</span>, title: <span class="tok-string">"Fresh"</span>)</code></pre></div>
+<h3 id="totals">Market totals: <code>options.totals</code></h3>
+<p><code>options.totals(u)</code> is ready for the source's own whole-market totals (volumes, put/call ratio, IV by
+expiry). <b>Today your options data connection does not provide these totals</b>: <code>available</code> is false and
+<code>reason</code> is <code>"not_provided"</code>, so a script written for them runs and shows nothing rather than a
+zero.</p>
+<div class="dev-code"><div class="dev-code-bar"><span>StrateScript</span><button type="button" class="dev-copy">Copy</button></div><pre><code><span class="tok-keyword">indicator</span> <span class="tok-string">"Market put/call"</span> { overlay: <span class="tok-keyword">false</span> }
+m = options.<span class="tok-call">totals</span>(<span class="tok-string">"SPX"</span>)
+<span class="tok-call">plot</span>(m.available ? m.put_call_ratio : <span class="tok-keyword">na</span>, title: <span class="tok-string">"P/C (whole market)"</span>)</code></pre></div>
+
+<h2 id="trades">Option trades<a class="dev-anchor" href="#trades" aria-label="Link to this section">#</a></h2>
+<p>Besides the chain, scripts read the <b>option prints themselves</b>, one at a time, and the <b>blocks</b> Strate builds
+from them. Nothing is computed for you: totals, ratios and profiles are scripts, which keeps every definition in your
+hands.</p>
+<h3 id="header">The header: <code>option_trades:</code></h3>
+<p>Settings live in the script's header. Every key is optional, and every key except <code>underlyings</code> accepts an
+<code>input.*</code> setting. The header alone loads nothing: a handler or a call to <code>option_trades.…</code> does.</p>
+<div class="dev-table" tabindex="0" role="region" aria-label="option_trades header keys">
+<table>
+<thead><tr><th scope="col">Key</th><th scope="col">Default</th><th scope="col">Role</th></tr></thead>
+<tbody>
+<tr><td><code>underlyings</code></td><td>the chart family's index</td><td>Which feeds to load: a literal list among <code>"SPX"</code>, <code>"NDX"</code>, <code>"SPY"</code>, <code>"QQQ"</code>.</td></tr>
+<tr><td><code>from</code></td><td><code>rolling</code></td><td>First instant at which the handlers run: <code>session</code>, <code>rth</code>, <code>start</code>, <code>rolling</code>, <code>"HH:MM"</code>, <code>auto</code>, <code>launch</code>.</td></tr>
+<tr><td><code>bursts</code>, <code>burst_delay</code>, <code>burst_by</code></td><td><code>true</code>, <code>1000ms</code>, <code>"side"</code></td><td>Group successive orders of one option into bursts.</td></tr>
+<tr><td><code>buy_from</code>, <code>sell_to</code></td><td><code>1.0</code>, <code>0.0</code></td><td>Side of a simple order from its position in the bid-ask spread (default: strictly at the ask / at the bid).</td></tr>
+<tr><td><code>structure_wait</code>, <code>structure_tolerance</code>, <code>by_condition</code></td><td><code>1500ms</code>, <code>3ms</code>, <code>true</code></td><td>How the legs of a structure are assembled.</td></tr>
+<tr><td><code>side_margin</code>, <code>edge_margin</code></td><td><code>0.25</code>, <code>25</code></td><td>When a structure counts as bought or sold; when it may be incomplete.</td></tr>
+<tr><td><code>backfill</code></td><td><code>"separate"</code></td><td>Prints sent again at subscription: kept apart, merged, or dropped.</td></tr>
+<tr><td><code>retention</code></td><td><code>15m</code></td><td>Memory of prints, to match cancellations, corrections and duplicates (5 min to 4 h). Longer uses more memory.</td></tr>
+<tr><td><code>min_print_size</code>, <code>min_block_size</code></td><td><code>1</code></td><td>Skip small prints or blocks before the handler runs.</td></tr>
+<tr><td><code>max_bar_events</code>, <code>fuel_per_day</code></td><td>see errors</td><td>Protection limits (<code>E957</code>, <code>E967</code>).</td></tr>
+<tr><td><code>basis</code>, <code>ratio</code></td><td>measured</td><td>Conversion to chart prices imposed, as in <code>options.chain</code>.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="on-option-trade">Prints: <code>on option_trade(t)</code></h3>
+<p>Runs for every print of the requested underlyings, legs of spreads included, and for cancellations and corrections:</p>
+<ul>
+<li>a <b>cancellation</b> repeats every field of the original print; only <code>sign</code> changes (−1);</li>
+<li>a <b>correction</b> gives two calls in a row: <code>kind = "cancel"</code> (old value) then <code>kind = "new"</code>,
+both with <code>correction = true</code>;</li>
+<li>a cancellation whose origin is unknown arrives with <code>matched = false</code> and every amount at 0, so a total is
+never poisoned (<code>W959</code> counts them);</li>
+<li>duplicates are dropped.</li>
+</ul>
+<div class="dev-table" tabindex="0" role="region" aria-label="Print fields">
+<table>
+<thead><tr><th scope="col">Fields</th><th scope="col">Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>time</code>, <code>trade_time</code>, <code>recv_time</code>, <code>session_day</code>, <code>id</code>, <code>seq</code></td><td>Visibility time; exchange trade time; hand-over time; session day; rank of the print in the day; feed sequence.</td></tr>
+<tr><td><code>kind</code>, <code>correction</code>, <code>sign</code>, <code>matched</code></td><td><code>"new"</code> or <code>"cancel"</code>; part of a correction; +1 / −1; origin found.</td></tr>
+<tr><td><code>underlying</code>, <code>root</code>, <code>symbol</code>, <code>strike</code>, <code>is_call</code>, <code>expiry</code>, <code>expiry_day</code>, <code>dte</code>, <code>years</code>, <code>settlement</code>, <code>multiplier</code></td><td>The option. <code>strike</code> is an index price: use it as the key of a total by strike.</td></tr>
+<tr><td><code>price</code>, <code>chart_price</code></td><td>The strike as a chart price. <b>Not the premium.</b></td></tr>
+<tr><td><code>premium</code>, <code>size</code>, <code>notional</code></td><td>Contract price, contracts, <code>premium × size × multiplier</code>.</td></tr>
+<tr><td><code>bid</code>, <code>ask</code>, <code>side</code>, <code>dir</code>, <code>position</code>, <code>feed_side</code></td><td>Quote carried by the print; <code>"buy"</code>, <code>"sell"</code>, <code>"mid"</code> or <code>"unknown"</code>; +1, −1, 0 or <code>na</code>; position in the spread; raw aggressor flag of the feed.</td></tr>
+<tr><td><code>oi</code>, <code>spot</code>, <code>iv</code>, <code>iv_source</code></td><td>Open interest known at the print; underlying price; implied volatility and where it came from.</td></tr>
+<tr><td><code>delta</code>, <code>gamma</code>, <code>vega</code>, <code>theta</code>, <code>vanna</code>, <code>charm</code></td><td>Black-Scholes greeks of the option at that spot and IV.</td></tr>
+<tr><td><code>delta_dollars</code>, <code>gamma_dollars</code>, <code>future_equivalent</code></td><td>Amounts signed on the <b>customer</b> side by <code>dir</code>; 0 at mid.</td></tr>
+<tr><td><code>spread_leg</code>, <code>backfill</code>, <code>in_gap</code>, <code>exchange</code>, <code>condition</code></td><td>Leg of a structure; sent again at subscription; received during a gap; raw feed flags.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="on-option-block">Blocks: <code>on option_block(b)</code></h3>
+<p>Runs for each action of the grouping, when it becomes true: a block <b>appears</b>, a burst <b>grows</b>, a structure
+closes, a block is <b>cancelled</b> or <b>corrected</b> (<code>b.kind</code>: <code>"appear"</code>, <code>"grow"</code>,
+<code>"cancel"</code>, <code>"correct"</code>). The legs of a structure never appear alone here. A block is an order or a
+burst of one option, or a multi-leg structure: verticals, ratios, straddles, strangles, risk reversals,
+butterflies, condors, iron condors and iron butterflies, calendars, diagonals…</p>
+<p><b>One rule for totals.</b> <code>b</code> is the state after the action and <code>b.prev</code> the state delivered at
+the previous call for this block (<code>na</code> at <code>appear</code>). Context (spot, IV, greeks, chart price) is
+frozen in the block at its first piece, so adding <code>value(b)</code> and removing <code>value(b.prev)</code> is
+exact:</p>
+<div class="dev-code"><div class="dev-code-bar"><span>StrateScript</span><button type="button" class="dev-copy">Copy</button></div><pre><code><span class="tok-keyword">indicator</span> <span class="tok-string">"Customer delta of blocks"</span> {
+  overlay: <span class="tok-keyword">false</span>,
+  option_trades: { underlyings: [<span class="tok-string">"SPX"</span>] }
+}
+<span class="tok-keyword">state</span> d = <span class="tok-number">0</span>
+<span class="tok-keyword">on</span> <span class="tok-call">option_block</span>(b) { d += b.delta_dollars - (<span class="tok-keyword">na</span>(b.prev) ? <span class="tok-number">0</span> : b.prev.delta_dollars) }
+<span class="tok-call">plot</span>(d / 1e6, title: <span class="tok-string">"Customer delta ($M)"</span>)</code></pre></div>
+<p>Useful block fields: <code>is_structure</code>, <code>family</code>, <code>name</code>, <code>short_name</code>,
+<code>size</code>, <code>buy_size</code>, <code>sell_size</code>, <code>notional</code>, <code>net_notional</code>,
+<code>delta_dollars</code>, <code>gamma_dollars</code>, <code>future_equivalent</code>, <code>strike</code>,
+<code>price</code>, <code>side</code> (<code>"bought"</code>, <code>"sold"</code>, <code>"undetermined"</code>… for a
+structure), <code>dir</code>, <code>net</code>, <code>mid</code>, <code>ratio</code>, <code>incomplete</code>,
+<code>alerts</code> and <code>legs</code> (each leg with its own strike, side, premium, greeks and amounts).</p>
+<h3 id="on-option-feed">Feed events: <code>on option_feed(e)</code></h3>
+<div class="dev-table" tabindex="0" role="region" aria-label="Feed events">
+<table>
+<thead><tr><th scope="col"><code>e.kind</code></th><th scope="col">When</th></tr></thead>
+<tbody>
+<tr><td><code>"gap_start"</code></td><td>Start of a loss known at the time (connection down, full queue, sleep).</td></tr>
+<tr><td><code>"gap"</code></td><td>At the known end of a gap, with <code>start</code>, <code>end</code>, <code>cause</code> and <code>lost</code>.</td></tr>
+<tr><td><code>"coverage"</code></td><td>The list of followed options changed (band, expiries, added, removed).</td></tr>
+<tr><td><code>"open"</code>, <code>"close"</code></td><td>The feed or the recorder started or stopped.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="status-coverage">Status and coverage</h3>
+<p><code>option_trades.status(u)</code> and <code>option_trades.coverage(u)</code> read the feed at the script's instant,
+so a closed bar gives the same value live and in Replay.</p>
+<ul>
+<li><code>status</code>: <code>state</code> (<code>"ok"</code>, <code>"gap"</code>, <code>"not_recorded"</code>,
+<code>"before_first_event"</code>, <code>"not_kept"</code>, <code>"check"</code>), <code>available</code>,
+<code>reason_text</code>, <code>recorded</code>, <code>since</code>, <code>last</code>, <code>gaps</code>,
+<code>lost</code>, <code>unmatched</code>, <code>duplicates</code>, <code>live_state</code>…</li>
+<li><code>coverage</code>: <code>count</code>, <code>strike_low</code>, <code>strike_high</code>, <code>price_low</code>,
+<code>price_high</code>, <code>expiries</code>, <code>symbols</code>, <code>time</code>, and two methods:
+<code>covers(strike, expiry_day, "call"|"put")</code> and <code>covered_time(…, since: t)</code>.</li>
+<li><code>option_trades.to_chart(strike, u)</code> and <code>option_trades.to_index(price, u)</code> convert at the
+script's instant.</li>
+</ul>
+<div class="dev-callout is-attention">
+<strong>A strike that is not followed is not a zero.</strong>
+<p>Prints cover the followed band only. Test <code>coverage()</code> before reading "nothing traded" into an empty strike.</p>
+</div>
+
+<h2 id="black-scholes">Black-Scholes: <code>bs.*</code><a class="dev-anchor" href="#black-scholes" aria-label="Link to this section">#</a></h2>
+<div class="dev-code"><div class="dev-code-bar"><span>Signature</span><button type="button" class="dev-copy">Copy</button></div><pre><code>bs.price(type, spot, strike, years, iv, rate: 0, dividend: 0)
+bs.delta / bs.gamma / bs.vega / bs.theta / bs.vanna / bs.charm (same arguments)
+bs.iv(type, premium, spot, strike, years, rate: 0, dividend: 0)</code></pre></div>
+<p>Pure functions, with no data, available everywhere. <code>type</code> is <code>"call"</code> or <code>"put"</code>,
+<code>years</code> the time to expiry in years, <code>iv</code> and <code>rate</code> as fractions (0.2 = 20 %). Units:
+price in points of the underlying; gamma per point; vega per unit of volatility (× 0.01 per volatility point); theta and
+charm per <b>year</b> (÷ 365 per calendar day). An invalid constant (<code>"straddle"</code>, negative
+<code>years</code>, <code>iv</code> at or below 0) gives <code>E954</code>; an invalid computed value gives
+<code>na</code>. <code>bs.*</code> alone loads no options data.</p>
+<div class="dev-code"><div class="dev-code-bar"><span>StrateScript</span><button type="button" class="dev-copy">Copy</button></div><pre><code><span class="tok-keyword">indicator</span> <span class="tok-string">"Black-Scholes"</span> { overlay: <span class="tok-keyword">false</span> }
+<span class="tok-call">print</span>(bs.<span class="tok-call">price</span>(<span class="tok-string">"call"</span>, <span class="tok-number">100</span>, <span class="tok-number">100</span>, <span class="tok-number">1</span>, <span class="tok-number">0.2</span>, rate: <span class="tok-number">0.05</span>))   <span class="tok-comment">// → 10.450584</span>
+<span class="tok-call">print</span>(bs.<span class="tok-call">delta</span>(<span class="tok-string">"put"</span>, <span class="tok-number">100</span>, <span class="tok-number">100</span>, <span class="tok-number">0.25</span>, <span class="tok-number">0.2</span>), bs.<span class="tok-call">gamma</span>(<span class="tok-string">"call"</span>, <span class="tok-number">100</span>, <span class="tok-number">100</span>, <span class="tok-number">0.25</span>, <span class="tok-number">0.2</span>))   <span class="tok-comment">// → -0.480061 0.039844</span>
+<span class="tok-call">print</span>(bs.<span class="tok-call">iv</span>(<span class="tok-string">"call"</span>, <span class="tok-number">3.987761</span>, <span class="tok-number">100</span>, <span class="tok-number">100</span>, <span class="tok-number">0.25</span>))   <span class="tok-comment">// → 0.2</span>
+s = options.<span class="tok-call">chain</span>()
+c = s.available ? s.<span class="tok-call">option</span>(<span class="tok-call">round</span>(s.spot / <span class="tok-number">25</span>) * <span class="tok-number">25</span>, s.<span class="tok-call">expiries</span>()[<span class="tok-number">0</span>].day, <span class="tok-string">"call"</span>) : <span class="tok-keyword">na</span>
+<span class="tok-call">plot</span>(<span class="tok-keyword">na</span>(c) ? <span class="tok-keyword">na</span> : bs.<span class="tok-call">price</span>(<span class="tok-string">"call"</span>, s.spot, c.strike, c.dte / <span class="tok-number">365</span>, c.iv) * <span class="tok-number">2</span>, title: <span class="tok-string">"Call value × 2 (index points)"</span>)</code></pre></div>
+
+<h2 id="modes">Live, Replay, long backtest and the check<a class="dev-anchor" href="#modes" aria-label="Link to this section">#</a></h2>
+<div class="dev-table" tabindex="0" role="region" aria-label="Modes">
+<table>
+<thead><tr><th scope="col"></th><th scope="col">Live</th><th scope="col">Replay</th><th scope="col">Long backtest</th><th scope="col">Built-in check</th></tr></thead>
+<tbody>
+<tr><th scope="row">Chain snapshots</th><td>today's, and the previous session's from recordings</td><td>recordings of the replayed day and the previous session, up to the cursor</td><td>recordings of each day, and the previous session's last snapshot</td><td>a synthetic chain on the last 60 bars</td></tr>
+<tr><th scope="row">Option trades</th><td>today's recordings, up to the last batch</td><td>recordings of the replayed day and the day before, cut at the cursor</td><td>recordings covering each day of the MBO file</td><td>a synthetic day on the last 60 bars</td></tr>
+<tr><th scope="row"><code>source</code></th><td><code>live</code> or <code>delayed</code></td><td>as recorded</td><td>as recorded</td><td><code>synthetic</code></td></tr>
+<tr><th scope="row">Conversion to chart prices</th><td>chart trades</td><td>chart trades</td><td>the replay file's trades</td><td>synthetic trades</td></tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><b>Replay and the app agree.</b> At the replayed instant, <code>options.chain()</code> and the app's options
+displays (GEX levels, profiles, IV surface, dealer scenarios) use the same snapshot.</li>
+<li><b>Long backtests</b> run a script day by day over local MBO replay files. Scripts that read option trades need, for
+the same days, the MBO file <b>and</b> the option recording: only days with both are played (<code>W956</code> for the
+others). Days without a chain recording give <code>not_recorded</code> and a <code>W953</code> warning.</li>
+<li><b>The built-in check</b> runs your script on synthetic data before it executes: a chain for SPX and SPY, and a
+synthetic day of prints with buys, sells, mids, bursts, spreads, cancellations, corrections and a gap.</li>
+<li><b>Live late data.</b> When an option batch reaches the engine after its bar was passed, the bars concerned are
+recalculated (<code>W958</code>). Alerts, sounds and simulated orders already sent are not changed.</li>
+</ul>
+<div class="dev-code"><div class="dev-code-bar"><span>StrateScript</span><button type="button" class="dev-copy">Copy</button></div><pre><code><span class="tok-keyword">indicator</span> <span class="tok-string">"Options source check"</span> { overlay: <span class="tok-keyword">false</span> }
+s = options.<span class="tok-call">chain</span>()
+recorded = s.available <span class="tok-keyword">or</span> s.reason == <span class="tok-string">"before_first_snapshot"</span>
+<span class="tok-call">bg_color</span>(<span class="tok-keyword">not</span> s.available <span class="tok-keyword">and</span> s.reason == <span class="tok-string">"not_recorded"</span> ? <span class="tok-colour">#ff980020</span> : <span class="tok-keyword">na</span>)
+<span class="tok-call">plot</span>(recorded ? <span class="tok-number">1</span> : <span class="tok-number">0</span>, title: <span class="tok-string">"Options recorded"</span>)</code></pre></div>
+<h3 id="warnings">Warnings</h3>
+<p>Missing or degraded options data never stops a script (the protection limits <code>E957</code>, <code>E966</code> and
+<code>E967</code> are errors, see <a href="#errors">common errors</a>). It appears as non-blocking warnings under the editor and in the Console, once
+per cause and per run.</p>
+<div class="dev-table" tabindex="0" role="region" aria-label="Warnings">
+<table>
+<thead><tr><th scope="col">Code</th><th scope="col">Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>W951</code></td><td>The chain was unavailable at the script's last reading, or the limit of followed options left some out.</td></tr>
+<tr><td><code>W952</code></td><td>The script is reading the delayed public source (15 min).</td></tr>
+<tr><td><code>W953</code></td><td>A day read in Replay or a long backtest has no chain recording.</td></tr>
+<tr><td><code>W954</code></td><td>No futures trade near the options price time: chart prices are <code>na</code>.</td></tr>
+<tr><td><code>W955</code></td><td>Your computer's clock is behind the exchange: snapshots are published that much later.</td></tr>
+<tr><td><code>W956</code></td><td>A day has no option trades recording (long backtest: or no MBO file).</td></tr>
+<tr><td><code>W957</code></td><td>Gaps are visible in the option trades read.</td></tr>
+<tr><td><code>W958</code></td><td>Option trades reached the engine late live: bars recalculated.</td></tr>
+<tr><td><code>W959</code></td><td>Cancellations without origin (amounts at 0).</td></tr>
+<tr><td><code>W960</code></td><td>A header key looks like <code>option_trades</code> (typo).</td></tr>
+<tr><td><code>W961</code></td><td>Live, the recording of that underlying is turned off: today's Replay will differ.</td></tr>
+<tr><td><code>W962</code></td><td>NDX 0DTE prints are sparse: add <code>"QQQ"</code>.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="gallery">Examples and templates<a class="dev-anchor" href="#gallery" aria-label="Link to this section">#</a></h2>
+<p>Complete scripts, ready to paste. The seven marked <b>Built-in template</b> ship with the app: open the script menu at
+the top of the StrateScript panel and load them from the examples, category <b>Options</b>.</p>
+<div class="galerie">
+<article class="carte" id="ex-levels">
+<h3>Zero gamma and walls</h3>
+<p>The zero-gamma level and the strikes with the largest call and put gamma exposure, converted to chart prices, with a
+small status table. Expiries and source are settings.</p>
+<p class="besoin">Needs: <b>chain snapshots</b></p>
+<details class="voir"><summary>Show the code</summary><div class="dev-code"><div class="dev-code-bar"><span>StrateScript</span><button type="button" class="dev-copy">Copy</button></div><pre><code><span class="tok-keyword">indicator</span> <span class="tok-string">"Zero gamma and walls"</span> { overlay: <span class="tok-keyword">true</span> }
+
+exp = input.<span class="tok-call">choice</span>(<span class="tok-string">"Expiries"</span>, [<span class="tok-string">"all"</span>, <span class="tok-string">"0dte"</span>, <span class="tok-string">"no0dte"</span>, <span class="tok-string">"monthly"</span>], <span class="tok-string">"all"</span>)
+src = input.<span class="tok-call">choice</span>(<span class="tok-string">"Source"</span>, [<span class="tok-string">"any"</span>, <span class="tok-string">"live"</span>, <span class="tok-string">"delayed"</span>], <span class="tok-string">"any"</span>)
+rangePct = input.<span class="tok-call">float</span>(<span class="tok-string">"Zero-gamma search range (% of spot)"</span>, <span class="tok-number">20</span>, min: <span class="tok-number">1</span>, max: <span class="tok-number">50</span>)
+zgCol = input.<span class="tok-call">color</span>(<span class="tok-string">"Zero gamma"</span>, <span class="tok-colour">#e8c15a</span>, group: <span class="tok-string">"Colors"</span>)
+callCol = input.<span class="tok-call">color</span>(<span class="tok-string">"Call wall"</span>, <span class="tok-colour">#26a69a</span>, group: <span class="tok-string">"Colors"</span>)
+putCol = input.<span class="tok-call">color</span>(<span class="tok-string">"Put wall"</span>, <span class="tok-colour">#ef5350</span>, group: <span class="tok-string">"Colors"</span>)
+
+s = options.<span class="tok-call">chain</span>(source: src)
+
+<span class="tok-comment">// walls: the strike with the largest call (put) gamma exposure; the lowest strike wins a tie</span>
+callWall = <span class="tok-keyword">na</span>
+putWall = <span class="tok-keyword">na</span>
+bestCall = <span class="tok-number">0</span>
+bestPut = <span class="tok-number">0</span>
+<span class="tok-keyword">if</span> s.available {
+  <span class="tok-keyword">for</span> k <span class="tok-keyword">in</span> s.<span class="tok-call">strikes</span>(expiry: exp) {
+    <span class="tok-keyword">if</span> k.call_gex &gt; bestCall { bestCall = k.call_gex; callWall = k.price }
+    <span class="tok-keyword">if</span> k.put_gex &gt; bestPut { bestPut = k.put_gex; putWall = k.price }
+  }
+}
+zg = s.available ? s.<span class="tok-call">zero_gamma</span>(expiry: exp, range: rangePct) : <span class="tok-keyword">na</span>
+
+<span class="tok-call">plot</span>(zg, zgCol, title: <span class="tok-string">"Zero gamma"</span>, style: <span class="tok-string">"dashed"</span>, width: <span class="tok-number">2</span>)
+<span class="tok-call">plot</span>(callWall, callCol, title: <span class="tok-string">"Call wall"</span>, style: <span class="tok-string">"step"</span>)
+<span class="tok-call">plot</span>(putWall, putCol, title: <span class="tok-string">"Put wall"</span>, style: <span class="tok-string">"step"</span>)
+
+<span class="tok-keyword">var</span> t = table.<span class="tok-call">new</span>(<span class="tok-string">"top_right"</span>, <span class="tok-number">2</span>, <span class="tok-number">3</span>)
+<span class="tok-keyword">if</span> bar.last {
+  t.<span class="tok-call">cell</span>(<span class="tok-number">0</span>, <span class="tok-number">0</span>, <span class="tok-string">"Options"</span>)
+  t.<span class="tok-call">cell</span>(<span class="tok-number">1</span>, <span class="tok-number">0</span>, s.underlying + <span class="tok-string">" "</span> + s.source)
+  t.<span class="tok-call">cell</span>(<span class="tok-number">0</span>, <span class="tok-number">1</span>, <span class="tok-string">"Greeks age"</span>)
+  t.<span class="tok-call">cell</span>(<span class="tok-number">1</span>, <span class="tok-number">1</span>, s.available ? <span class="tok-call">str</span>(s.age) : <span class="tok-string">"—"</span>)
+  t.<span class="tok-call">cell</span>(<span class="tok-number">0</span>, <span class="tok-number">2</span>, <span class="tok-string">"Status"</span>)
+  t.<span class="tok-call">cell</span>(<span class="tok-number">1</span>, <span class="tok-number">2</span>, s.reason)
+}</code></pre></div></details>
+</article>
+<article class="carte" id="ex-alert">
+<h3>Near an options wall <span class="badge">Alert</span></h3>
+<p>Alerts once when the close arrives within a distance of the call wall or the put wall, on closed bars, with a
+minimum delay between alerts.</p>
+<p class="besoin">Needs: <b>chain snapshots</b></p>
+<details class="voir"><summary>Show the code</summary><div class="dev-code"><div class="dev-code-bar"><span>StrateScript</span><button type="button" class="dev-copy">Copy</button></div><pre><code><span class="tok-keyword">indicator</span> <span class="tok-string">"Near an options wall"</span> { overlay: <span class="tok-keyword">true</span> }
+
+exp = input.<span class="tok-call">choice</span>(<span class="tok-string">"Expiries"</span>, [<span class="tok-string">"all"</span>, <span class="tok-string">"0dte"</span>, <span class="tok-string">"no0dte"</span>, <span class="tok-string">"monthly"</span>], <span class="tok-string">"all"</span>)
+distTicks = input.<span class="tok-call">int</span>(<span class="tok-string">"Distance (ticks)"</span>, <span class="tok-number">8</span>, min: <span class="tok-number">0</span>)
+every = input.<span class="tok-call">duration</span>(<span class="tok-string">"Minimum delay between alerts"</span>, 15m)
+
+s = options.<span class="tok-call">chain</span>()
+callWall = <span class="tok-keyword">na</span>
+putWall = <span class="tok-keyword">na</span>
+bestCall = <span class="tok-number">0</span>
+bestPut = <span class="tok-number">0</span>
+<span class="tok-keyword">if</span> s.available {
+  <span class="tok-keyword">for</span> k <span class="tok-keyword">in</span> s.<span class="tok-call">strikes</span>(expiry: exp) {
+    <span class="tok-keyword">if</span> k.call_gex &gt; bestCall { bestCall = k.call_gex; callWall = k.price }
+    <span class="tok-keyword">if</span> k.put_gex &gt; bestPut { bestPut = k.put_gex; putWall = k.price }
+  }
+}
+<span class="tok-call">plot</span>(callWall, <span class="tok-colour">#26a69a</span>, title: <span class="tok-string">"Call wall"</span>, style: <span class="tok-string">"step"</span>)
+<span class="tok-call">plot</span>(putWall, <span class="tok-colour">#ef5350</span>, title: <span class="tok-string">"Put wall"</span>, style: <span class="tok-string">"step"</span>)
+
+nearCall = <span class="tok-keyword">not</span> <span class="tok-keyword">na</span>(callWall) <span class="tok-keyword">and</span> <span class="tok-call">abs</span>(close - callWall) &lt;= <span class="tok-call">price</span>(distTicks)
+nearPut = <span class="tok-keyword">not</span> <span class="tok-keyword">na</span>(putWall) <span class="tok-keyword">and</span> <span class="tok-call">abs</span>(close - putWall) &lt;= <span class="tok-call">price</span>(distTicks)
+<span class="tok-comment">// alert on closed bars, when the condition becomes true</span>
+<span class="tok-call">alert</span>(nearCall <span class="tok-keyword">and</span> <span class="tok-keyword">not</span> nearCall[<span class="tok-number">1</span>] <span class="tok-keyword">and</span> bar.confirmed, <span class="tok-string">"Near the call wall "</span> + <span class="tok-call">str</span>(callWall), every: every)
+<span class="tok-call">alert</span>(nearPut <span class="tok-keyword">and</span> <span class="tok-keyword">not</span> nearPut[<span class="tok-number">1</span>] <span class="tok-keyword">and</span> bar.confirmed, <span class="tok-string">"Near the put wall "</span> + <span class="tok-call">str</span>(putWall), every: every)
+<span class="tok-call">marker</span>(nearCall <span class="tok-keyword">and</span> <span class="tok-keyword">not</span> nearCall[<span class="tok-number">1</span>] <span class="tok-keyword">and</span> bar.confirmed, shape: <span class="tok-string">"diamond"</span>, location: <span class="tok-string">"above"</span>, color: <span class="tok-colour">#26a69a</span>, size: <span class="tok-string">"small"</span>)
+<span class="tok-call">marker</span>(nearPut <span class="tok-keyword">and</span> <span class="tok-keyword">not</span> nearPut[<span class="tok-number">1</span>] <span class="tok-keyword">and</span> bar.confirmed, shape: <span class="tok-string">"diamond"</span>, location: <span class="tok-string">"below"</span>, color: <span class="tok-colour">#ef5350</span>, size: <span class="tok-string">"small"</span>)</code></pre></div></details>
+</article>
+<article class="carte" id="ex-strategy">
+<h3>Absorption with zero gamma <span class="badge">Simulated strategy</span></h3>
+<p>Order-by-order absorption at the traded price, taken only on the chosen side of zero gamma, with the snapshot visible
+at that trade. Which side is "right" is your hypothesis: it is a setting.</p>
+<p class="besoin">Needs: <b>chain snapshots</b> and <b>order-by-order (MBO) data</b></p>
+<details class="voir"><summary>Show the code</summary><div class="dev-code"><div class="dev-code-bar"><span>StrateScript</span><button type="button" class="dev-copy">Copy</button></div><pre><code><span class="tok-keyword">strategy</span> <span class="tok-string">"Absorption with zero gamma"</span> { overlay: <span class="tok-keyword">true</span>, mbo_from: rth, level_history: 2m, latency: 60ms, costs: { commission: <span class="tok-number">2.5</span> usd, slippage: <span class="tok-number">1</span> tick } }
+
+win = input.<span class="tok-call">duration</span>(<span class="tok-string">"Window"</span>, 30s, group: <span class="tok-string">"Absorption"</span>)
+minRank = input.<span class="tok-call">float</span>(<span class="tok-string">"Min aggressor volume rank"</span>, <span class="tok-number">97</span>, min: <span class="tok-number">0</span>, max: <span class="tok-number">100</span>, group: <span class="tok-string">"Absorption"</span>)
+normWin = input.<span class="tok-call">duration</span>(<span class="tok-string">"Normalize over"</span>, 30m, group: <span class="tok-string">"Absorption"</span>)
+heldPct = input.<span class="tok-call">float</span>(<span class="tok-string">"Held at best (% of window)"</span>, <span class="tok-number">60</span>, min: <span class="tok-number">0</span>, max: <span class="tok-number">100</span>, group: <span class="tok-string">"Absorption"</span>)
+maxMove = input.<span class="tok-call">int</span>(<span class="tok-string">"Max price move (ticks)"</span>, <span class="tok-number">2</span>, min: <span class="tok-number">0</span>, group: <span class="tok-string">"Absorption"</span>)
+rule = input.<span class="tok-call">choice</span>(<span class="tok-string">"Take"</span>, [<span class="tok-string">"longs above zero gamma, shorts below"</span>, <span class="tok-string">"longs below zero gamma, shorts above"</span>], <span class="tok-string">"longs above zero gamma, shorts below"</span>, group: <span class="tok-string">"Options"</span>)
+exp = input.<span class="tok-call">choice</span>(<span class="tok-string">"Expiries"</span>, [<span class="tok-string">"all"</span>, <span class="tok-string">"0dte"</span>, <span class="tok-string">"no0dte"</span>, <span class="tok-string">"monthly"</span>], <span class="tok-string">"all"</span>, group: <span class="tok-string">"Options"</span>)
+src = input.<span class="tok-call">choice</span>(<span class="tok-string">"Options source"</span>, [<span class="tok-string">"live"</span>, <span class="tok-string">"any"</span>], <span class="tok-string">"live"</span>, group: <span class="tok-string">"Options"</span>)
+maxAge = input.<span class="tok-call">duration</span>(<span class="tok-string">"Max greeks age"</span>, 5m, group: <span class="tok-string">"Options"</span>)
+stopTicks = input.<span class="tok-call">int</span>(<span class="tok-string">"Stop (ticks)"</span>, <span class="tok-number">8</span>, min: <span class="tok-number">1</span>, group: <span class="tok-string">"Exits"</span>)
+targetTicks = input.<span class="tok-call">int</span>(<span class="tok-string">"Target (ticks)"</span>, <span class="tok-number">16</span>, min: <span class="tok-number">1</span>, group: <span class="tok-string">"Exits"</span>)
+
+<span class="tok-keyword">on</span> <span class="tok-call">trade</span>(t) {
+  lv = mbo.<span class="tok-call">level</span>(t.price, window: win)
+  <span class="tok-comment">// normalized at every trade, before any condition</span>
+  rk = norm.<span class="tok-call">rank</span>(<span class="tok-keyword">na</span>(lv) ? <span class="tok-keyword">na</span> : lv.aggressor_volume, normWin, min_count: <span class="tok-number">200</span>)
+  <span class="tok-comment">// the snapshot visible at this trade; zero gamma is computed once per snapshot</span>
+  g = options.<span class="tok-call">chain</span>(source: src)
+  zg = g.available <span class="tok-keyword">and</span> g.age &lt;= maxAge ? g.<span class="tok-call">zero_gamma</span>(expiry: exp) : <span class="tok-keyword">na</span>
+  absorbed = <span class="tok-keyword">not</span> <span class="tok-keyword">na</span>(lv) <span class="tok-keyword">and</span> rk &gt;= minRank <span class="tok-keyword">and</span> lv.time_at_best &gt;= win * heldPct / <span class="tok-number">100</span> <span class="tok-keyword">and</span> lv.displayed &gt; <span class="tok-number">0</span> <span class="tok-keyword">and</span> <span class="tok-call">abs</span>(t.price - open) / instrument.tick &lt;= maxMove
+  <span class="tok-keyword">if</span> absorbed <span class="tok-keyword">and</span> <span class="tok-keyword">not</span> <span class="tok-keyword">na</span>(zg) <span class="tok-keyword">and</span> position.flat <span class="tok-keyword">and</span> position.pending == <span class="tok-number">0</span> {
+    above = t.price &gt; zg
+    longsAbove = rule == <span class="tok-string">"longs above zero gamma, shorts below"</span>
+    <span class="tok-comment">// sellers hitting a bid that holds: buyers absorb; buyers lifting an offer that holds: sellers absorb</span>
+    <span class="tok-keyword">if</span> t.is_sell <span class="tok-keyword">and</span> (above == longsAbove) {
+      <span class="tok-call">enter</span>(<span class="tok-string">"buy"</span>, stop: <span class="tok-call">price</span>(stopTicks), target: <span class="tok-call">price</span>(targetTicks), timeout: 20m, tag: <span class="tok-string">"bid holds"</span>)
+    } <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> t.is_buy <span class="tok-keyword">and</span> (above != longsAbove) {
+      <span class="tok-call">enter</span>(<span class="tok-string">"sell"</span>, stop: <span class="tok-call">price</span>(stopTicks), target: <span class="tok-call">price</span>(targetTicks), timeout: 20m, tag: <span class="tok-string">"offer holds"</span>)
+    }
+  }
+}
+
+s = options.<span class="tok-call">chain</span>(source: src)
+<span class="tok-call">plot</span>(s.available ? s.<span class="tok-call">zero_gamma</span>(expiry: exp) : <span class="tok-keyword">na</span>, <span class="tok-colour">#e8c15a</span>, title: <span class="tok-string">"Zero gamma"</span>, style: <span class="tok-string">"dashed"</span>)
+
+<span class="tok-keyword">on</span> <span class="tok-call">exit</span>(x) {
+  label.<span class="tok-call">new</span>(x.time, x.price, x.reason + <span class="tok-string">" "</span> + <span class="tok-call">str</span>(x.r, <span class="tok-string">"+0.00"</span>) + <span class="tok-string">"R"</span>, color: x.usd &gt; <span class="tok-number">0</span> ? <span class="tok-colour">#22c55e</span> : <span class="tok-colour">#ef4444</span>)
+}</code></pre></div></details>
+</article>
+<article class="carte" id="ex-npf">
+<h3>Options Net Premium Flow <span class="badge modele">Built-in template</span></h3>
+<p>Net premium bought in calls and in puts since the open, from blocks, so spread legs are never counted twice; the
+measure can be premium, contracts or customer delta dollars.</p>
+<p class="besoin">Needs: <b>option trades</b></p>
+<details class="voir"><summary>Show the code</summary><div class="dev-code"><div class="dev-code-bar"><span>StrateScript</span><button type="button" class="dev-copy">Copy</button></div><pre><code><span class="tok-comment">// Template: Net Premium Flow — net premium bought in calls and in puts, from option blocks (orders, bursts and closed structures),</span>
+<span class="tok-comment">// so the legs of a spread are never counted twice. Options trades exist on recorded days only (since 2026-11-06).</span>
+<span class="tok-comment">// retention: 15m keeps memory low enough to add underlyings (a cancellation more than 15 min after its print then adds 0).</span>
+<span class="tok-comment">// Rule b / b.prev: add the block, remove what was added for its previous state (value() reads only fields of the block).</span>
+<span class="tok-keyword">indicator</span> <span class="tok-string">"Net premium flow"</span> {
+  overlay: <span class="tok-keyword">false</span>,
+  option_trades: { underlyings: [<span class="tok-string">"SPX"</span>], <span class="tok-keyword">from</span>: session, retention: 15m,
+                   buy_from: input.<span class="tok-call">float</span>(<span class="tok-string">"Buy from (position in spread)"</span>, <span class="tok-number">1.0</span>, min: <span class="tok-number">0.5</span>, max: <span class="tok-number">1</span>, group: <span class="tok-string">"Side"</span>),
+                   sell_to: input.<span class="tok-call">float</span>(<span class="tok-string">"Sell up to (position in spread)"</span>, <span class="tok-number">0.0</span>, min: <span class="tok-number">0</span>, max: <span class="tok-number">0.5</span>, group: <span class="tok-string">"Side"</span>) }
+}
+moneyness = input.<span class="tok-call">choice</span>(<span class="tok-string">"Strikes"</span>, [<span class="tok-string">"all"</span>, <span class="tok-string">"otm"</span>, <span class="tok-string">"itm"</span>], <span class="tok-string">"all"</span>)
+unit = input.<span class="tok-call">choice</span>(<span class="tok-string">"Measure"</span>, [<span class="tok-string">"premium"</span>, <span class="tok-string">"contracts"</span>, <span class="tok-string">"delta $"</span>], <span class="tok-string">"premium"</span>)
+<span class="tok-keyword">state</span> calls = <span class="tok-number">0</span>
+<span class="tok-keyword">state</span> puts = <span class="tok-number">0</span>
+
+<span class="tok-keyword">fn</span> <span class="tok-call">keep</span>(leg) {
+  <span class="tok-keyword">if</span> moneyness == <span class="tok-string">"all"</span> <span class="tok-keyword">or</span> <span class="tok-keyword">na</span>(leg.spot) { <span class="tok-keyword">return</span> <span class="tok-keyword">true</span> }
+  otm = leg.is_call ? leg.strike &gt; leg.spot : leg.strike &lt; leg.spot
+  <span class="tok-keyword">return</span> moneyness == <span class="tok-string">"otm"</span> ? otm : <span class="tok-keyword">not</span> otm
+}
+<span class="tok-keyword">fn</span> <span class="tok-call">amount</span>(leg) {
+  <span class="tok-keyword">if</span> unit == <span class="tok-string">"delta $"</span> { <span class="tok-keyword">return</span> <span class="tok-call">nz</span>(leg.delta_dollars) }   <span class="tok-comment">// already signed (customer side)</span>
+  v = unit == <span class="tok-string">"premium"</span> ? leg.notional : leg.size
+  <span class="tok-keyword">return</span> <span class="tok-call">nz</span>(leg.dir) * v
+}
+<span class="tok-keyword">fn</span> <span class="tok-call">add</span>(x, k) {
+  <span class="tok-keyword">if</span> <span class="tok-keyword">na</span>(x) { <span class="tok-keyword">return</span> }
+  <span class="tok-keyword">for</span> leg <span class="tok-keyword">in</span> x.legs {
+    <span class="tok-keyword">if</span> <span class="tok-keyword">na</span>(leg.dir) <span class="tok-keyword">or</span> leg.dir == <span class="tok-number">0</span> <span class="tok-keyword">or</span> <span class="tok-keyword">not</span> <span class="tok-call">keep</span>(leg) { <span class="tok-keyword">continue</span> }
+    <span class="tok-keyword">if</span> leg.is_call { calls += k * <span class="tok-call">amount</span>(leg) } <span class="tok-keyword">else</span> { puts += k * <span class="tok-call">amount</span>(leg) }
+  }
+}
+<span class="tok-keyword">on</span> <span class="tok-call">session</span>(s) { <span class="tok-keyword">if</span> s.kind == <span class="tok-string">"session_open"</span> { calls = <span class="tok-number">0</span> ; puts = <span class="tok-number">0</span> } }
+<span class="tok-keyword">on</span> <span class="tok-call">option_block</span>(b) {
+  <span class="tok-call">add</span>(b, <span class="tok-number">1</span>)
+  <span class="tok-call">add</span>(b.prev, -<span class="tok-number">1</span>)
+}
+st = option_trades.<span class="tok-call">status</span>()
+<span class="tok-call">plot</span>(st.available ? calls : <span class="tok-keyword">na</span>, <span class="tok-colour">#26a69a</span>, title: <span class="tok-string">"Net call flow"</span>)
+<span class="tok-call">plot</span>(st.available ? puts : <span class="tok-keyword">na</span>, <span class="tok-colour">#ef5350</span>, title: <span class="tok-string">"Net put flow"</span>)
+<span class="tok-call">plot</span>(st.available ? calls - puts : <span class="tok-keyword">na</span>, <span class="tok-colour">#e8c15a</span>, title: <span class="tok-string">"Calls - puts"</span>)
+<span class="tok-call">bg_color</span>(st.<span class="tok-keyword">state</span> == <span class="tok-string">"gap"</span> ? <span class="tok-colour">#80808033</span> : <span class="tok-keyword">na</span>)
+<span class="tok-call">hline</span>(<span class="tok-number">0</span>)</code></pre></div></details>
+</article>
+<article class="carte" id="ex-big">
+<h3>Options Big Trades <span class="badge modele">Built-in template</span></h3>
+<p>Labels large orders, bursts and spreads on the price chart at the strike's chart price; a burst that grows keeps one
+label, updated in place.</p>
+<p class="besoin">Needs: <b>option trades</b></p>
+<details class="voir"><summary>Show the code</summary><div class="dev-code"><div class="dev-code-bar"><span>StrateScript</span><button type="button" class="dev-copy">Copy</button></div><pre><code><span class="tok-comment">// Template: big option orders and spreads, labelled on the chart at the strike's chart price. A burst that grows keeps ONE label</span>
+<span class="tok-comment">// (map by b.id, updated with set_text). Structures appear after their wait (about 2.5 s with the 1 s margin). 500 objects at most:</span>
+<span class="tok-comment">// raise the threshold rather than show thousands.</span>
+<span class="tok-keyword">indicator</span> <span class="tok-string">"Options big trades"</span> {
+  overlay: <span class="tok-keyword">true</span>,
+  option_trades: { underlyings: [<span class="tok-string">"SPX"</span>], min_block_size: input.<span class="tok-call">int</span>(<span class="tok-string">"Prefilter (contracts)"</span>, <span class="tok-number">5</span>, min: <span class="tok-number">1</span>) }
+}
+by = input.<span class="tok-call">choice</span>(<span class="tok-string">"Large by"</span>, [<span class="tok-string">"notional"</span>, <span class="tok-string">"contracts"</span>, <span class="tok-string">"rank"</span>], <span class="tok-string">"notional"</span>)
+minNotional = input.<span class="tok-call">float</span>(<span class="tok-string">"Min notional ($)"</span>, <span class="tok-number">250000</span>, step: <span class="tok-number">50000</span>)
+minSize = input.<span class="tok-call">int</span>(<span class="tok-string">"Min contracts"</span>, <span class="tok-number">100</span>, min: <span class="tok-number">1</span>)
+minRank = input.<span class="tok-call">float</span>(<span class="tok-string">"Min rank (0-100)"</span>, <span class="tok-number">99</span>, min: <span class="tok-number">0</span>, max: <span class="tok-number">100</span>)
+showStructures = input.<span class="tok-call">bool</span>(<span class="tok-string">"Show structures"</span>, <span class="tok-keyword">true</span>)
+<span class="tok-keyword">state</span> shown = <span class="tok-call">map</span>()          <span class="tok-comment">// b.id -&gt; label, to follow a burst that grows</span>
+
+<span class="tok-keyword">fn</span> <span class="tok-call">big</span>(x) {
+  <span class="tok-keyword">if</span> <span class="tok-keyword">na</span>(x) { <span class="tok-keyword">return</span> <span class="tok-keyword">false</span> }
+  <span class="tok-keyword">if</span> by == <span class="tok-string">"notional"</span> { <span class="tok-keyword">return</span> x.notional &gt;= minNotional }
+  <span class="tok-keyword">if</span> by == <span class="tok-string">"contracts"</span> { <span class="tok-keyword">return</span> x.size &gt;= minSize }
+  <span class="tok-keyword">return</span> <span class="tok-keyword">false</span>
+}
+<span class="tok-keyword">fn</span> <span class="tok-call">text</span>(b) {
+  head = b.is_structure ? b.short_name + <span class="tok-string">" "</span> + b.ratio : (b.legs[<span class="tok-number">0</span>].is_call ? <span class="tok-string">"C "</span> : <span class="tok-string">"P "</span>) + <span class="tok-call">str</span>(b.strike)
+  <span class="tok-keyword">return</span> head + <span class="tok-string">" "</span> + b.side + <span class="tok-string">" "</span> + <span class="tok-call">str</span>(b.size) + <span class="tok-string">" / "</span> + <span class="tok-call">str</span>(b.notional, <span class="tok-string">"0.0k"</span>) + (b.incomplete ? <span class="tok-string">" ?"</span> : <span class="tok-string">""</span>)
+}
+<span class="tok-keyword">on</span> <span class="tok-call">session</span>(s) { <span class="tok-keyword">if</span> s.kind == <span class="tok-string">"session_open"</span> { shown.<span class="tok-call">clear</span>() } }
+<span class="tok-keyword">on</span> <span class="tok-call">option_block</span>(b) {
+  <span class="tok-keyword">if</span> b.is_structure <span class="tok-keyword">and</span> <span class="tok-keyword">not</span> showStructures { <span class="tok-keyword">return</span> }
+  lb = shown.<span class="tok-call">get</span>(b.id)
+  <span class="tok-keyword">if</span> <span class="tok-keyword">not</span> <span class="tok-keyword">na</span>(lb) {                                   <span class="tok-comment">// already shown: follow its state</span>
+    <span class="tok-keyword">if</span> b.kind == <span class="tok-string">"cancel"</span> { lb.<span class="tok-call">delete</span>() } <span class="tok-keyword">else</span> { lb.<span class="tok-call">set_text</span>(<span class="tok-call">text</span>(b)) }
+    <span class="tok-keyword">return</span>
+  }
+  <span class="tok-keyword">if</span> b.kind == <span class="tok-string">"cancel"</span> { <span class="tok-keyword">return</span> }
+  isBig = <span class="tok-keyword">false</span>
+  <span class="tok-keyword">if</span> by == <span class="tok-string">"rank"</span> {
+    <span class="tok-comment">// rank among the blocks of the last day, fed only at their first appearance (never twice for a burst)</span>
+    <span class="tok-keyword">if</span> b.kind == <span class="tok-string">"appear"</span> { isBig = norm.<span class="tok-call">rank</span>(b.notional, 1d, by: b.underlying, min_count: <span class="tok-number">200</span>) &gt;= minRank }
+  } <span class="tok-keyword">else</span> {
+    isBig = <span class="tok-call">big</span>(b) <span class="tok-keyword">and</span> <span class="tok-keyword">not</span> <span class="tok-call">big</span>(b.prev)
+  }
+  <span class="tok-keyword">if</span> isBig <span class="tok-keyword">and</span> <span class="tok-keyword">not</span> <span class="tok-keyword">na</span>(b.price) {
+    shown.<span class="tok-call">set</span>(b.id, label.<span class="tok-call">new</span>(b.time, b.price, <span class="tok-call">text</span>(b), color: b.dir &gt; <span class="tok-number">0</span> ? <span class="tok-colour">#26a69a</span> : b.dir &lt; <span class="tok-number">0</span> ? <span class="tok-colour">#ef5350</span> : <span class="tok-colour">#808080</span>))
+  }
+}</code></pre></div></details>
+</article>
+<article class="carte" id="ex-gamma">
+<h3>Dealer Gamma Flow <span class="badge modele">Built-in template</span></h3>
+<p>Gamma, delta or futures equivalent dealers would have added today, assuming they take the other side of every
+customer trade (a convention the script makes explicit), SPX and SPY in one unit.</p>
+<p class="besoin">Needs: <b>option trades</b></p>
+<details class="voir"><summary>Show the code</summary><div class="dev-code"><div class="dev-code-bar"><span>StrateScript</span><button type="button" class="dev-copy">Copy</button></div><pre><code><span class="tok-comment">// Template: dealer gamma flow, ASSUMING the dealer takes the other side of every customer trade (a convention, not a fact).</span>
+<span class="tok-comment">// Simple orders from option_trade (t.sign undoes cancellations), structures from option_block (b / b.prev rule): no double count.</span>
+<span class="tok-comment">// gamma_dollars = dollars of delta per 1 % move, signed on the customer side; the dealer is the opposite.</span>
+<span class="tok-comment">// Near expiry the gamma of a 0DTE option explodes (T -&gt; 0): without a cutoff, the prints of the last minutes make most of the day's</span>
+<span class="tok-comment">// total. They are skipped by default (input below, 0 = keep all). The total also keeps what expired options added until the session</span>
+<span class="tok-comment">// resets: read it as flow added today, not as the dealers' position now.</span>
+<span class="tok-keyword">indicator</span> <span class="tok-string">"Dealer gamma flow"</span> {
+  overlay: <span class="tok-keyword">false</span>,
+  option_trades: { underlyings: [<span class="tok-string">"SPX"</span>, <span class="tok-string">"SPY"</span>], <span class="tok-keyword">from</span>: session, backfill: <span class="tok-string">"drop"</span>, retention: 15m }
+}
+measure = input.<span class="tok-call">choice</span>(<span class="tok-string">"Measure"</span>, [<span class="tok-string">"gamma $"</span>, <span class="tok-string">"delta $"</span>, <span class="tok-string">"futures"</span>], <span class="tok-string">"gamma $"</span>)
+skipLast = input.<span class="tok-call">int</span>(<span class="tok-string">"Skip the last minutes before expiry"</span>, <span class="tok-number">30</span>, min: <span class="tok-number">0</span>)
+<span class="tok-keyword">state</span> flow = <span class="tok-number">0</span>
+<span class="tok-keyword">fn</span> <span class="tok-call">val</span>(x) { <span class="tok-keyword">return</span> measure == <span class="tok-string">"gamma $"</span> ? x.gamma_dollars : measure == <span class="tok-string">"delta $"</span> ? x.delta_dollars : x.future_equivalent }
+<span class="tok-comment">// years = time to expiry used by the greeks, fixed at the print (the same for its cancellation)</span>
+<span class="tok-keyword">fn</span> <span class="tok-call">keep</span>(x) { <span class="tok-keyword">return</span> <span class="tok-keyword">na</span>(x.years) <span class="tok-keyword">or</span> x.years * <span class="tok-number">525600</span> &gt;= skipLast }
+<span class="tok-keyword">fn</span> <span class="tok-call">legs</span>(x) {
+  <span class="tok-keyword">if</span> <span class="tok-keyword">na</span>(x) { <span class="tok-keyword">return</span> <span class="tok-number">0</span> }
+  s = <span class="tok-number">0</span>
+  <span class="tok-keyword">for</span> leg <span class="tok-keyword">in</span> x.legs { <span class="tok-keyword">if</span> <span class="tok-call">keep</span>(leg) { s += <span class="tok-call">nz</span>(<span class="tok-call">val</span>(leg)) } }
+  <span class="tok-keyword">return</span> s
+}
+<span class="tok-keyword">on</span> <span class="tok-call">session</span>(s) { <span class="tok-keyword">if</span> s.kind == <span class="tok-string">"session_open"</span> { flow = <span class="tok-number">0</span> } }
+<span class="tok-keyword">on</span> <span class="tok-call">option_trade</span>(t) {
+  <span class="tok-keyword">if</span> t.spread_leg <span class="tok-keyword">or</span> <span class="tok-keyword">not</span> <span class="tok-call">keep</span>(t) { <span class="tok-keyword">return</span> }        <span class="tok-comment">// structures go through option_block</span>
+  v = <span class="tok-call">val</span>(t)
+  <span class="tok-keyword">if</span> <span class="tok-keyword">na</span>(v) { <span class="tok-keyword">return</span> }
+  flow += -t.sign * v                              <span class="tok-comment">// dealer = opposite of the customer</span>
+}
+<span class="tok-keyword">on</span> <span class="tok-call">option_block</span>(b) {
+  <span class="tok-comment">// no test on b.dir: a leg whose side is unknown adds 0, so b / b.prev stays exact when a leg is cancelled</span>
+  <span class="tok-keyword">if</span> <span class="tok-keyword">not</span> b.is_structure { <span class="tok-keyword">return</span> }
+  flow += -(<span class="tok-call">legs</span>(b) - <span class="tok-call">legs</span>(b.prev))
+}
+ok = option_trades.<span class="tok-call">status</span>(<span class="tok-string">"SPX"</span>).available
+<span class="tok-call">plot</span>(ok ? flow : <span class="tok-keyword">na</span>, <span class="tok-colour">#2962ff</span>, title: <span class="tok-string">"Dealer flow added today"</span>)
+<span class="tok-call">plot</span>(ok ? norm.<span class="tok-call">zscore</span>(flow, <span class="tok-number">500</span>) : <span class="tok-keyword">na</span>, <span class="tok-colour">#e8c15a</span>, title: <span class="tok-string">"z-score"</span>)
+<span class="tok-call">hline</span>(<span class="tok-number">0</span>)</code></pre></div></details>
+</article>
+<article class="carte" id="ex-pcr">
+<h3>Options Put/Call Ratio <span class="badge modele">Built-in template</span></h3>
+<p>Put/call ratio of the followed strikes over the last bars, in contracts or premium, and a whole-market line that
+stays empty until the connection publishes market totals.</p>
+<p class="besoin">Needs: <b>option trades</b></p>
+<details class="voir"><summary>Show the code</summary><div class="dev-code"><div class="dev-code-bar"><span>StrateScript</span><button type="button" class="dev-copy">Copy</button></div><pre><code><span class="tok-comment">// Template: put/call ratio of the TRACKED strikes over the last n bars (cumulative totals minus their value n bars earlier: a</span>
+<span class="tok-comment">// cancellation is removed from the bar where it arrives), and the whole-market ratio when the options data connection publishes it</span>
+<span class="tok-comment">// (options.totals: available = false, reason "not_provided" otherwise — never a zero).</span>
+<span class="tok-keyword">indicator</span> <span class="tok-string">"Put/call ratio"</span> {
+  overlay: <span class="tok-keyword">false</span>,
+  option_trades: { underlyings: [<span class="tok-string">"SPX"</span>], <span class="tok-keyword">from</span>: session }
+}
+unit = input.<span class="tok-call">choice</span>(<span class="tok-string">"Measure"</span>, [<span class="tok-string">"contracts"</span>, <span class="tok-string">"premium"</span>], <span class="tok-string">"contracts"</span>)
+onlyBought = input.<span class="tok-call">bool</span>(<span class="tok-string">"Bought only"</span>, <span class="tok-keyword">false</span>)
+n = input.<span class="tok-call">int</span>(<span class="tok-string">"Bars"</span>, <span class="tok-number">30</span>, min: <span class="tok-number">1</span>)
+<span class="tok-keyword">state</span> c = <span class="tok-number">0</span>
+<span class="tok-keyword">state</span> p = <span class="tok-number">0</span>
+<span class="tok-keyword">on</span> <span class="tok-call">option_trade</span>(t) {
+  <span class="tok-keyword">if</span> t.spread_leg { <span class="tok-keyword">return</span> }
+  <span class="tok-keyword">if</span> onlyBought <span class="tok-keyword">and</span> t.dir != <span class="tok-number">1</span> { <span class="tok-keyword">return</span> }
+  v = t.sign * (unit == <span class="tok-string">"contracts"</span> ? t.size : t.notional)
+  <span class="tok-keyword">if</span> t.is_call { c += v } <span class="tok-keyword">else</span> { p += v }
+}
+cs = c
+ps = p
+dc = cs - <span class="tok-call">nz</span>(cs[n])
+dp = ps - <span class="tok-call">nz</span>(ps[n])
+band = dc &gt; <span class="tok-number">0</span> ? dp / dc : <span class="tok-keyword">na</span>
+m = options.<span class="tok-call">totals</span>(<span class="tok-string">"SPX"</span>)
+<span class="tok-call">plot</span>(option_trades.<span class="tok-call">status</span>().available ? band : <span class="tok-keyword">na</span>, <span class="tok-colour">#e8c15a</span>, title: <span class="tok-string">"P/C (tracked strikes, last bars)"</span>)
+<span class="tok-call">plot</span>(m.available ? m.put_call_ratio : <span class="tok-keyword">na</span>, <span class="tok-colour">#9c27b0</span>, title: <span class="tok-string">"P/C (whole market, day)"</span>)
+<span class="tok-call">hline</span>(<span class="tok-number">1</span>)</code></pre></div></details>
+</article>
+<article class="carte" id="ex-volume">
+<h3>Options Volume by Strike <span class="badge modele">Built-in template</span></h3>
+<p>Contracts traded since the open, by strike, as horizontal bars at the strike's chart price, with dotted lines around
+the followed band.</p>
+<p class="besoin">Needs: <b>option trades</b></p>
+<details class="voir"><summary>Show the code</summary><div class="dev-code"><div class="dev-code-bar"><span>StrateScript</span><button type="button" class="dev-copy">Copy</button></div><pre><code><span class="tok-comment">// Template: options volume by strike, drawn as horizontal bars at the strike's chart price on the last bar. The key is the INDEX</span>
+<span class="tok-comment">// strike (t.strike: stable all day), converted with option_trades.to_chart(k) at the script's instant. Outside the two dotted lines</span>
+<span class="tok-comment">// the strikes are NOT tracked: no bar there does not mean zero.</span>
+<span class="tok-keyword">indicator</span> <span class="tok-string">"Options volume by strike"</span> {
+  overlay: <span class="tok-keyword">true</span>,
+  option_trades: { underlyings: [<span class="tok-string">"SPX"</span>], <span class="tok-keyword">from</span>: session }
+}
+count = input.<span class="tok-call">choice</span>(<span class="tok-string">"Count"</span>, [<span class="tok-string">"all"</span>, <span class="tok-string">"buy"</span>, <span class="tok-string">"sell"</span>, <span class="tok-string">"net"</span>], <span class="tok-string">"net"</span>)
+splitCP = input.<span class="tok-call">bool</span>(<span class="tok-string">"Calls right, puts left"</span>, <span class="tok-keyword">true</span>)
+<span class="tok-keyword">state</span> calls = <span class="tok-call">map</span>()          <span class="tok-comment">// key = index strike</span>
+<span class="tok-keyword">state</span> puts = <span class="tok-call">map</span>()
+<span class="tok-keyword">on</span> <span class="tok-call">session</span>(s) { <span class="tok-keyword">if</span> s.kind == <span class="tok-string">"session_open"</span> { calls.<span class="tok-call">clear</span>() ; puts.<span class="tok-call">clear</span>() } }
+<span class="tok-keyword">on</span> <span class="tok-call">option_trade</span>(t) {
+  d = <span class="tok-call">nz</span>(t.dir, <span class="tok-number">0</span>)
+  s = count == <span class="tok-string">"all"</span> ? <span class="tok-number">1</span> : count == <span class="tok-string">"net"</span> ? d : (count == <span class="tok-string">"buy"</span> ? (d == <span class="tok-number">1</span> ? <span class="tok-number">1</span> : <span class="tok-number">0</span>) : (d == -<span class="tok-number">1</span> ? <span class="tok-number">1</span> : <span class="tok-number">0</span>))
+  v = t.sign * s * t.size
+  <span class="tok-keyword">if</span> t.is_call { calls.<span class="tok-call">set</span>(t.strike, calls.<span class="tok-call">get</span>(t.strike, <span class="tok-number">0</span>) + v) } <span class="tok-keyword">else</span> { puts.<span class="tok-call">set</span>(t.strike, puts.<span class="tok-call">get</span>(t.strike, <span class="tok-number">0</span>) + v) }
+}
+<span class="tok-keyword">if</span> bar.last {
+  mx = <span class="tok-number">1</span>
+  <span class="tok-keyword">for</span> k <span class="tok-keyword">in</span> calls.<span class="tok-call">keys</span>() { mx = <span class="tok-call">max</span>(mx, <span class="tok-call">abs</span>(calls.<span class="tok-call">get</span>(k))) }
+  <span class="tok-keyword">for</span> k <span class="tok-keyword">in</span> puts.<span class="tok-call">keys</span>() { mx = <span class="tok-call">max</span>(mx, <span class="tok-call">abs</span>(puts.<span class="tok-call">get</span>(k))) }
+  <span class="tok-keyword">for</span> k <span class="tok-keyword">in</span> calls.<span class="tok-call">keys</span>() {
+    v = calls.<span class="tok-call">get</span>(k)
+    y = option_trades.<span class="tok-call">to_chart</span>(k)
+    <span class="tok-keyword">if</span> <span class="tok-keyword">not</span> <span class="tok-keyword">na</span>(y) { <span class="tok-call">hbar</span>(y, <span class="tok-call">abs</span>(v), mx, side: right, color: v &gt;= <span class="tok-number">0</span> ? <span class="tok-colour">#26a69a</span> : <span class="tok-colour">#ef5350</span>) }
+  }
+  <span class="tok-keyword">for</span> k <span class="tok-keyword">in</span> puts.<span class="tok-call">keys</span>() {
+    v = puts.<span class="tok-call">get</span>(k)
+    y = option_trades.<span class="tok-call">to_chart</span>(k)
+    <span class="tok-keyword">if</span> <span class="tok-keyword">not</span> <span class="tok-keyword">na</span>(y) { <span class="tok-call">hbar</span>(y, <span class="tok-call">abs</span>(v), mx, side: splitCP ? left : right, color: v &gt;= <span class="tok-number">0</span> ? <span class="tok-colour">#42a5f5</span> : <span class="tok-colour">#ff9800</span>) }
+  }
+  cv = option_trades.<span class="tok-call">coverage</span>()
+  <span class="tok-keyword">if</span> cv.count &gt; <span class="tok-number">0</span> <span class="tok-keyword">and</span> <span class="tok-keyword">not</span> <span class="tok-keyword">na</span>(cv.price_low) {
+    line.<span class="tok-call">new</span>(bar.time, cv.price_low, bar.time + 60s, cv.price_low, color: <span class="tok-colour">#808080</span>, style: <span class="tok-string">"dotted"</span>)
+    line.<span class="tok-call">new</span>(bar.time, cv.price_high, bar.time + 60s, cv.price_high, color: <span class="tok-colour">#808080</span>, style: <span class="tok-string">"dotted"</span>)
+  }
+}</code></pre></div></details>
+</article>
+<article class="carte" id="ex-skew">
+<h3>25 Delta Skew <span class="badge modele">Built-in template</span></h3>
+<p>Put IV minus call IV at the 0DTE strikes whose delta is closest to ±0.25, from the chain snapshots; the delta
+convention is a setting.</p>
+<p class="besoin">Needs: <b>chain snapshots</b></p>
+<details class="voir"><summary>Show the code</summary><div class="dev-code"><div class="dev-code-bar"><span>StrateScript</span><button type="button" class="dev-copy">Copy</button></div><pre><code><span class="tok-comment">// Template: 25 delta skew of the 0DTE expiry, from the chain snapshots (not from trades): put IV minus call IV at the strikes whose</span>
+<span class="tok-comment">// delta is closest to ±target. o.delta is recomputed with r = 0; o.feed_delta is the delta published by the source (na if absent).</span>
+<span class="tok-keyword">indicator</span> <span class="tok-string">"25 delta skew"</span> { overlay: <span class="tok-keyword">false</span> }
+target = input.<span class="tok-call">float</span>(<span class="tok-string">"Delta"</span>, <span class="tok-number">0.25</span>, step: <span class="tok-number">0.05</span>, min: <span class="tok-number">0.05</span>, max: <span class="tok-number">0.5</span>)
+useFeed = input.<span class="tok-call">bool</span>(<span class="tok-string">"Use the source delta"</span>, <span class="tok-keyword">false</span>)
+s = options.<span class="tok-call">chain</span>()
+skew = <span class="tok-keyword">na</span>
+<span class="tok-keyword">if</span> s.available {
+  bc = <span class="tok-keyword">na</span>
+  bp = <span class="tok-keyword">na</span>
+  dc = <span class="tok-number">9</span>
+  dp = <span class="tok-number">9</span>
+  <span class="tok-keyword">for</span> o <span class="tok-keyword">in</span> s.<span class="tok-call">options</span>(expiry: <span class="tok-string">"0dte"</span>, max: <span class="tok-number">2000</span>) {
+    d = useFeed ? o.feed_delta : o.delta
+    <span class="tok-keyword">if</span> <span class="tok-keyword">na</span>(d) { <span class="tok-keyword">continue</span> }
+    <span class="tok-keyword">if</span> o.is_call <span class="tok-keyword">and</span> <span class="tok-call">abs</span>(d - target) &lt; dc { dc = <span class="tok-call">abs</span>(d - target) ; bc = o }
+    <span class="tok-keyword">if</span> <span class="tok-keyword">not</span> o.is_call <span class="tok-keyword">and</span> <span class="tok-call">abs</span>(d + target) &lt; dp { dp = <span class="tok-call">abs</span>(d + target) ; bp = o }
+  }
+  <span class="tok-keyword">if</span> <span class="tok-keyword">not</span> <span class="tok-keyword">na</span>(bc) <span class="tok-keyword">and</span> <span class="tok-keyword">not</span> <span class="tok-keyword">na</span>(bp) { skew = bp.iv - bc.iv }
+}
+<span class="tok-call">plot</span>(skew, <span class="tok-colour">#e8c15a</span>, title: <span class="tok-string">"Put IV - call IV (0DTE)"</span>)
+<span class="tok-call">hline</span>(<span class="tok-number">0</span>)</code></pre></div></details>
+</article>
+<article class="carte" id="ex-delta">
+<h3>Customer Delta Flow <span class="badge modele">Built-in template</span></h3>
+<p>Customer delta added since the open by the blocks of SPX and SPY together, in millions of dollars, with the index
+part on demand.</p>
+<p class="besoin">Needs: <b>option trades</b></p>
+<details class="voir"><summary>Show the code</summary><div class="dev-code"><div class="dev-code-bar"><span>StrateScript</span><button type="button" class="dev-copy">Copy</button></div><pre><code><span class="tok-comment">// Template: customer delta flow of the index AND its ETF in one unit (dollars of delta: additive between SPX and SPY), from option</span>
+<span class="tok-comment">// blocks (b / b.prev rule: a burst that grows, a cancellation or a correction is counted exactly once). retention: 15m keeps</span>
+<span class="tok-comment">// the memory of two underlyings low (a cancellation more than 15 min after its print is then not matched and adds 0).</span>
+<span class="tok-keyword">indicator</span> <span class="tok-string">"Customer delta flow"</span> {
+  overlay: <span class="tok-keyword">false</span>,
+  option_trades: { underlyings: [<span class="tok-string">"SPX"</span>, <span class="tok-string">"SPY"</span>], <span class="tok-keyword">from</span>: session, retention: 15m }
+}
+split = input.<span class="tok-call">bool</span>(<span class="tok-string">"Index and ETF apart"</span>, <span class="tok-keyword">false</span>)
+<span class="tok-keyword">state</span> d = <span class="tok-number">0</span>
+<span class="tok-keyword">state</span> di = <span class="tok-number">0</span>
+<span class="tok-keyword">on</span> <span class="tok-call">session</span>(s) { <span class="tok-keyword">if</span> s.kind == <span class="tok-string">"session_open"</span> { d = <span class="tok-number">0</span> ; di = <span class="tok-number">0</span> } }
+<span class="tok-keyword">on</span> <span class="tok-call">option_block</span>(b) {
+  x = b.delta_dollars - (<span class="tok-keyword">na</span>(b.prev) ? <span class="tok-number">0</span> : b.prev.delta_dollars)
+  d += x
+  <span class="tok-keyword">if</span> b.underlying == <span class="tok-string">"SPX"</span> { di += x }
+}
+ok = option_trades.<span class="tok-call">status</span>(<span class="tok-string">"SPX"</span>).available
+<span class="tok-call">plot</span>(ok ? d / 1e6 : <span class="tok-keyword">na</span>, <span class="tok-colour">#26a69a</span>, title: <span class="tok-string">"Customer delta ($M)"</span>)
+<span class="tok-call">plot</span>(ok <span class="tok-keyword">and</span> split ? di / 1e6 : <span class="tok-keyword">na</span>, <span class="tok-colour">#42a5f5</span>, title: <span class="tok-string">"Index only ($M)"</span>)
+<span class="tok-call">hline</span>(<span class="tok-number">0</span>)</code></pre></div></details>
+</article>
+</div>
+
+<h2 id="pitfalls">Limits, pitfalls and common errors<a class="dev-anchor" href="#pitfalls" aria-label="Link to this section">#</a></h2>
+<h3 id="pitfall-list">Pitfalls</h3>
+<ul>
+<li><b>Call or put: read <code>o.is_call</code>.</b> An option has no <code>type</code> field; <code>o.type</code> is
+<code>E101</code>.</li>
+<li><b>Not every bar has options.</b> Test <code>s.available</code> (or <code>na(x)</code>) before using a value.</li>
+<li><b>The underlying must be literal.</b> <code>options.chain(u)</code> with a variable is <code>E951</code>.</li>
+<li><b>Index price or chart price?</b> <code>strike</code> and <code>spot</code> are index prices; <code>price</code> and
+<code>chart_spot</code> are chart prices. A strike plotted on an ES chart lands tens of points away.</li>
+<li><b><code>t.price</code> is not the premium.</b> It is the strike as a chart price; the contract price is
+<code>t.premium</code>.</li>
+<li><b>Key by <code>strike</code>, draw with <code>to_chart</code>.</b> The conversion moves during the day.</li>
+<li><b>Double counting.</b> Prints include spread legs: filter <code>t.spread_leg</code>, or work in
+<code>on option_block</code>.</li>
+<li><b>Always multiply by <code>t.sign</code>,</b> and in blocks add <code>value(b)</code> and remove
+<code>value(b.prev)</code>. Never skip a block because <code>b.dir</code> is <code>na</code>.</li>
+<li><b>0DTE greeks near expiry.</b> Greeks are fixed at the print and the gamma of a 0DTE option explodes in its last
+minutes: skip prints with little time left (<code>t.years</code>), as Dealer Gamma Flow does.</li>
+<li><b>Delayed data looks current.</b> Its <code>time</code> is recent while its content is 15 minutes old: a strategy
+should pass <code>source: "live"</code> or test <code>s.source</code> and <code>s.age</code>.</li>
+<li><b><code>"0dte"</code> after the close is the next session</b>, never an empty list.</li>
+<li><b>One unfiltered call loads every expiry.</b> Filter every call with a literal to load less.</li>
+<li><b>One budget per bar.</b> The first <code>zero_gamma</code> on a new snapshot is the expensive call; keep the number
+of different filter sets small.</li>
+<li><b><code>on options</code> runs for each underlying</b> the script reads: test <code>s.underlying</code>.</li>
+<li><b>500 drawn objects at most.</b> Labels beyond 500 disappear, oldest first: raise the threshold.</li>
+<li><b>The last second of a bar</b> belongs to the next bar, because of the one-second visibility margin.</li>
+</ul>
+<h3 id="errors">Common errors</h3>
+<div class="dev-table" tabindex="0" role="region" aria-label="Errors">
+<table>
+<thead><tr><th scope="col">Code</th><th scope="col">Cause</th></tr></thead>
+<tbody>
+<tr><td><code>E101</code></td><td><code>o.type</code> on an option: read <code>o.is_call</code>.</td></tr>
+<tr><td><code>E111</code></td><td><code>on options</code> (or another handler) declared inside a block or a function.</td></tr>
+<tr><td><code>E932</code>, <code>E933</code></td><td>Unknown chain field or chain method (the message lists the valid names).</td></tr>
+<tr><td><code>E951</code></td><td>Unknown or non-literal underlying, or an invalid <code>source:</code>.</td></tr>
+<tr><td><code>E952</code></td><td>Invalid argument or filter (<code>expiry: "weekly"</code>, <code>dte_min</code> above <code>dte_max</code>…).</td></tr>
+<tr><td><code>E953</code></td><td><code>max:</code>, <code>range:</code> or <code>step:</code> out of bounds.</td></tr>
+<tr><td><code>E954</code></td><td>Invalid constant argument to <code>bs.*</code>.</td></tr>
+<tr><td><code>E955</code>, <code>E958</code></td><td>Options data or option trades read inside <code>request()</code>: read them at the top level.</td></tr>
+<tr><td><code>E956</code></td><td>Invalid <code>option_trades:</code> header (unknown key, value out of bounds, <code>sell_to</code> ≥ <code>buy_from</code>).</td></tr>
+<tr><td><code>E957</code></td><td>Too many option events in one bar still forming (<code>max_bar_events</code>).</td></tr>
+<tr><td><code>E959</code></td><td>Invalid argument to <code>option_trades.…</code>, such as an underlying not in the header.</td></tr>
+<tr><td><code>E966</code></td><td>The memory limit for option trades in one script was reached: shorten <code>retention</code> or read fewer underlyings.</td></tr>
+<tr><td><code>E967</code></td><td>Option handlers used more than <code>fuel_per_day</code>: lighter handler, <code>min_print_size</code>, or blocks instead of prints.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="not-available">What is not available</h3>
+<ul>
+<li>Trading options. Strategies are simulations on ES, MES, NQ and MNQ.</li>
+<li>An options order book or continuous option quotes: you get chain snapshots and prints.</li>
+<li>Options on futures, and underlyings other than SPX, NDX, SPY and QQQ.</li>
+<li>Whole-market totals today (<code>options.totals</code> answers <code>"not_provided"</code>).</li>
+<li>Options data for days before recording started, or days the app did not follow.</li>
+<li>Automated execution of strategies is not part of the current version.</li>
+</ul>
+
+<h2 id="start">Get started<a class="dev-anchor" href="#start" aria-label="Link to this section">#</a></h2>
+<ol class="etapes">
+<li><b><a href="../en/download.html">Download Strate</a></b> and open a chart of ES, MES, NQ or MNQ.</li>
+<li><b>Connect your options data account</b> in Strate's connections. It is your own account, read only. Without it,
+the app can still show the delayed public source on its charts.</li>
+<li><b>Open StrateScript:</b> Indicators window, <b>Custom</b> category, <b>StrateScript (preview)</b>. Load an
+<b>Options</b> template from the script menu, or paste a script from this page.</li>
+<li><b>Or ask Strate AI</b>, in the panel's <b>Assistant</b> mode, to write or explain a script. It is optional: every
+script here works without it.</li>
+<li><b>Replay a recorded day</b> to see your script on past sessions, or run a long backtest from the strategy Report over a folder of local MBO replay files, one per day (see
+<a href="#modes">Live, Replay, long backtest and the check</a>).</li>
+</ol>
+<p>Want to see Strate first? <a href="../strate-demo/en.html">Try the interactive demo</a>.</p>
+<p class="besoin">Strate is an analysis tool, not investment advice. Simulated results do not predict real results.</p></div><nav class="dev-pager" aria-label="Previous and next"><a class="is-prev" href="research.html"><small>Previous</small>Research</a><a class="is-next" href="reference/functions.html"><small>Next</small>Functions</a></nav></article>
+<nav class="dev-toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#overview">What options data lets you build</a></li><li><a href="#data">Where the data comes from</a></li><li><a href="#first-script">A first script</a></li><li><a href="#chain">The chain: options.chain()</a></li><li><a href="#trades">Option trades</a></li><li><a href="#black-scholes">Black-Scholes: bs.*</a></li><li><a href="#modes">Live, Replay, long backtest and the check</a></li><li><a href="#gallery">Examples and templates</a></li><li><a href="#pitfalls">Limits, pitfalls and common errors</a></li><li><a href="#start">Get started</a></li></ul></nav>
+</main>
+<footer class="dev-footer"><div class="container"><div class="dev-footer-top"><a class="dev-brand" href="index.html"><img src="../assets/logo/strate-logo.svg" alt="Strate" width="396" height="74"><span class="dev-brand-label">Developer</span></a></div>
+<div class="dev-footer-grid"><nav class="dev-footer-col" aria-label="Documentation"><h2>Documentation</h2><a href="getting-started.html">Getting started</a><a href="language.html">The language</a><a href="data.html">Market data</a><a href="order-flow.html">Order flow</a><a href="options.html">Options data</a><a href="strategies.html">Strategies</a><a href="research.html">Research</a></nav><nav class="dev-footer-col" aria-label="Reference"><h2>Reference</h2><a href="reference/functions.html">Functions</a><a href="reference/errors.html">Errors</a><a href="reference/limits.html">Limits</a></nav><nav class="dev-footer-col" aria-label="Resources"><h2>Resources</h2><a href="examples/index.html">Examples</a><a href="index.html#ai-skill">AI agent skill</a><a href="downloads/stratescript.zip">Download the skill</a></nav><nav class="dev-footer-col" aria-label="Strate"><h2>Strate</h2><a href="../en/index.html">strate.markets</a><a href="../en/features.html">Features</a><a href="../en/help.html">Help center</a><a href="../en/privacy.html">Privacy</a><a href="../en/terms.html">Terms</a><a href="../en/legal-notice.html">Legal notice</a><a href="#" data-cookie-settings>Manage cookies</a></nav></div><p class="dev-footer-legal"><span class="copyright-sign">©</span> 2026 Strate. All rights reserved.</p></div></footer>
+<dialog class="chart-dialog capture-dialog" aria-label="Enlarged Strate screenshot"><div class="dialog-head"><span class="mono dialog-title">STRATE / PRODUCT SCREENSHOT</span><div class="dialog-actions"><button class="capture-zoom" type="button" aria-pressed="false">Actual size</button><button class="dialog-close" aria-label="Close enlarged screenshot">Close <span aria-hidden="true">×</span></button></div></div><div class="dialog-chart"></div><p class="small-note dialog-note">Actual platform screenshot.</p></dialog>
+</body></html>
