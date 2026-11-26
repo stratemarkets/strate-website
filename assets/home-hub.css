@@ -1,0 +1,45 @@
+/* Home page: "Tout se connecte à Strate." Strate in the centre, wired to the
+   eleven tools (wires and pulses drawn by home-hub.js). Phones: the core, then
+   the tools as a list. Colours and type follow the site (styles.css). */
+.home-hub-section { text-align: center; }
+.home-hub-section h2 { max-width: 15ch; margin: 0 auto; }
+.hub-sub { max-width: 540px; margin: 18px auto 0; color: var(--muted); font-size: 17px; line-height: 1.5; }
+
+.hub { position: relative; width: 100%; max-width: 1120px; margin: 64px auto 0; aspect-ratio: 1120 / 560; }
+.hub-wires { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.hub-wire { fill: none; stroke: #2e2e33; stroke-width: 1.2; transition: stroke .25s; }
+.hub-wire.on { stroke: #4d4d54; }
+.hub-flow { fill: none; stroke: var(--accent); stroke-width: 1.6; stroke-linecap: round; opacity: 0; }
+.hub-port { position: absolute; width: 9px; height: 9px; margin: -4.5px 0 0 -4.5px; border-radius: 2px; background: var(--bg); box-shadow: inset 0 0 0 1px #3a3a3f; transition: box-shadow .25s; }
+.hub-port.on { box-shadow: inset 0 0 0 1px var(--accent); }
+
+.hub-node { position: absolute; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 11px; height: 50px; padding: 0 16px 0 13px; border: 1px solid #333336; border-radius: 14px; background: #202020; color: var(--text); font-size: 15px; font-weight: 500; letter-spacing: -.01em; white-space: nowrap; text-decoration: none; transition: border-color .25s, background .25s; }
+.hub-node[data-side="l"] { transform: translate(0, -50%); }
+.hub-node[data-side="r"] { transform: translate(-100%, -50%); }
+.hub-node svg { flex: none; width: 20px; height: 20px; color: var(--accent); }
+.hub-node:hover { border-color: #4a4a4e; background: #242426; }
+.hub-node:focus-visible { border-color: var(--accent); outline: none; }
+
+.hub-core { position: absolute; left: 50%; top: 44.6%; display: flex; align-items: center; justify-content: center; width: 136px; height: 136px; border-radius: 30px; background: var(--panel); box-shadow: inset 0 0 0 1px var(--accent), 0 0 60px #b318ff26; transform: translate(-50%, -50%); }
+.hub-core svg { width: 56%; overflow: visible; fill: var(--text); }
+
+.hub-action { margin-top: 44px; }
+
+/* Narrow desktops: bring the side columns in so long labels stay inside. */
+@media (max-width: 1180px) {
+  .hub-node { height: 46px; padding: 0 13px 0 11px; font-size: 14px; }
+  .hub-core { width: 116px; height: 116px; border-radius: 26px; }
+}
+
+@media (max-width: 960px) {
+  .hub { aspect-ratio: auto; display: flex; flex-direction: column; align-items: center; margin-top: 44px; }
+  .hub-wires, .hub-port { display: none; }
+  .hub-core { position: relative; left: auto; top: auto; width: 104px; height: 104px; margin-bottom: 28px; border-radius: 24px; transform: none; }
+  .hub-nodes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; }
+  .hub-node, .hub-node[data-side] { position: relative; left: auto !important; top: auto !important; height: 50px; padding: 0 14px; font-size: 14px; line-height: 1.2; white-space: normal; text-align: left; transform: none; }
+  .hub-node:last-child { grid-column: 1 / -1; justify-content: center; }
+}
+@media (max-width: 420px) {
+  .hub-nodes { grid-template-columns: 1fr; }
+  .hub-node:last-child { justify-content: flex-start; }
+}
